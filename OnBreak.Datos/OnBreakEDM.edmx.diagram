@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a3980b97c6f34a76b2d2e4ac8b4f1b27" Name="Diagram1">
+        <EntityTypeShape EntityType="OnBreakDBModel.ActividadEmpresa" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnBreakDBModel.Cliente" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnBreakDBModel.Contrato" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnBreakDBModel.ModalidadServicio" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnBreakDBModel.TipoEmpresa" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnBreakDBModel.TipoEvento" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnBreakDBModel.Usuario" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="OnBreakDBModel.Cliente_ActividadEmpresa_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="OnBreakDBModel.Cliente_TipoEmpresa_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="OnBreakDBModel.Contrato_Cliente_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="OnBreakDBModel.Contrato_ModalidadEvento_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="OnBreakDBModel.ModalidadServicio_TipoEvento_FK1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,50 @@
+﻿<Page x:Class="OnBreakApp.Pages.PageInicio"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OnBreakApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="620"
+      Title="PageInicio">
+
+    <Page.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource btnPages}"/>
+        <Style TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}"/>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource MahApps.Styles.TextBlock}"/>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="50" MaxHeight="80"/>
+            <RowDefinition/>
+            <RowDefinition MinHeight="50" MaxHeight="80"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="30" MaxWidth="60"/>
+            <ColumnDefinition/>
+            <ColumnDefinition MinWidth="30" MaxWidth="60"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="¡BIENVENIDO!" 
+               FontSize="36" FontWeight="Black" 
+               HorizontalAlignment="Left"/>
+
+            <Label Grid.Row="1" Grid.Column="1"
+               Content="OnBreak Eventos Empresariales" 
+               HorizontalAlignment="Left"
+               FontSize="10"/>
+
+            <TextBlock HorizontalAlignment="Stretch" 
+                   TextWrapping="Wrap" Margin="0,30,0,40"
+                   Width="auto" Height="auto"
+                   ><Run Text="Bienvenido a la nueva aplicación OnBreak services, en ella encontrarás un menú desplegable con las funciones principales que necesitarás al momento de recibir una solicitud. La sección de clientes y de contratos poseen dos subcategorías para que logres encontrar facilmente la sección que desees. Si has terminado tu sesión puedes seleccionar el botón de cerrar sesión ubicado en la parte inferior del menú lateral."/><Run/></TextBlock>
+
+            <Button x:Name="btnAyuda" 
+                    Content="¿NECESITAS AYUDA?"
+                    HorizontalAlignment="Left"
+                    Click="BtnAyuda_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

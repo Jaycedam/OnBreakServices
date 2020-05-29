@@ -1,0 +1,158 @@
+﻿<Page x:Class="OnBreakApp.Pages.PageAdminClientes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OnBreakApp.Pages" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="620"
+      Title="PageAdminClientes">
+
+    <Page.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource txtPages}"/>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource cboPages}"/>
+        <Style TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}"/>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource MahApps.Styles.TextBlock}"/>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="ADMINISTRAR CLIENTES" 
+               Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"
+               VerticalAlignment="Center" HorizontalAlignment="Center" 
+               FontFamily="Segoe UI Black" FontSize="36"/>
+
+        <!--SECCION BUSQUEDA-->
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
+            <iconPacks:PackIconModern Kind="PageSearch" Height="25" Width="25" 
+                                      Foreground="#FF25C9C9" Margin="0,0,10,0" VerticalAlignment="Center"/>
+            <Label Content="Buscar cliente" FontSize="20" FontFamily="Segoe UI Semibold" />
+
+            <Button x:Name="btnLimpiarDatos" Focusable="False" HorizontalAlignment="Left" Margin="10,0,0,0"
+                Style="{StaticResource MahApps.Styles.Button.Chromeless}" Click="LimpiarDatos_Click">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <iconPacks:PackIconModern Kind="Clear" VerticalAlignment="Center"/>
+                    <TextBlock Text="LIMPIAR" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="4" 
+                                        HorizontalAlignment="Right" VerticalAlignment="Center"
+                                        Height="20" Width="auto"
+                                        ToolTip="Para buscar un cliente ingresa el rut, luego presiona el botón buscar."/>
+
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Rut"/>
+            <TextBox x:Name="txtBuscarRut"/>
+        </StackPanel>
+
+        <Button x:Name="btnBuscarCliente" Grid.Row="3" Grid.Column="3" 
+                Style="{StaticResource btnPages}"
+                VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,20,0,0"
+                Click="BtnBuscarCliente_Click">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <iconPacks:PackIconModern Kind="Magnify" VerticalAlignment="Center"/>
+                <TextBlock Text="BUSCAR" Margin="5,0,0,0"/>
+            </StackPanel>
+        </Button>
+
+        <!--SECCION DATOS-->
+
+        <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
+            <iconPacks:PackIconModern Kind="FolderPeople" Height="25" Width="25" 
+                                      Foreground="#FF25C9C9" Margin="0,0,10,0" VerticalAlignment="Center"/>
+            <Label Content="Datos de cliente" FontSize="20" FontFamily="Segoe UI Semibold" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Rut *"/>
+            <TextBox x:Name="txtRut"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Razón social *"/>
+            <TextBox x:Name="txtRazonSocial"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+            <Label Content="Nombre contacto *"/>
+            <TextBox x:Name="txtNombre"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+            <Label Content="Mail contacto *"/>
+            <TextBox x:Name="txtMailContacto"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+            <Label Content="Direccion *"/>
+            <TextBox x:Name="txtDireccion"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+            <Label Content="Teléfono *"/>
+            <TextBox x:Name="txtTelefono"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+            <Label Content="Tipo de Empresa *"/>
+            <ComboBox x:Name="cboTipoEmpresa"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+            <Label Content="Actividad empresa *"/>
+            <ComboBox x:Name="cboActividadEmpresa"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="4" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Button x:Name="btnRegistrarCliente" Margin="15,0,15,0"
+                Style="{StaticResource btnPages}"
+                Click="BtnRegistrarCliente_Click">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <iconPacks:PackIconModern Kind="PageAdd" VerticalAlignment="Center"/>
+                    <TextBlock Text="REGISTRAR" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnModificarCliente" 
+                    Style="{StaticResource btnPages}"
+                    Margin="0,0,15,0" Click="BtnModificarCliente_Click">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <iconPacks:PackIconModern Kind="Edit" VerticalAlignment="Center"/>
+                    <TextBlock Text="MODIFICAR" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnEliminarCliente" Style="{StaticResource btnPagesDelete}"
+                    Click="BtnEliminarCliente_Click">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <iconPacks:PackIconModern Kind="Delete"/>
+                    <TextBlock Text="ELIMINAR" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,76 @@
+﻿<Page x:Class="OnBreakApp.Pages.PageRegister"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OnBreakApp.Pages" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="400"
+      Title="PageRegister">
+
+    <Page.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource loginTxt}"/>
+        <Style TargetType="Button" BasedOn="{StaticResource loginBtn}"/>
+        <Style TargetType="PasswordBox" BasedOn="{StaticResource loginPass}"/>
+        <Style TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}"/>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource MahApps.Styles.TextBlock}"/>
+    </Page.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="240"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="60"/>
+        </Grid.ColumnDefinitions>
+        
+        <Border Grid.RowSpan="4" Grid.ColumnSpan="3">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#FF0B9C5A"/>
+                    <GradientStop Color="#FF0C1E8F" Offset="1.3"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Image x:Name="imgLogo" Source="/OnBreakApp;component/Images/logo.png" Grid.ColumnSpan="2" Margin="0,10,0,0" HorizontalAlignment="Center" Height="180" VerticalAlignment="Top"/>
+            <Label Content="Registrar usuario" Width="auto" HorizontalAlignment="Center" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="20"/>
+        </StackPanel>
+
+        <TextBox x:Name="txtRegisterUser" 
+                 Grid.Row="1" Grid.Column="1" 
+                 GotFocus="TxtRegisterUser_Focus" />
+        <iconPacks:PackIconModern Kind="User" Foreground="White"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+        <Separator Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" VerticalAlignment="Bottom" Background="White"/>
+        <Separator Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" VerticalAlignment="Bottom" Background="White"/>
+
+
+        <PasswordBox x:Name="passRegister"  
+                     Grid.Row="2" Grid.Column="1" 
+                     Password="Password" GotFocus="PassRegister_Focus"/>
+        <iconPacks:PackIconModern Kind="InterfacePassword" Foreground="White" 
+                                  Grid.Row="2" Grid.Column="1" 
+                                  VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+        <Button x:Name="btnRegistrarse" 
+                Content="REGISTRARSE" 
+                Grid.Row="3" Grid.Column="1" 
+                HorizontalAlignment="Left" 
+                Margin="0,20,0,0"
+                IsDefault="True"
+                Click="BtnRegister_Click"/>
+        <Button x:Name="btnLogin" 
+                Content="INICIAR SESIÓN" 
+                Grid.Row="3" Grid.Column="1" 
+                HorizontalAlignment="Right" 
+                Margin="0,20,0,0"
+                Click="BtnLogin_Click"/>
+    </Grid>
+</Page>

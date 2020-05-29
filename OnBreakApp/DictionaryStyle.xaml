@@ -1,0 +1,238 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:OnBreakApp">
+
+    <!--Estilo para botones del menu principal-->
+    <Style x:Key="menu" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="FontSize" Value="11"/>
+        <!--Habilitar edicion template-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="0" BorderThickness="0"
+                            BorderBrush="White"
+                            Padding="20,0,0,0">
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--Cambiar color cuando el mouse está encima-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF5B57C1"/>
+            </Trigger>
+            <!--Cambiar color cuando está seleccionado-->
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="#FF5B57C1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Botones para barra superior-->
+    <Style x:Key="btnBarraSuperior" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
+        <Setter Property="Background" Value="#FF4D6BE6" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Focusable" Value="False"/>
+        <!--Habilitar edicion template-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="0" BorderThickness="0"
+                            BorderBrush="White">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--Cambiar color cuando el mouse está encima-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF5B57C1"/>
+            </Trigger>
+            <!--Cambiar color cuando está seleccionado-->
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="#FF5B57C1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Estilo para botones del loginScreen-->
+    <Style x:Key="loginBtn" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="FontSize" Value="11"/>
+        <!--Habilitar edicion template-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="15" BorderThickness="2"
+                            BorderBrush="White">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--Cambiar color cuando el mouse está encima-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Foreground" Value="Black" />
+            </Trigger>
+            <!--Cambiar color cuando está seleccionado-->
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Estilo para txtBox Login-->
+    <Style x:Key="loginTxt" TargetType="TextBox" BasedOn="{StaticResource MahApps.Styles.TextBox}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="0,0,20,0"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Opacity" Value="0.5"/>
+        <Setter Property="Text" Value="Usuario"/>
+        <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Style.Triggers>
+            <!--Restaurar opacity al hacer click-->
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Estilo para passBox Login-->
+    <Style x:Key="loginPass" TargetType="PasswordBox" BasedOn="{StaticResource MahApps.Styles.PasswordBox}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="0,0,20,0"/>
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Opacity" Value="0.5"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Style.Triggers>
+            <!--Restaurar opacity al hacer click-->
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Opacity" Value="1"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Estilo botones generales dentro de cada pagina-->
+    <Style x:Key="btnPages" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
+        <Setter Property="Foreground" Value="#FF25C9C9" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Height" Value="35" />
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Focusable" Value="False"/>
+        <!--Habilitar edicion template-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="15" BorderThickness="2"
+                            BorderBrush="#FF25C9C9">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--Cambiar color cuando el mouse está encima-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="#FF25C9C9"/>
+            </Trigger>
+            <!--Cambiar color cuando está seleccionado-->
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="#FF25C9C9"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Estilo botones "delete" dentro de cada pagina-->
+    <Style x:Key="btnPagesDelete" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
+        <Setter Property="Foreground" Value="#FFF54239" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Height" Value="35" />
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="FontSize" Value="11"/>
+        <!--Habilitar edicion template-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="15" BorderThickness="2"
+                            BorderBrush="#FFF54239">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--Cambiar color cuando el mouse está encima-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="#FFF54239"/>
+            </Trigger>
+            <!--Cambiar color cuando está seleccionado-->
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="#FFF54239"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Estilo txtbox de las paginas-->
+    <Style x:Key="txtPages" TargetType="TextBox" BasedOn="{StaticResource MahApps.Styles.TextBox}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Height" Value="23"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Style.Triggers>
+            <!--Cambiar color al estar seleccionado-->
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BorderThickness" Value="2"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Estilo combobox en paginas-->
+    <Style x:Key="cboPages" TargetType="ComboBox" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Height" Value="23"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+</ResourceDictionary>
