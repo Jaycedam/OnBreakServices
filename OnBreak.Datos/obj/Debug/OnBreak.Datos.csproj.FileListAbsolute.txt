@@ -1,0 +1,13 @@
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\bin\Debug\OnBreakDB.mdf
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\bin\Debug\OnBreakDB_log.ldf
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\bin\Debug\OnBreak.Datos.dll.config
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\bin\Debug\OnBreak.Datos.dll
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\bin\Debug\OnBreak.Datos.pdb
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\bin\Debug\EntityFramework.dll
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\bin\Debug\EntityFramework.xml
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.csproj.CoreCompileInputs.cache
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.csproj.CopyComplete
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.dll
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.pdb
