@@ -42,6 +42,10 @@
             HorizontalAlignment="Left" VerticalAlignment="Center"
             Foreground="White" FontWeight="Light"/>
 
+        <!--cambiar tema, beta-->
+        <!--<mah:ToggleSwitch Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right"
+                    Toggled="ToggleSwitch_Toggled" />-->
+
         <!--****************FIN BARRA SUPERIOR*********************-->
 
         <!--*****************SECCION MENU*************************-->

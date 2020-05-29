@@ -116,6 +116,6 @@ C:\Users\Jordan\source\repos\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.csp
 C:\Users\Jordan\source\repos\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.csproj.CopyComplete
 C:\Users\Jordan\source\repos\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.exe
 C:\Users\Jordan\source\repos\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.pdb
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreakApp\obj\Debug\DictionaryStyle.baml
 C:\Users\Jordan\source\repos\OnBreakServices\OnBreakApp\bin\Debug\OnBreakDB.mdf
 C:\Users\Jordan\source\repos\OnBreakServices\OnBreakApp\bin\Debug\OnBreakDB_log.ldf
-C:\Users\Jordan\source\repos\OnBreakServices\OnBreakApp\obj\Debug\DictionaryStyle.baml

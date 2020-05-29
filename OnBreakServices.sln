@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnBreak.Library", "OnBreak.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnBreakApp", "OnBreakApp\OnBreakApp.csproj", "{D34FDB49-1B26-488A-8B7C-8A0A743E4DC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnBreak.LibraryTests", "OnBreak.LibraryTests\OnBreak.LibraryTests.csproj", "{9DB7BBEA-EC37-45FA-B34D-B89C69248FA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D34FDB49-1B26-488A-8B7C-8A0A743E4DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D34FDB49-1B26-488A-8B7C-8A0A743E4DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D34FDB49-1B26-488A-8B7C-8A0A743E4DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DB7BBEA-EC37-45FA-B34D-B89C69248FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DB7BBEA-EC37-45FA-B34D-B89C69248FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DB7BBEA-EC37-45FA-B34D-B89C69248FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DB7BBEA-EC37-45FA-B34D-B89C69248FA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

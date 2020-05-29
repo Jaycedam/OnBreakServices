@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using ControlzEx.Theming;
+using MahApps.Metro.Controls;
 using OnBreakApp.Pages;
 using System;
 using System.Collections.Generic;
@@ -118,7 +119,6 @@ namespace OnBreakApp
         {
             LoginWindow lw = new LoginWindow();
             this.Close();
-            //ThemeManager.ChangeAppTheme(Application.Current, "BaseLight");
             lw.Show();
         }
 
@@ -130,5 +130,22 @@ namespace OnBreakApp
                 DragMove();
             }
         }
+
+        // cambiar tema, beta
+        //private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        //{
+        //    ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+        //    if (toggleSwitch != null)
+        //    {
+        //        if (toggleSwitch.IsOn == true)
+        //        {
+        //            ThemeManager.Current.ChangeTheme(this, "Dark.Purple");
+        //        }
+        //        else
+        //        {
+        //            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
+        //        }
+        //    }
+        //}
     }
 }

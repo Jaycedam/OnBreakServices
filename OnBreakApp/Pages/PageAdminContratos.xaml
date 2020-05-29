@@ -12,7 +12,7 @@
         <Style TargetType="TextBox" BasedOn="{StaticResource txtPages}"/>
         <Style TargetType="ComboBox" BasedOn="{StaticResource cboPages}"/>
         <Style TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}"/>
-        <Style TargetType="RadioButton" BasedOn="{StaticResource MahApps.Styles.RadioButton.Win10}"/>
+        <Style TargetType="CheckBox" BasedOn="{StaticResource MahApps.Styles.CheckBox.Win10}"/>
         <Style TargetType="DatePicker" BasedOn="{StaticResource MahApps.Styles.DatePicker}"/>
     </Page.Resources>
     
