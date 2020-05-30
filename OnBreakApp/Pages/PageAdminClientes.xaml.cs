@@ -48,7 +48,7 @@ namespace OnBreakApp.Pages
                     "Debes ingresar todos los campos obligatorios (*)");
                 return;
             }
-            else if (int.TryParse(txtTelefono.Text, out int fono) == false)
+            else if (InvalidEntry())
             {
                 await MetroDialogue("Registrar cliente",
                     "Ingresa sólo números en Teléfono");
@@ -109,7 +109,7 @@ namespace OnBreakApp.Pages
                     "Debes ingresar todos los campos obligatorios (*)");
                 return;
             }
-            else if (int.TryParse(txtTelefono.Text, out int fono) == false)
+            else if (InvalidEntry())
             {
                 await MetroDialogue("Modificar cliente",
                     "Ingresa sólo números en Teléfono");
@@ -152,7 +152,7 @@ namespace OnBreakApp.Pages
         private async void BtnEliminarCliente_Click(object sender, RoutedEventArgs e)
         {
             //missing: codigo eliminar cliente lista
-            if (txtRut.Text == string.Empty)
+            if (FaltaRut())
             {
                 await MetroDialogue("Eliminar cliente",
                     "Debes ingresar el rut del cliente");
@@ -217,20 +217,7 @@ namespace OnBreakApp.Pages
             }
         }
 
-        // limpiar todos los campos
-        private void LimpiarCampos()
-        {
-            txtRut.Text = string.Empty;
-            txtRazonSocial.Text = string.Empty;
-            txtNombre.Text = string.Empty;
-            txtMailContacto.Text = string.Empty;
-            txtDireccion.Text = string.Empty;
-            txtTelefono.Text = string.Empty;
-            cboTipoEmpresa.SelectedIndex = 0;
-            cboActividadEmpresa.SelectedIndex = 0;
-            // desbloquear edición de rut
-            txtRut.IsReadOnly = false;
-        }
+        // ********************VALIDACIONES***********************************
 
         // metodo que entrega true cuando faltan datos obligatorios
         public bool FaltanCamposObligatorios()
@@ -245,6 +232,41 @@ namespace OnBreakApp.Pages
                 return true;
             }
             return false;
+        }
+
+        private bool InvalidEntry()
+        {
+            if (int.TryParse(txtTelefono.Text, out int fono) == false)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool FaltaRut()
+        {
+            if (txtRut.Text == string.Empty)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        //*************************END VALIDACIONES******************************
+
+        // limpiar todos los campos
+        private void LimpiarCampos()
+        {
+            txtRut.Text = string.Empty;
+            txtRazonSocial.Text = string.Empty;
+            txtNombre.Text = string.Empty;
+            txtMailContacto.Text = string.Empty;
+            txtDireccion.Text = string.Empty;
+            txtTelefono.Text = string.Empty;
+            cboTipoEmpresa.SelectedIndex = 0;
+            cboActividadEmpresa.SelectedIndex = 0;
+            // desbloquear edición de rut
+            txtRut.IsReadOnly = false;
         }
 
         // metodo que trae el parentWindow del currentPage para mostrar metro dialogue

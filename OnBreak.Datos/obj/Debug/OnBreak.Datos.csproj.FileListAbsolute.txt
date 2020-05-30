@@ -11,3 +11,4 @@ C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Dat
 C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.csproj.CopyComplete
 C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.dll
 C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.pdb
+C:\Users\Jordan\source\repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.csprojAssemblyReference.cache
