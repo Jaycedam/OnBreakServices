@@ -12,56 +12,36 @@ namespace OnBreak.Library.Tests
     public class ContratoTests
     {
         [TestMethod()]
-        public void ReadTest_NumberFound()
+        public void ReadTest_NumberFound_ReturnsNotNull()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string numContrato = "2020050805";
-
-            // Arrange
-            bool expected = true;
-
             // Act
-            bool actual;
-            if (contrato.Read(numContrato) != null)
-            {
-                actual = true;
-            }
-            else
-            {
-                actual = false;
-            }
+            Contrato actual = contrato.Read(numContrato);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsNotNull(actual);
         }
 
         [TestMethod()]
-        public void ReadTest_NumberNotFound()
+        public void ReadTest_NumberNotFound_ReturnsNull()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string numContrato = "2020050855";
 
-            // Arrange
-            bool expected = false;
-
             // Act
-            bool actual;
-            if (contrato.Read(numContrato) == null)
-            {
-                actual = false;
-            }
-            else
-            {
-                actual = true;
-            }
+            Contrato actual = contrato.Read(numContrato);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsNull(actual);
         }
 
         [TestMethod()]
-        public void CreateTest_MissingValues()
+        public void CreateTest_MissingValues_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato()
             {
                 Numero = DateTime.Now.ToString("yyyyMMddHHmm"),
@@ -71,23 +51,20 @@ namespace OnBreak.Library.Tests
                     RutCliente = "190040399"
                 }
             };
-
-            // Arrange
-            bool expected = false;
-
             // Act
             bool actual = contrato.Create(contrato);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         [TestMethod()]
-        public void CreateTest_Correct()
+        public void CreateTest_Correct_ReturnsTrue()
         {
+            // Arrange
             Contrato contrato = new Contrato()
             {
-                Numero = "2020051805",
+                Numero = DateTime.Now.ToString("yyyyMMddHHmm"),
                 Creacion = DateTime.Now,
                 Termino = DateTime.Now,
                 Asistentes = 10,
@@ -96,34 +73,31 @@ namespace OnBreak.Library.Tests
                 FechaHoraInicio = DateTime.Now,
                 FechaHoraTermino = DateTime.Now,
                 Observaciones = "-",
-                ValorTotalContrato = 50,
+                ValorTotalContrato = 8,
                 Cliente = new Cliente()
                 {
                     RutCliente = "190040399"
                 },
                 ModalidadServicio = new ModalidadServicio()
                 {
-                    IdModalidad = "CO002",
+                    IdModalidad = "CB001",
                     TipoEvento = new TipoEvento()
                     {
                         IdTipoEvento = 10
                     }
                 },
             };
-
-            // Arrange
-            bool expected = true;
-
             // Act
             bool actual = contrato.Create(contrato);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod()]
-        public void CreateTest_ClienteNotFound()
+        public void CreateTest_ClienteNotFound_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato()
             {
                 Numero = DateTime.Now.ToString("yyyyMMddHHmm"),
@@ -150,19 +124,17 @@ namespace OnBreak.Library.Tests
                 },
             };
 
-            // Arrange
-            bool expected = false;
-
             // Act
             bool actual = contrato.Create(contrato);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         [TestMethod()]
-        public void UpdateTest_Correct()
+        public void UpdateTest_Correct_ReturnsTrue()
         {
+            // Arrange
             Contrato contrato = new Contrato()
             {
                 Numero = "2020050805",
@@ -175,7 +147,7 @@ namespace OnBreak.Library.Tests
                 ValorTotalContrato = 10,
                 ModalidadServicio = new ModalidadServicio()
                 {
-                    IdModalidad = "CO002",
+                    IdModalidad = "CB001",
                     TipoEvento = new TipoEvento()
                     {
                         IdTipoEvento = 10
@@ -184,19 +156,17 @@ namespace OnBreak.Library.Tests
 
             };
 
-            // Arrange
-            bool expected = true;
-
             // Act
             bool actual = contrato.Update(contrato);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod()]
-        public void UpdateTest_MissingValues()
+        public void UpdateTest_MissingValues_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato()
             {
                 Numero = "2020050805",
@@ -219,19 +189,17 @@ namespace OnBreak.Library.Tests
                 },
             };
 
-            // Arrange
-            bool expected = false;
-
             // Act
             bool actual = contrato.Update(contrato);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         [TestMethod()]
-        public void UpdateTest_NumberNotFound()
+        public void UpdateTest_NumberNotFound_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato()
             {
                 Numero = "2020050808",
@@ -258,57 +226,46 @@ namespace OnBreak.Library.Tests
                 },
             };
 
-            // Arrange
-            bool expected = false;
-
             // Act
             bool actual = contrato.Update(contrato);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         [TestMethod()]
-        public void DeleteTest_Correct()
+        public void DeleteTest_Correct_ReturnsTrue()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string num = "2020050806";
-
-            // Arrange
-            bool expected = true;
-
             // Act
             bool actual = contrato.Delete(num);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod()]
-        public void DeleteTest_NumberNotFound()
+        public void DeleteTest_NumberNotFound_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string num = "2020050855";
-
-            // Arrange
-            bool expected = false;
-
             // Act
             bool actual = contrato.Delete(num);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
 
         [TestMethod()]
-        public void ReadAllByNumeroContratoTest_Found()
+        public void ReadAllByNumeroContratoTest_Found_ReturnsTrue()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string num = "2020050805";
-            
-            // Arrange
-            bool expected = true;
 
             // Act
             bool actual;
@@ -322,17 +279,15 @@ namespace OnBreak.Library.Tests
             }
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod()]
-        public void ReadAllByNumeroContratoTest_NotFound()
+        public void ReadAllByNumeroContratoTest_NotFound_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string num = "2020055805";
-
-            // Arrange
-            bool expected = false;
 
             // Act
             bool actual;
@@ -346,17 +301,15 @@ namespace OnBreak.Library.Tests
             }
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         [TestMethod()]
-        public void ReadAllByRutTest_Found()
+        public void ReadAllByRutTest_Found_ReturnsTrue()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string rut = "190040399";
-
-            // Arrange
-            bool expected = true;
 
             // Act
             bool actual;
@@ -370,17 +323,15 @@ namespace OnBreak.Library.Tests
             }
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod()]
-        public void ReadAllByRutTest_NotFound()
+        public void ReadAllByRutTest_NotFound_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string rut = "190048899";
-
-            // Arrange
-            bool expected = false;
 
             // Act
             bool actual;
@@ -394,17 +345,15 @@ namespace OnBreak.Library.Tests
             }
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         [TestMethod()]
-        public void ReadAllByTipoEventoTest_Found()
+        public void ReadAllByTipoEventoTest_Found_ReturnsTrue()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             int tipo = 10;
-
-            // Arrange
-            bool expected = true;
 
             // Act
             bool actual;
@@ -418,17 +367,15 @@ namespace OnBreak.Library.Tests
             }
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod()]
-        public void ReadAllByTipoEventoTest_NotFound()
+        public void ReadAllByTipoEventoTest_NotFound_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             int tipo = 30;
-
-            // Arrange
-            bool expected = false;
 
             // Act
             bool actual;
@@ -442,18 +389,16 @@ namespace OnBreak.Library.Tests
             }
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
 
         [TestMethod()]
-        public void ReadAllByModalidadTest_Found()
+        public void ReadAllByModalidadTest_Found_ReturnsTrue()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string modalidad = "CB001";
-
-            // Arrange
-            bool expected = true;
 
             // Act
             bool actual;
@@ -467,17 +412,15 @@ namespace OnBreak.Library.Tests
             }
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod()]
-        public void ReadAllByModalidadTest_NotFound()
+        public void ReadAllByModalidadTest_NotFound_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string modalidad = "CB003";
-
-            // Arrange
-            bool expected = false;
 
             // Act
             bool actual;
@@ -491,39 +434,35 @@ namespace OnBreak.Library.Tests
             }
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         [TestMethod()]
-        public void ContratosVigentesTest_Yes()
+        public void ContratosVigentesTest_Yes_ReturnsTrue()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string rut = "190040399";
 
-            // Arrange
-            bool expected = true;
-
             // Act
             bool actual = contrato.ContratosAsociados(rut);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod()]
-        public void ContratosVigentesTest_No()
+        public void ContratosVigentesTest_No_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             string rut = "145324262";
-
-            // Arrange
-            bool expected = false;
 
             // Act
             bool actual = contrato.ContratosAsociados(rut);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
     }
 }

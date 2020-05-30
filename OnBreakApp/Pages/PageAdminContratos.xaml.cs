@@ -50,8 +50,7 @@ namespace OnBreakApp.Pages
                     "Debes ingresar todos los campos obligatorios (*)");
                 return;
             }
-            else if (int.TryParse(txtCantAsist.Text, out int a) == false ||
-                int.TryParse(txtCantPersonal.Text, out int p) == false)
+            else if (InvalidEntry())
             {
                 await MetroDialogue("Registrar contrato",
                     "Cantidad de asistentes y personal sólo acepta números");
@@ -119,8 +118,7 @@ namespace OnBreakApp.Pages
                     "Debes ingresar todos los campos obligatorios (*)");
                 return;
             }
-            else if (int.TryParse(txtCantAsist.Text, out int a) == false ||
-                int.TryParse(txtCantPersonal.Text, out int p) == false)
+            else if (InvalidEntry())
             {
                 await MetroDialogue("Registrar contrato",
                     "Cantidad de asistentes y personal sólo acepta números");
@@ -160,6 +158,7 @@ namespace OnBreakApp.Pages
             }
         }
 
+
         private async void BtnFinalizarContrato_Click(object sender, RoutedEventArgs e)
         {
             //missing: codigo eliminar cliente lista
@@ -193,6 +192,17 @@ namespace OnBreakApp.Pages
         }
 
         /**********************************END CRUD************************************/
+        private bool InvalidEntry()
+        {
+            if (int.TryParse(txtCantAsist.Text, out int a) == false ||
+                int.TryParse(txtCantPersonal.Text, out int p) == false ||
+                int.Parse(txtCantAsist.Text) < 0 ||
+                int.Parse(txtCantPersonal.Text) < 0)
+            {
+                return true;
+            }
+            return false;
+        }
 
         //Metodo que se encarga de popular datos del contrato al buscar
         //entrega notificación si no es encontrado
@@ -292,7 +302,8 @@ namespace OnBreakApp.Pages
         {
             if (txtCantAsist.Text == string.Empty ||
                 txtCantPersonal.Text == string.Empty ||
-                cboModalidad.SelectedValue == null)
+                cboModalidad.SelectedValue == null ||
+                InvalidEntry())
             {
                 return;
             }
