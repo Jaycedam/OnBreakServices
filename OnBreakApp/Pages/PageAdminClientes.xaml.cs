@@ -169,7 +169,7 @@ namespace OnBreakApp.Pages
                 Cliente cliente = new Cliente();
                 Contrato contrato = new Contrato();
 
-                if (contrato.ContratosVigentes(txtRut.Text))
+                if (contrato.ContratosAsociados(txtRut.Text))
                 {
                     await MetroDialogue("Eliminar cliente",
                         "No se puede eliminar un cliente con contratos asociados");

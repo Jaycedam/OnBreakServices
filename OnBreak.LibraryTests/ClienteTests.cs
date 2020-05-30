@@ -13,8 +13,9 @@ namespace OnBreak.Library.Tests
     {
         // VALIDA QUE ENTREGA FALSE AL FALTAR CAMPOS OBLIGATORIOS
         [TestMethod()]
-        public void CreateTest_MissingValues()
+        public void CreateTest_MissingValues_ReturnsFalse()
         {
+            // Arrange
             Cliente cliente = new Cliente()
             {
                 RutCliente = "156845268",
@@ -22,20 +23,18 @@ namespace OnBreak.Library.Tests
                 NombreContacto = "J",
                 Telefono = "555"
             };
-            // Arrange
-            bool expected = false;
-
             // Act
             bool actual = cliente.Create(cliente);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         // ENTREGA TRUE AL CREAR CLIENTE EN DB
         [TestMethod()]
-        public void CreateTest_Correct()
+        public void CreateTest_Correct_ReturnsTrue()
         {
+            // Arrange
             Cliente cliente = new Cliente()
             {
                 RutCliente = "156845268",
@@ -53,20 +52,18 @@ namespace OnBreak.Library.Tests
                     IdTipoEmpresa = 10
                 }
             };
-            // Arrange
-            bool expected = true;
-
             // Act
             bool actual = cliente.Create(cliente);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         // ENTREGA FALSE AL REGISTRAR UN RUT QUE YA EXISTE EN LA DB
         [TestMethod()]
-        public void CreateTest_ExistingRut()
+        public void CreateTest_ExistingRut_ReturnsFalse()
         {
+            // Arrange
             Cliente cliente = new Cliente()
             {
                 RutCliente = "190040399",
@@ -84,60 +81,48 @@ namespace OnBreak.Library.Tests
                     IdTipoEmpresa = 10
                 }
             };
-            // Arrange
-            bool expected = false;
-
             // Act
             bool actual = cliente.Create(cliente);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         // BUSCAR RUT NO ENCONTRADO, RETORNA NULL
         [TestMethod()]
-        public void ReadTest_NotFound()
+        public void ReadTest_NotFound_ReturnsNull()
         {
-            Cliente cliente = new Cliente();
             // Arrange
-            Cliente expected = null;
+            Cliente cliente = new Cliente();
             string rut = "184565845";
 
             // Act
             Cliente actual = cliente.Read(rut);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsNull(actual);
         }
 
         // BUSCAR RUT ENCONTRADO, ENTREGA CLIENTE
         [TestMethod()]
-        public void ReadTest_Correct()
+        public void ReadTest_Correct_ReturnsNotNull()
         {
-            Cliente cliente = new Cliente();
             // Arrange
-            bool expected = true;
+            Cliente cliente = new Cliente();
             string rut = "190040399";
 
             // Act
-            bool actual;
-            if (cliente.Read(rut) != null)
-            {
-                actual = true;
-            }
-            else
-            {
-                actual = false;
-            }
+            Cliente actual = cliente.Read(rut);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsNotNull(actual);
         }
 
         // ACTUALIZAR CLIENTE, NO SE ENCUENTRA CLIENTE, ENTREGA FALSE
         [TestMethod()]
-        public void UpdateTest_NotFound()
+        public void UpdateTest_NotFound_ReturnsFalse()
         {
+            // Arrange
             Cliente cliente = new Cliente()
             {
                 RutCliente = "184565845",
@@ -155,20 +140,18 @@ namespace OnBreak.Library.Tests
                     IdTipoEmpresa = 10
                 }
             };
-            // Arrange
-            bool expected = false;
-
             // Act
             bool actual = cliente.Update(cliente);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         // ACTUALIZAR CLIENTE, CORRECTO ENTREGA TRUE
         [TestMethod()]
-        public void UpdateTest_Correct()
+        public void UpdateTest_Correct_ReturnsTrue()
         {
+            // Arrange
             Cliente cliente = new Cliente()
             {
                 RutCliente = "190040399",
@@ -186,20 +169,19 @@ namespace OnBreak.Library.Tests
                     IdTipoEmpresa = 10
                 }
             };
-            // Arrange
-            bool expected = true;
 
             // Act
             bool actual = cliente.Update(cliente);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         // ACTUALIZAR CLIENTE ENTREGA FALSE AL FALTAR CAMPOS OBLIGATORIOS
         [TestMethod()]
-        public void UpdateTest_MissingValues()
+        public void UpdateTest_MissingValues_ReturnsFalse()
         {
+            // Arrange
             Cliente cliente = new Cliente()
             {
                 RutCliente = "125684585",
@@ -207,29 +189,25 @@ namespace OnBreak.Library.Tests
                 NombreContacto = "J",
                 Telefono = "555"
             };
-            // Arrange
-            bool expected = false;
 
             // Act
             bool actual = cliente.Update(cliente);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         // BUSCAR POR RUT, ENCONTRADO ENTREGA TRUE
         [TestMethod()]
-        public void ReadAllByRutTest_Found()
+        public void ReadAllByRutTest_Found_ReturnsTrue()
         {
-            Cliente cliente = new Cliente();
             // Arrange
-            bool expected = true;
+            Cliente cliente = new Cliente();
             string rut = "190040399";
 
             // Act
             bool actual;
-
-            if(cliente.ReadAllByRut(rut).Count > 0)
+            if (cliente.ReadAllByRut(rut).Count > 0)
             {
                 actual = true;
             }
@@ -239,21 +217,19 @@ namespace OnBreak.Library.Tests
             }
 
             // Asert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         // BUSCAR POR RUT, NO ENCONTRADO ENTREGA FALSE
         [TestMethod()]
-        public void ReadAllByRutTest_NotFound()
+        public void ReadAllByRutTest_NotFound_ReturnsFalse()
         {
-            Cliente cliente = new Cliente();
             // Arrange
-            bool expected = false;
+            Cliente cliente = new Cliente();
             string rut = "186652356";
 
             // Act
             bool actual;
-
             if (cliente.ReadAllByRut(rut).Count == 0)
             {
                 actual = false;
@@ -264,21 +240,19 @@ namespace OnBreak.Library.Tests
             }
 
             // Asert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         // BUSCAR POR TIPO DE EMPRESA, ENCONTRADO ENTREGA TRUE
         [TestMethod()]
-        public void ReadAllByTipoEmpresaTest_Found()
+        public void ReadAllByTipoEmpresaTest_Found_ReturnsTrue()
         {
-            Cliente cliente = new Cliente();
             // Arrange
-            bool expected = true;
+            Cliente cliente = new Cliente();
             int tipo = 10;
 
             // Act
             bool actual;
-
             if (cliente.ReadAllByTipoEmpresa(tipo).Count > 0)
             {
                 actual = true;
@@ -287,23 +261,20 @@ namespace OnBreak.Library.Tests
             {
                 actual = false;
             }
-
             // Asert
-            Assert.AreEqual(expected, actual);
+            Assert.IsNotNull(actual);
         }
 
         // BUSCAR POR TIPO DE EMPRESA, NO ENCONTRADO ENTREGA FALSE
         [TestMethod()]
-        public void ReadAllByTipoEmpresaTest_NotFound()
+        public void ReadAllByTipoEmpresaTest_NotFound_ReturnsFalse()
         {
-            Cliente cliente = new Cliente();
             // Arrange
-            bool expected = false;
+            Cliente cliente = new Cliente();
             int tipo = 30;
 
             // Act
             bool actual;
-
             if (cliente.ReadAllByTipoEmpresa(tipo).Count == 0)
             {
                 actual = false;
@@ -314,22 +285,20 @@ namespace OnBreak.Library.Tests
             }
 
             // Asert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         // BUSCAR POR ACT DE EMPRESA, ENCONTRADO ENTREGA TRUE
         [TestMethod()]
-        public void ReadAllByActividadEmpresaTest_Found()
+        public void ReadAllByActividadEmpresaTest_Found_ReturnsTrue()
         {
-            Cliente cliente = new Cliente();
             // Arrange
-            bool expected = true;
-            int tipo = 1;
+            Cliente cliente = new Cliente();
+            int act = 1;
 
             // Act
             bool actual;
-
-            if (cliente.ReadAllByActividadEmpresa(tipo).Count > 0)
+            if (cliente.ReadAllByActividadEmpresa(act).Count > 0)
             {
                 actual = true;
             }
@@ -339,22 +308,20 @@ namespace OnBreak.Library.Tests
             }
 
             // Asert
-            Assert.AreEqual(expected, actual);
+            Assert.IsNotNull(actual);
         }
 
         // BUSCAR POR ACT DE EMPRESA, NO ENCONTRADO ENTREGA FALSE
         [TestMethod()]
-        public void ReadAllByActividadEmpresaTest_NotFound()
+        public void ReadAllByActividadEmpresaTest_NotFound_ReturnsFalse()
         {
-            Cliente cliente = new Cliente();
             // Arrange
-            bool expected = false;
-            int tipo = 3;
+            Cliente cliente = new Cliente();
+            int act = 3;
 
             // Act
             bool actual;
-
-            if (cliente.ReadAllByActividadEmpresa(tipo).Count == 0)
+            if (cliente.ReadAllByActividadEmpresa(act).Count == 0)
             {
                 actual = false;
             }
@@ -364,63 +331,53 @@ namespace OnBreak.Library.Tests
             }
 
             // Asert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         // ELIMINAR CLIENTE, RUT NO ENCONTRADO ENTREGA FALSE
         [TestMethod()]
-        public void DeleteTest_NotFound()
+        public void DeleteTest_NotFound_ReturnsFalse()
         {
-            Cliente cliente = new Cliente();
             // Arrange
-            bool expected = false;
+            Cliente cliente = new Cliente();
             string rut = "184565845";
 
             // Act
             bool actual = cliente.Delete(rut);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
 
         // ELIMINAR CLIENTE, RUT ENCONTRADO Y ELIMINADO, ENTREGA TRUE
         [TestMethod()]
-        public void DeleteTest_Correct()
+        public void DeleteTest_Correct_ReturnsTrue()
         {
+
+            // Arrange
             Contrato contrato = new Contrato();
             Cliente cliente = new Cliente();
-            // Arrange
-            bool expected = true;
-            string rut = "145324262";
+            string rut = "156845268";
 
             // Act
-            bool actual;
-            if (contrato.ContratosVigentes(rut))
-            {
-                actual = false;
-            }
-            else
-            {
-                actual = cliente.Delete(rut);
-            }
+            bool actual = cliente.Delete(rut);
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual);
         }
 
         // ELIMINAR CLIENTE, RUT TIENE CONTRATOS ASOCIADOS, NO SE ELIMINA, ENTREGA FALSE
         [TestMethod()]
-        public void DeleteTest_ContratosAsociados()
+        public void DeleteTest_ContratosAsociados_ReturnsFalse()
         {
+            // Arrange
             Contrato contrato = new Contrato();
             Cliente cliente = new Cliente();
-            // Arrange
-            bool expected = false;
             string rut = "190040399";
 
             // Act
             bool actual;
-            if (contrato.ContratosVigentes(rut))
+            if (contrato.ContratosAsociados(rut))
             {
                 actual = false;
             }
@@ -428,9 +385,9 @@ namespace OnBreak.Library.Tests
             {
                 actual = cliente.Delete(rut);
             }
-
+            
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual);
         }
     }
 }

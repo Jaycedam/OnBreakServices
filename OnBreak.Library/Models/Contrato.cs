@@ -207,7 +207,7 @@ namespace OnBreak.Library
         }
 
         // metodo que retorna true si el rut tiene contratos asociados
-        public bool ContratosVigentes(string rut)
+        public bool ContratosAsociados(string rut)
         {
             List<Contrato> contratos = (from c in ReadAll()
                                         where c.Cliente.RutCliente == rut

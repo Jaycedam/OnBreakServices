@@ -300,37 +300,6 @@ namespace OnBreak.Library.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod()]
-        public void ContratosVigentesTest_Yes()
-        {
-            Contrato contrato = new Contrato();
-            string rut = "190040399";
-
-            // Arrange
-            bool expected = true;
-
-            // Act
-            bool actual = contrato.ContratosVigentes(rut);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod()]
-        public void ContratosVigentesTest_No()
-        {
-            Contrato contrato = new Contrato();
-            string rut = "145324262";
-
-            // Arrange
-            bool expected = false;
-
-            // Act
-            bool actual = contrato.ContratosVigentes(rut);
-
-            // Assert
-            Assert.AreEqual(expected, actual);
-        }
 
         [TestMethod()]
         public void ReadAllByNumeroContratoTest_Found()
@@ -520,6 +489,38 @@ namespace OnBreak.Library.Tests
             {
                 actual = true;
             }
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void ContratosVigentesTest_Yes()
+        {
+            Contrato contrato = new Contrato();
+            string rut = "190040399";
+
+            // Arrange
+            bool expected = true;
+
+            // Act
+            bool actual = contrato.ContratosAsociados(rut);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void ContratosVigentesTest_No()
+        {
+            Contrato contrato = new Contrato();
+            string rut = "145324262";
+
+            // Arrange
+            bool expected = false;
+
+            // Act
+            bool actual = contrato.ContratosAsociados(rut);
 
             // Assert
             Assert.AreEqual(expected, actual);
