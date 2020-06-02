@@ -62,7 +62,7 @@
         <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="4" 
                                         HorizontalAlignment="Right" VerticalAlignment="Center"
                                         Height="20" Width="auto"
-                                        ToolTip="Para buscar un cliente ingresa el rut, luego presiona el botón buscar."/>
+                                        ToolTip="Para obtener los datos de un cliente, ingresa el rut luego presiona buscar."/>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Rut"/>

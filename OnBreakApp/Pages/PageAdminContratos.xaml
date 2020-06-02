@@ -61,7 +61,7 @@
         <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="4" 
                                         HorizontalAlignment="Right" VerticalAlignment="Center"
                                         Height="20" Width="auto"
-                                        ToolTip="Para buscar un contrato ingresa el N° de contrato y presiona buscar."/>
+                                        ToolTip="Verifica que el cliente esté registrado antes de asociarle un contrato."/>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
             <Label Content="N° contrato"/>

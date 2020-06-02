@@ -61,7 +61,7 @@
         <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="4" 
                                         HorizontalAlignment="Right" VerticalAlignment="Center"
                                         Height="20" Width="auto"
-                                        ToolTip="Para buscar un cliente ingresa el rut, luego presiona el botón buscar."/>
+                                        ToolTip="Selecciona la celda que quieras revisar y presiona Ver Cliente o Ver Contratos."/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel>
