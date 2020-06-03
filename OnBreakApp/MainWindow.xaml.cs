@@ -36,7 +36,7 @@ namespace OnBreakApp
         public MainWindow(string user)
         {
             InitializeComponent();
-            lblCurrentUser.Content = user.ToUpper();
+            lblCurrentUser.Content = user;
             // Metodo colapsar menus al inicio
             HideSubmenu();
             // Iniciar pagina bienvenido

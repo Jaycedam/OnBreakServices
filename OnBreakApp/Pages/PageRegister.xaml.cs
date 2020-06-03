@@ -44,7 +44,7 @@ namespace OnBreakApp.Pages
             {
                 Usuario usuario = new Usuario()
                 {
-                    User = txtRegisterUser.Text,
+                    User = txtRegisterUser.Text.ToLower().Trim(),
                     Password = passRegister.Password
                 };
                 if (usuario.Register(usuario))

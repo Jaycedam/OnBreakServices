@@ -57,11 +57,11 @@ namespace OnBreakApp.Pages
 
             Cliente cliente = new Cliente()
             {
-                RutCliente = txtRut.Text,
-                RazonSocial = txtRazonSocial.Text,
-                NombreContacto = txtNombre.Text,
-                MailContacto = txtMailContacto.Text,
-                Direccion = txtDireccion.Text,
+                RutCliente = txtRut.Text.ToUpper().Trim(),
+                RazonSocial = txtRazonSocial.Text.ToUpper(),
+                NombreContacto = txtNombre.Text.ToUpper(),
+                MailContacto = txtMailContacto.Text.ToUpper().Trim(),
+                Direccion = txtDireccion.Text.ToUpper(),
                 Telefono = txtTelefono.Text,
                 ActividadEmpresa = new ActividadEmpresa()
                 {
@@ -95,7 +95,7 @@ namespace OnBreakApp.Pages
             }
             else
             {
-                string rut = txtBuscarRut.Text;
+                string rut = txtBuscarRut.Text.ToUpper().Trim();
                 Cliente cliente = new Cliente().Read(rut);
                 DataCliente(cliente);
             }
@@ -118,11 +118,11 @@ namespace OnBreakApp.Pages
 
             Cliente cliente = new Cliente()
             {
-                RutCliente = txtRut.Text,
-                RazonSocial = txtRazonSocial.Text,
-                NombreContacto = txtNombre.Text,
-                MailContacto = txtMailContacto.Text,
-                Direccion = txtDireccion.Text,
+                RutCliente = txtRut.Text.ToUpper().Trim(),
+                RazonSocial = txtRazonSocial.Text.ToUpper(),
+                NombreContacto = txtNombre.Text.ToUpper(),
+                MailContacto = txtMailContacto.Text.ToUpper().Trim(),
+                Direccion = txtDireccion.Text.ToUpper(),
                 Telefono = txtTelefono.Text,
                 ActividadEmpresa = new ActividadEmpresa()
                 {
@@ -138,7 +138,6 @@ namespace OnBreakApp.Pages
             {
                 await MetroDialogue("Modificar cliente",
                     "Cliente modificado correctamente");
-                return;
             }
             else
             {
@@ -169,19 +168,18 @@ namespace OnBreakApp.Pages
                 Cliente cliente = new Cliente();
                 Contrato contrato = new Contrato();
 
-                if (contrato.ContratosAsociados(txtRut.Text))
+                if (contrato.ContratosAsociados(txtRut.Text.ToUpper().Trim()))
                 {
                     await MetroDialogue("Eliminar cliente",
                         "No se puede eliminar un cliente con contratos asociados");
                     return;
                 }
 
-                else if (cliente.Delete(txtRut.Text))
+                else if (cliente.Delete(txtRut.Text.ToUpper().Trim()))
                 {
                     await MetroDialogue("Eliminar cliente",
                         "Cliente eliminado correctamente");
                     LimpiarCampos();
-                    return;
                 }
                 else
                 {

@@ -64,7 +64,7 @@ namespace OnBreakApp.Pages
                 Termino = (DateTime)dpFechaTermino.SelectedDateTime,
                 Cliente = new Cliente()
                 {
-                    RutCliente = txtRut.Text
+                    RutCliente = txtRut.Text.ToUpper().Trim()
                 },
                 ModalidadServicio = new ModalidadServicio()
                 {
@@ -105,7 +105,7 @@ namespace OnBreakApp.Pages
             }
             else
             {
-                Contrato contrato = new Contrato().Read(txtNumContrato.Text);
+                Contrato contrato = new Contrato().Read(txtNumContrato.Text.Trim());
                 DataContrato(contrato);
             }
         }
@@ -307,23 +307,20 @@ namespace OnBreakApp.Pages
             {
                 return;
             }
-            else
+            Contrato contrato = new Contrato()
             {
-                Contrato contrato = new Contrato()
+                Asistentes = int.Parse(txtCantAsist.Text),
+                PersonalAdicional = int.Parse(txtCantPersonal.Text),
+                ModalidadServicio = new ModalidadServicio()
                 {
-                    Asistentes = int.Parse(txtCantAsist.Text),
-                    PersonalAdicional = int.Parse(txtCantPersonal.Text),
-                    ModalidadServicio = new ModalidadServicio()
+                    IdModalidad = cboModalidad.SelectedValue.ToString(),
+                    TipoEvento = new TipoEvento()
                     {
-                        IdModalidad = cboModalidad.SelectedValue.ToString(),
-                        TipoEvento = new TipoEvento()
-                        {
-                            IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
-                        }
+                        IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
                     }
-                };
-                lblMonto.Content = valorizador.CalcularValorEvento(contrato);
-            }
+                }
+            };
+            lblMonto.Content = valorizador.CalcularValorEvento(contrato);
         }
 
         private void txtCantPersonal_KeyUp(object sender, KeyEventArgs e)

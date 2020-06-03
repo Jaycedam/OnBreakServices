@@ -68,15 +68,14 @@ namespace OnBreakApp.Pages
             {
                 Usuario usuario = new Usuario()
                 {
-                    User = txtLoginUser.Text,
+                    User = txtLoginUser.Text.ToLower().Trim(),
                     Password = passLogin.Password
                 };
                 if (usuario.Login(usuario))
                 {
                     await MetroDialogue("Iniciar sesión",
                         "Inicio de sesión exitoso");
-                    string user = txtLoginUser.Text;
-                    MainWindow mw = new MainWindow(user);
+                    MainWindow mw = new MainWindow(usuario.User);
                     // Recuperar Window desde ParentWindow
                     Window parentWindow = Window.GetWindow(this);
                     // Cerrar ParentWindow
