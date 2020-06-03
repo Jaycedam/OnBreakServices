@@ -47,7 +47,7 @@ namespace OnBreakApp.Pages
             if (FaltanCamposObligatorios())
             {
                 await MetroDialogue("Registrar contrato",
-                    "Debes ingresar todos los campos obligatorios (*)");
+                    "Debes ingresar todos los campos obligatorios");
                 return;
             }
             else if (InvalidEntry())
@@ -115,7 +115,7 @@ namespace OnBreakApp.Pages
             if (FaltanCamposObligatorios())
             {
                 await MetroDialogue("Modificar contrato",
-                    "Debes ingresar todos los campos obligatorios (*)");
+                    "Debes ingresar todos los campos obligatorios");
                 return;
             }
             else if (InvalidEntry())
@@ -165,7 +165,7 @@ namespace OnBreakApp.Pages
             if (FaltanCamposObligatorios())
             {
                 await MetroDialogue("Finalizar contrato",
-                    "Debes ingresar todos los campos obligatorios (*)");
+                    "Debes ingresar todos los datos obligatorios");
                 return;
             }
 
@@ -242,7 +242,7 @@ namespace OnBreakApp.Pages
             dpFechaInicio.SelectedDateTime = null;
             dpFechaTermino.SelectedDateTime = null;
             txtObservaciones.Text = string.Empty;
-            lblMonto.Content = string.Empty;
+            lblMonto.Content = "0";
             chkRealizado.IsChecked = false;
             // habilitar edición de rut
             txtRut.IsReadOnly = false;
@@ -305,6 +305,7 @@ namespace OnBreakApp.Pages
                 cboModalidad.SelectedValue == null ||
                 InvalidEntry())
             {
+                lblMonto.Content = "0";
                 return;
             }
             Contrato contrato = new Contrato()

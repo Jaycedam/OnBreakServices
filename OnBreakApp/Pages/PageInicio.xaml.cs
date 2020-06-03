@@ -26,7 +26,7 @@ namespace OnBreakApp.Pages
         }
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://youtu.be/dQw4w9WgXcQ");
+            System.Diagnostics.Process.Start("https://www.lipsum.com/");
         }
     }
 }

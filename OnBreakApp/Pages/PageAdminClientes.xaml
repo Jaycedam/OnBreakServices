@@ -65,7 +65,7 @@
                                         ToolTip="Para obtener los datos de un cliente, ingresa el rut luego presiona buscar."/>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Label Content="Rut"/>
+            <Label Content="Rut (sin puntos ni guión)"/>
             <TextBox x:Name="txtBuscarRut"/>
         </StackPanel>
 
@@ -88,46 +88,47 @@
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Label Content="Rut *"/>
-            <TextBox x:Name="txtRut"/>
+            <Label Content="Rut (sin puntos ni guión)"/>
+            <TextBox x:Name="txtRut" MaxLength="9"/>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Label Content="Razón social *"/>
+            <Label Content="Razón social"/>
             <TextBox x:Name="txtRazonSocial"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Nombre contacto *"/>
+            <Label Content="Nombre contacto"/>
             <TextBox x:Name="txtNombre"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Mail contacto *"/>
+            <Label Content="Mail contacto"/>
             <TextBox x:Name="txtMailContacto"/>
         </StackPanel>
 
         <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Direccion *"/>
+            <Label Content="Direccion"/>
             <TextBox x:Name="txtDireccion"/>
         </StackPanel>
 
         <StackPanel Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Teléfono *"/>
-            <TextBox x:Name="txtTelefono"/>
+            <Label Content="Teléfono (ej 958965445)"/>
+            <TextBox x:Name="txtTelefono" MaxLength="9"/>
         </StackPanel>
 
         <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Tipo de Empresa *"/>
+            <Label Content="Tipo de Empresa"/>
             <ComboBox x:Name="cboTipoEmpresa"/>
         </StackPanel>
 
         <StackPanel Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Actividad empresa *"/>
+            <Label Content="Actividad empresa"/>
             <ComboBox x:Name="cboActividadEmpresa"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="4" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="4" Orientation="Horizontal" 
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <Button x:Name="btnRegistrarCliente" Margin="15,0,15,0"
                 Style="{StaticResource btnPages}"
                 Click="BtnRegistrarCliente_Click">
@@ -154,5 +155,10 @@
                 </StackPanel>
             </Button>
         </StackPanel>
+
+        <TextBlock Text="Todos los campos son obligatorios." FontStyle="Italic" Foreground="Gray"
+                   Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="4" TextWrapping="Wrap"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        
     </Grid>
 </Page>

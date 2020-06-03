@@ -45,7 +45,7 @@ namespace OnBreakApp.Pages
             if (FaltanCamposObligatorios())
             {
                 await MetroDialogue("Registrar cliente",
-                    "Debes ingresar todos los campos obligatorios (*)");
+                    "Debes ingresar todos los datos obligatorios");
                 return;
             }
             else if (InvalidEntry())
@@ -106,7 +106,7 @@ namespace OnBreakApp.Pages
             if (FaltanCamposObligatorios())
             {
                 await MetroDialogue("Modificar cliente",
-                    "Debes ingresar todos los campos obligatorios (*)");
+                    "Debes ingresar todos los campos obligatorios");
                 return;
             }
             else if (InvalidEntry())

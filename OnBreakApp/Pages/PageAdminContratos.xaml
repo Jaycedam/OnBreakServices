@@ -46,7 +46,7 @@
 
         <!--SECCION BUSCAR-->
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
-            <iconPacks:PackIconJamIcons Kind="Document" Height="25" Width="25" 
+            <iconPacks:PackIconModern Kind="PageSearch" Height="25" Width="25" 
                                       Foreground="#FF25C9C9" Margin="0,0,10,0" VerticalAlignment="Center"/>
             <Label Content="Buscar contrato" FontSize="20" FontWeight="Bold"/>
             <Button x:Name="btnLimpiarDatos" Margin="10,0,0,0" Focusable="False"
@@ -87,43 +87,43 @@
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Rut cliente *"/>
-            <TextBox x:Name="txtRut"/>
+            <Label Content="Rut cliente (sin puntos ni guión)"/>
+            <TextBox x:Name="txtRut" MaxLength="9"/>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" 
                     HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Observaciones"/>
+            <Label Content="Observaciones (opcional)"/>
             <TextBox x:Name="txtObservaciones"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Tipo de evento *"/>
+            <Label Content="Tipo de evento"/>
             <ComboBox x:Name="cboTipoEvento" SelectionChanged="CboTipoEvento_SelectionChanged"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Modalidad *"/>
+            <Label Content="Modalidad"/>
             <ComboBox x:Name="cboModalidad" SelectionChanged="CboModalidad_SelectionChanged"/>
         </StackPanel>
 
         <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Cantidad asistentes *"/>
-            <TextBox x:Name="txtCantAsist" KeyUp="TxtCantAsist_KeyUp"/>
+            <Label Content="Cantidad asistentes"/>
+            <TextBox x:Name="txtCantAsist" KeyUp="TxtCantAsist_KeyUp" MaxLength="4"/>
         </StackPanel>
 
         <StackPanel Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Cantidad personal extra *"/>
-            <TextBox x:Name="txtCantPersonal" KeyUp="txtCantPersonal_KeyUp" />
+            <Label Content="Cantidad personal extra"/>
+            <TextBox x:Name="txtCantPersonal" KeyUp="txtCantPersonal_KeyUp" MaxLength="4"/>
         </StackPanel>
 
         <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Fecha y hora inicio de evento *"/>
+            <Label Content="Fecha y hora inicio de evento"/>
             <Controls:DateTimePicker Name="dpFechaInicio"/>
         </StackPanel>
 
         <StackPanel Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Fecha y hora termino evento *"/>
+            <Label Content="Fecha y hora termino evento"/>
             <Controls:DateTimePicker Name="dpFechaTermino"/>
         </StackPanel>
 
@@ -167,5 +167,10 @@
                 </StackPanel>
             </Button>
         </StackPanel>
+
+        <TextBlock Text="Todos los campos son obligatorios excepto observaciones." FontStyle="Italic" Foreground="Gray"
+                   Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="4" TextWrapping="Wrap"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
     </Grid>
 </Page>
