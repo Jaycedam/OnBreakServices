@@ -37,7 +37,7 @@ namespace OnBreakApp.Pages
                 passRegister.Password == "Password")
             {
                 await MetroDialogue("Registrar usuario",
-                    "Debes ingresar un usuario y contraseña");
+                    "Debes ingresar un usuario y contraseña válidos");
 
             }
             else
@@ -58,7 +58,7 @@ namespace OnBreakApp.Pages
                         "Este nombre de usuario ya existe");
                     // Reset de labels
                     txtRegisterUser.Text = "Usuario";
-                    passRegister.Password = "password";
+                    passRegister.Password = "Password";
                 }
             }
         }
