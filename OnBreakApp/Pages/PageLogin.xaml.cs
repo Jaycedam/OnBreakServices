@@ -55,10 +55,10 @@ namespace OnBreakApp.Pages
         private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             // Validacion de entrada de usuario
-            if (txtLoginUser.Text == "Usuario" ||
+            if (txtLoginUser.Text.Trim().ToLower() == "usuario" ||
                 txtLoginUser.Text == String.Empty ||
                 passLogin.Password == String.Empty ||
-                passLogin.Password == "Password")
+                passLogin.Password == "password")
             {
                 await MetroDialogue("Iniciar sesión",
                     "Debes ingresar un usuario y contraseña");

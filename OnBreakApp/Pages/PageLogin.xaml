@@ -55,7 +55,7 @@
 
         <PasswordBox x:Name="passLogin"  
                      Grid.Row="2" Grid.Column="1" 
-                     Password="Password" 
+                     Password="password" 
                      GotFocus="PassLogin_Focus"/>
         <iconPacks:PackIconModern Kind="InterfacePassword" Foreground="White" 
                                   Grid.Row="2" Grid.Column="1" 

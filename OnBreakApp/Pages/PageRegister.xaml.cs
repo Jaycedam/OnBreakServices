@@ -31,10 +31,10 @@ namespace OnBreakApp.Pages
         private async void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
             // Validacion de entrada de usuario
-            if (txtRegisterUser.Text == "Usuario" ||
+            if (txtRegisterUser.Text.ToLower().Trim() == "usuario" ||
                 txtRegisterUser.Text == String.Empty ||
                 passRegister.Password == String.Empty ||
-                passRegister.Password == "Password")
+                passRegister.Password == "password")
             {
                 await MetroDialogue("Registrar usuario",
                     "Debes ingresar un usuario y contraseña válidos");
@@ -58,7 +58,7 @@ namespace OnBreakApp.Pages
                         "Este nombre de usuario ya existe");
                     // Reset de labels
                     txtRegisterUser.Text = "Usuario";
-                    passRegister.Password = "Password";
+                    passRegister.Password = "password";
                 }
             }
         }

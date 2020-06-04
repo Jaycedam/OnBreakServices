@@ -19,7 +19,6 @@ namespace OnBreak.Library
         public int Asistentes { get; set; }
         public int PersonalAdicional { get; set; }
         public bool Realizado { get; set; }
-        //public Valorizador Valorizador { get; set; }
         public double ValorTotalContrato { get; set; }
         public string Observaciones { get; set; }
         public string RealizadoStr
