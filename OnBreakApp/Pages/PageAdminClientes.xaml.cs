@@ -211,7 +211,8 @@ namespace OnBreakApp.Pages
                 cboTipoEmpresa.SelectedValue = cliente.TipoEmpresa.IdTipoEmpresa;
                 cboActividadEmpresa.SelectedValue = cliente.ActividadEmpresa.IdActividadEmpresa;
                 // bloquear edición de rut al buscar cliente
-                txtRut.IsReadOnly = true;
+                EnableButtons(true);
+                EnableRut(false);
             }
         }
 
@@ -264,7 +265,38 @@ namespace OnBreakApp.Pages
             cboTipoEmpresa.SelectedIndex = 0;
             cboActividadEmpresa.SelectedIndex = 0;
             // desbloquear edición de rut
-            txtRut.IsReadOnly = false;
+            EnableRut(true);
+            EnableButtons(false);
+        }
+
+        // metodo que habilita/deshabilita los botones de modificar/finalizar 
+        private void EnableButtons(bool enable)
+        {
+            btnModificarCliente.IsEnabled = enable;
+            btnEliminarCliente.IsEnabled = enable;
+            if (btnModificarCliente.IsEnabled == false)
+            {
+                btnModificarCliente.Opacity = 0.5;
+                btnEliminarCliente.Opacity = 0.5;
+            }
+            else
+            {
+                btnModificarCliente.Opacity = 1;
+                btnEliminarCliente.Opacity = 1;
+            }
+        }
+
+        public void EnableRut(bool enable)
+        {
+            txtRut.IsEnabled = enable;
+            if (txtRut.IsEnabled == false)
+            {
+                txtRut.Opacity = 0.5;
+            }
+            else
+            {
+                txtRut.Opacity = 1;
+            }
         }
 
         // metodo que trae el parentWindow del currentPage para mostrar metro dialogue

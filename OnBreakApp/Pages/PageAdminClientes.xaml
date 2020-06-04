@@ -62,7 +62,7 @@
         <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="4" 
                                         HorizontalAlignment="Right" VerticalAlignment="Center"
                                         Height="20" Width="auto"
-                                        ToolTip="Para obtener los datos de un cliente, ingresa el rut luego presiona buscar."/>
+                                        ToolTip="Los botones para modificar/eliminar se activan al buscar un cliente"/>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Rut (sin puntos ni guión)"/>
@@ -138,7 +138,7 @@
                 </StackPanel>
             </Button>
 
-            <Button x:Name="btnModificarCliente" 
+            <Button x:Name="btnModificarCliente" IsEnabled="False" Opacity="0.5"
                     Style="{StaticResource btnPages}"
                     Margin="0,0,15,0" Click="BtnModificarCliente_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -148,6 +148,7 @@
             </Button>
 
             <Button x:Name="btnEliminarCliente" Style="{StaticResource btnPagesDelete}"
+                    IsEnabled="False" Opacity="0.5"
                     Click="BtnEliminarCliente_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <iconPacks:PackIconModern Kind="Delete"/>

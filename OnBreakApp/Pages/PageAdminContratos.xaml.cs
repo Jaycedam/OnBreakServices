@@ -204,6 +204,36 @@ namespace OnBreakApp.Pages
             return false;
         }
 
+        // metodo que habilita/deshabilita los botones de modificar/finalizar 
+        private void EnableButtons(bool enable)
+        {
+            btnModificarContrato.IsEnabled = enable;
+            btnFinalizarContrato.IsEnabled = enable;
+            if (btnModificarContrato.IsEnabled == false)
+            {
+                btnModificarContrato.Opacity = 0.5;
+                btnFinalizarContrato.Opacity = 0.5;
+            }
+            else
+            {
+                btnModificarContrato.Opacity = 1;
+                btnFinalizarContrato.Opacity = 1;
+            }
+        }
+
+        private void EnableRut(bool enable)
+        {
+            txtRut.IsEnabled = enable;
+            if (txtRut.IsEnabled == false)
+            {
+                txtRut.Opacity = 0.5;
+            }
+            else
+            {
+                txtRut.Opacity = 1;
+            }
+        }
+
         //Metodo que se encarga de popular datos del contrato al buscar
         //entrega notificación si no es encontrado
         private async void DataContrato(Contrato contrato)
@@ -217,7 +247,6 @@ namespace OnBreakApp.Pages
             {
                 lblNumContrato.Content = contrato.Numero;
                 txtRut.Text = contrato.Cliente.RutCliente;
-                txtRut.IsReadOnly = true;
                 txtObservaciones.Text = contrato.Observaciones;
                 cboTipoEvento.SelectedValue = contrato.ModalidadServicio.TipoEvento.IdTipoEvento;
                 cboModalidad.SelectedValue = contrato.ModalidadServicio.IdModalidad;
@@ -227,6 +256,8 @@ namespace OnBreakApp.Pages
                 txtCantPersonal.Text = contrato.PersonalAdicional.ToString();
                 chkRealizado.IsChecked = contrato.Realizado;
                 CalcularMonto();
+                EnableButtons(true);
+                EnableRut(false);
             }
         }
 
@@ -245,7 +276,8 @@ namespace OnBreakApp.Pages
             lblMonto.Content = "0";
             chkRealizado.IsChecked = false;
             // habilitar edición de rut
-            txtRut.IsReadOnly = false;
+            EnableRut(true);
+            EnableButtons(false);
         }
 
         // metodo que entrega true cuando faltan datos obligatorios

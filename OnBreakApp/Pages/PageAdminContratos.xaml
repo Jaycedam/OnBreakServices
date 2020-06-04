@@ -61,7 +61,7 @@
         <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="4" 
                                         HorizontalAlignment="Right" VerticalAlignment="Center"
                                         Height="20" Width="auto"
-                                        ToolTip="Verifica que el cliente esté registrado antes de asociarle un contrato."/>
+                                        ToolTip="Los botones para modificar/finalizar se activan al buscar un contrato"/>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
             <Label Content="N° contrato"/>
@@ -150,8 +150,8 @@
                 </StackPanel>
             </Button>
 
-            <Button x:Name="btnModificarContrato" Margin="0,0,15,0"
-                    Style="{StaticResource btnPages}"
+            <Button x:Name="btnModificarContrato" Margin="0,0,15,0" Opacity="0.5"
+                    Style="{StaticResource btnPages}" IsEnabled="False"
                     Click="BtnModificarContrato_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <iconPacks:PackIconModern Kind="Edit" VerticalAlignment="Center"/>
@@ -159,7 +159,8 @@
                 </StackPanel>
             </Button>
 
-            <Button x:Name="btnFinalizarContrato" Style="{StaticResource btnPagesDelete}"
+            <Button x:Name="btnFinalizarContrato" Style="{StaticResource btnPagesDelete}" 
+                    IsEnabled="False" Opacity="0.5"
                     Click="BtnFinalizarContrato_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <iconPacks:PackIconModern Kind="Calendar"/>
