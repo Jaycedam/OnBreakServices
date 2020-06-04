@@ -170,7 +170,7 @@ namespace OnBreakApp.Pages
             }
 
             var result = await this.TryFindParent<MetroWindow>()
-                                .ShowMessageAsync("Eliminar cliente",
+                                .ShowMessageAsync("Finalizar contrato",
                                 "¿Estás seguro que deseas finalizar este contrato?",
                                 MessageDialogStyle.AffirmativeAndNegative);
 
