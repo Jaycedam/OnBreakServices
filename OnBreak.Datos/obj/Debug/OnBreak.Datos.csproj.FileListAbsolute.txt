@@ -24,4 +24,3 @@ C:\Users\jayce\Source\Repos\Jaycedam\OnBreakServices\OnBreak.Datos\obj\Debug\OnB
 C:\Users\jayce\Source\Repos\Jaycedam\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.csproj.CopyComplete
 C:\Users\jayce\Source\Repos\Jaycedam\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.dll
 C:\Users\jayce\Source\Repos\Jaycedam\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.pdb
-C:\Users\jayce\Source\Repos\Jaycedam\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.csprojAssemblyReference.cache
