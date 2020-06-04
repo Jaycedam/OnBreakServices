@@ -126,13 +126,13 @@ namespace OnBreakApp.Pages
             }
             else if (InvalidEntry())
             {
-                await MetroDialogue("Registrar contrato",
+                await MetroDialogue("Modificar contrato",
                     "Cantidad de asistentes y personal sólo acepta números");
                 return;
             }
             else if (InvalidDate())
             {
-                await MetroDialogue("Registrar contrato",
+                await MetroDialogue("Modificar contrato",
                   "La fecha de término no puede ser anterior a la de inicio del evento");
                 return;
             }
