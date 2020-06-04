@@ -16,7 +16,7 @@ namespace OnBreak.Library.Tests
         {
             // Arrange
             Contrato contrato = new Contrato();
-            string numContrato = "2020050805";
+            string numContrato = "202005080508";
             // Act
             Contrato actual = contrato.Read(numContrato);
 
@@ -137,7 +137,7 @@ namespace OnBreak.Library.Tests
             // Arrange
             Contrato contrato = new Contrato()
             {
-                Numero = "2020050805",
+                Numero = "202005080508",
                 Observaciones = "",
                 FechaHoraInicio = DateTime.Now,
                 FechaHoraTermino = DateTime.Now,
@@ -238,7 +238,7 @@ namespace OnBreak.Library.Tests
         {
             // Arrange
             Contrato contrato = new Contrato();
-            string num = "2020050806";
+            string num = "202005080604";
             // Act
             bool actual = contrato.Delete(num);
 
