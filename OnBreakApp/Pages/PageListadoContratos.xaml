@@ -65,12 +65,14 @@
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Top">
             <StackPanel>
                 <Label Content="N° contrato"/>
-                <TextBox x:Name="txtNumContrato" Width="110" KeyUp="TxtNumContrato_KeyUp"/>
+                <TextBox x:Name="txtNumContrato" MaxLength="12"
+                         Width="110" KeyUp="TxtNumContrato_KeyUp"/>
             </StackPanel>
 
             <StackPanel Margin="25,0,25,0">
                 <Label Content="Rut cliente"/>
-                <TextBox x:Name="txtRut" Width="110" KeyUp="TxtRut_KeyUp"/>
+                <TextBox x:Name="txtRut" Width="110" MaxLength="9"
+                         KeyUp="TxtRut_KeyUp"/>
             </StackPanel>
 
             <StackPanel>

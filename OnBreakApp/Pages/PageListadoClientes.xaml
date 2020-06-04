@@ -67,7 +67,8 @@
             <StackPanel>
                 <Label x:Name="lblFiltrarRut" 
                Content="Rut"/>
-                <TextBox x:Name="txtRut" Width="110" KeyUp="TxtRut_KeyUp"/>
+                <TextBox x:Name="txtRut" Width="110" MaxLength="9"
+                         KeyUp="TxtRut_KeyUp"/>
             </StackPanel>
 
             <StackPanel Margin="25,0,25,0">

@@ -56,6 +56,12 @@ namespace OnBreakApp.Pages
                     "Cantidad de asistentes y personal sólo acepta números");
                 return;
             }
+            else if (InvalidDate())
+            {
+                await MetroDialogue("Registrar contrato",
+                  "La fecha de término no puede ser anterior a la de inicio del evento");
+                return;
+            }
             DateTime creationDate = DateTime.Now;
             Contrato contrato = new Contrato()
             {
@@ -124,8 +130,14 @@ namespace OnBreakApp.Pages
                     "Cantidad de asistentes y personal sólo acepta números");
                 return;
             }
+            else if (InvalidDate())
+            {
+                await MetroDialogue("Registrar contrato",
+                  "La fecha de término no puede ser anterior a la de inicio del evento");
+                return;
+            }
 
-            Contrato contrato = new Contrato()
+                Contrato contrato = new Contrato()
             {
                 Numero = lblNumContrato.Content.ToString(),
                 Observaciones = txtObservaciones.Text,
@@ -198,6 +210,15 @@ namespace OnBreakApp.Pages
                 int.TryParse(txtCantPersonal.Text, out int p) == false ||
                 int.Parse(txtCantAsist.Text) < 0 ||
                 int.Parse(txtCantPersonal.Text) < 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool InvalidDate()
+        {
+            if (dpFechaInicio.SelectedDateTime > dpFechaTermino.SelectedDateTime)
             {
                 return true;
             }

@@ -66,7 +66,7 @@
 
         <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Rut (sin puntos ni guión)"/>
-            <TextBox x:Name="txtBuscarRut"/>
+            <TextBox x:Name="txtBuscarRut" MaxLength="9"/>
         </StackPanel>
 
         <Button x:Name="btnBuscarCliente" Grid.Row="3" Grid.Column="3" 
