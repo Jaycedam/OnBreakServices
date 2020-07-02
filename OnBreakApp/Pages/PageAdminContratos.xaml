@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OnBreakApp.Pages" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="620"
+      d:DesignHeight="620" d:DesignWidth="650"
       Title="PageAdminContratos">
 
     <Page.Resources>
@@ -19,7 +19,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition Height="40"/>
@@ -27,50 +27,64 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
 
+        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" VerticalAlignment="Bottom"/>
+
         <Label Content="ADMINISTRAR CONTRATOS" FontWeight="Black"
-               Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"
-               VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="36"/>
+               Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5"
+               VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="34"/>
 
         <!--SECCION BUSCAR-->
-        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Orientation="Horizontal" VerticalAlignment="Center">
             <iconPacks:PackIconModern Kind="PageSearch" Height="25" Width="25" 
                                       Foreground="#FF25C9C9" Margin="0,0,10,0" VerticalAlignment="Center"/>
-            <Label Content="Buscar contrato" FontSize="20" FontWeight="Bold"/>
-            <Button x:Name="btnLimpiarDatos" Margin="10,0,0,0" Focusable="False"
+            <Label Content="Buscar" FontSize="20" FontWeight="Bold"/>
+            
+            <Button x:Name="btnLimpiarDatos" Margin="30,0,0,0" Focusable="False"
                 Style="{StaticResource MahApps.Styles.Button.Chromeless}" Click="LimpiarDatos_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <iconPacks:PackIconModern Kind="Clear" VerticalAlignment="Center"/>
                     <TextBlock Text="LIMPIAR" Margin="5,0,0,0"/>
                 </StackPanel>
             </Button>
+            <Button x:Name="btnRestore" Margin="30,0,0,0" Focusable="False"
+                Style="{StaticResource MahApps.Styles.Button.Chromeless}" Click="BtnRestoreBackup">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <iconPacks:PackIconMaterial Kind="Restore" VerticalAlignment="Center"/>
+                    <TextBlock Text="RESTAURAR" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Label Content="Último respaldo:" VerticalAlignment="Center" Margin="20,0,0,0"/>
+            <Label x:Name="lblRespaldo" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="4" 
+        <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="4" Grid.Column="5" 
                                         HorizontalAlignment="Right" VerticalAlignment="Center"
                                         Height="20" Width="auto"
                                         ToolTip="Los botones para modificar/finalizar se activan al buscar un contrato"/>
 
-        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+        <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="N° contrato"/>
             <TextBox x:Name="txtNumContrato" MaxLength="12"/>
         </StackPanel>
 
         <Button x:Name="btnBuscarContrato" Grid.Row="3" Grid.Column="3" 
                 Style="{StaticResource btnPages}"
-                VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,20,0,0"
+                VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,15,0,0"
                 Click="BtnBuscarContrato_Click">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <iconPacks:PackIconModern Kind="Magnify" VerticalAlignment="Center"/>
@@ -82,66 +96,101 @@
         <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
             <iconPacks:PackIconJamIcons Kind="Document" Height="25" Width="25" 
                                       Foreground="#FF25C9C9" Margin="0,0,10,0" VerticalAlignment="Center"/>
-            <Label Content="Datos de contrato" FontSize="20" FontWeight="Bold"/>
+            <Label Content="Contrato" FontSize="20" FontWeight="Bold"/>
             <Label x:Name="lblNumContrato" FontSize="20" FontWeight="Bold"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Rut cliente (sin puntos ni guión)"/>
+        <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Rut cliente (ej 146542354)"/>
             <TextBox x:Name="txtRut" MaxLength="9"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" 
-                    HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Observaciones (opcional)"/>
-            <TextBox x:Name="txtObservaciones"/>
+        <StackPanel Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Inicio del evento"/>
+            <Controls:DateTimePicker Name="dpFechaInicio"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+        <StackPanel Grid.Row="5" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Término del evento"/>
+            <Controls:DateTimePicker Name="dpFechaTermino"/>
+        </StackPanel>
+
+
+
+        <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Tipo de evento"/>
             <ComboBox x:Name="cboTipoEvento" SelectionChanged="CboTipoEvento_SelectionChanged"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+        <StackPanel Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Modalidad"/>
             <ComboBox x:Name="cboModalidad" SelectionChanged="CboModalidad_SelectionChanged"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Cantidad asistentes"/>
+        <StackPanel Grid.Row="6" Grid.Column="5" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <CheckBox x:Name="chkMusica" Content="Música ambiental"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Ambientación"/>
+            <ComboBox x:Name="cboAmbientacion"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Local"/>
+            <ComboBox x:Name="cboLocal"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="N° asistentes"/>
             <TextBox x:Name="txtCantAsist" KeyUp="TxtCantAsist_KeyUp" MaxLength="4"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Cantidad personal extra"/>
+        <StackPanel Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="N° personal extra"/>
             <TextBox x:Name="txtCantPersonal" KeyUp="txtCantPersonal_KeyUp" MaxLength="4"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Fecha y hora inicio de evento"/>
-            <Controls:DateTimePicker Name="dpFechaInicio"/>
+        <StackPanel Grid.Row="8" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Observaciones (opcional)"/>
+            <TextBox x:Name="txtObservaciones"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Fecha y hora termino evento"/>
-            <Controls:DateTimePicker Name="dpFechaTermino"/>
+        <StackPanel Grid.Row="8" Grid.Column="5" 
+                    HorizontalAlignment="Left" VerticalAlignment="Center">
+            <CheckBox x:Name="chkRealizado" Content="Realizado"/>
         </StackPanel>
-
-        <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" 
+        
+        <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" 
                     HorizontalAlignment="Left" VerticalAlignment="Center">
             <Label Content="Monto total (UF):"
                    Grid.Row="9" Grid.Column="1"/>
             <Label x:Name="lblMonto"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="2" Orientation="Horizontal" 
-                    HorizontalAlignment="Left" VerticalAlignment="Center">
-            <CheckBox x:Name="chkRealizado" Content="Realizado"/>
-        </StackPanel>
+        <!--SECCION DE RESPALDO-->
+        <!--<StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="3"
+                    VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Label Content="Último respaldo:" />
+            <Label x:Name="lblRespaldo"/>
+        </StackPanel>-->
 
-        <StackPanel Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="4" 
-                    Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <Button x:Name="btnRegistrarContrato" Margin="15,0,15,0"
+
+        <!--BOTONES-->
+        <StackPanel Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="5" 
+                    Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <!--BOTON PARA RESPALDAR MANUALMENTE-->
+            <Button x:Name="btnRespaldar" Grid.Row="2" Grid.Column="5" 
+                Style="{StaticResource btnPages}" Margin="0,0,20,0"
+                VerticalAlignment="Center" HorizontalAlignment="Right" Click="BtnBackup">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <iconPacks:PackIconMaterial Kind="BackupRestore" VerticalAlignment="Center"/>
+                    <TextBlock Text="RESPALDAR" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnRegistrarContrato"
                     Style="{StaticResource btnPages}"
                     Click="BtnRegistrarContrato_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -150,7 +199,7 @@
                 </StackPanel>
             </Button>
 
-            <Button x:Name="btnModificarContrato" Margin="0,0,15,0" Opacity="0.5"
+            <Button x:Name="btnModificarContrato" Margin="20,0,20,0" Opacity="0.5"
                     Style="{StaticResource btnPages}" IsEnabled="False"
                     Click="BtnModificarContrato_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -168,10 +217,5 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-
-        <TextBlock Text="Todos los campos son obligatorios excepto observaciones." FontStyle="Italic" Foreground="Gray"
-                   Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="4" TextWrapping="Wrap"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
-
     </Grid>
 </Page>

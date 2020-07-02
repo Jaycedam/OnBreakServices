@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OnBreakApp.Pages" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="620"
+      d:DesignHeight="620" d:DesignWidth="650"
       Title="PageInicio">
 
     <Page.Resources>
@@ -21,14 +21,14 @@
             <RowDefinition MinHeight="50" MaxHeight="80"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="30" MaxWidth="60"/>
+            <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
-            <ColumnDefinition MinWidth="30" MaxWidth="60"/>
+            <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label Content="¡BIENVENIDO!" 
-               FontSize="36" FontWeight="Black" 
+               FontSize="34" FontWeight="Black" 
                HorizontalAlignment="Left"/>
 
             <Label Grid.Row="1" Grid.Column="1"

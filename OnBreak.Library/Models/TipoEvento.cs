@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace OnBreak.Library
 {
+    [Serializable]
     public class TipoEvento
     {
         public int IdTipoEvento { get; set; }
         public string Descripcion { get; set; }
 
-        OnBreakDBEntities db = new OnBreakDBEntities();
-
         // Listar tipos de evento
         public List<TipoEvento> ReadAll()
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             List<TipoEvento> tipoEventos = (from t in db.TipoEvento
                                             select new TipoEvento
                                             {

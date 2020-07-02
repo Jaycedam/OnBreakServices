@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnBreak.Library
 {
+    [Serializable]
     public class Contrato
     {
         public string Numero { get; set; }
@@ -33,11 +34,10 @@ namespace OnBreak.Library
             }
         }
 
-        OnBreakDBEntities db = new OnBreakDBEntities();
-
         // Listar contratos
         public List<Contrato> ReadAll()
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             return (from c in db.Contrato
                     select new Contrato
                     {
@@ -72,6 +72,7 @@ namespace OnBreak.Library
 
         public Contrato Read(string numContrato)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             Contrato contrato = (from c in db.Contrato
                                  where c.Numero == numContrato
                                  select new Contrato
@@ -109,6 +110,7 @@ namespace OnBreak.Library
 
         public bool Create(Contrato contrato)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             Cliente cliente = new Cliente();
             // si no se encuentra el cliente retorna falso
             if (cliente.Read(contrato.Cliente.RutCliente) == null)
@@ -146,6 +148,7 @@ namespace OnBreak.Library
 
         public bool Update(Contrato contrato)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             try
             {
                 Datos.Contrato c = (from cdb in db.Contrato
@@ -181,6 +184,7 @@ namespace OnBreak.Library
         // Metodo que cambia Realizado==true si encuentra el contrato
         public bool Delete(string numero)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             try
             {
                 Datos.Contrato c = (from cdb in db.Contrato

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnBreak.Library
 {
+    [Serializable]
     public class Cliente
     {
         public string RutCliente { get; set; }
@@ -18,11 +19,10 @@ namespace OnBreak.Library
         public ActividadEmpresa ActividadEmpresa { get; set; }
         public TipoEmpresa TipoEmpresa { get; set; }
 
-        OnBreakDBEntities db = new OnBreakDBEntities();
-
         // Listar clientes
         public List<Cliente> ReadAll()
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             return (from c in db.Cliente
                     select new Cliente
                     {
@@ -47,6 +47,7 @@ namespace OnBreak.Library
 
         public Cliente Read(string rut)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             Cliente cliente = (from c in db.Cliente
                                where c.RutCliente == rut
                                select new Cliente
@@ -73,6 +74,7 @@ namespace OnBreak.Library
 
         public bool Create(Cliente cliente)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             if (Read(cliente.RutCliente) != null)
             {
                 return false;
@@ -102,6 +104,7 @@ namespace OnBreak.Library
 
         public bool Update(Cliente cliente)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             try
             {
                 Datos.Cliente c = (from cdb in db.Cliente
@@ -135,6 +138,7 @@ namespace OnBreak.Library
 
         public bool Delete(string rut)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             Datos.Cliente cliente = (from c in db.Cliente
                                      where c.RutCliente == rut
                                      select c).FirstOrDefault();

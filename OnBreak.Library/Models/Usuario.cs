@@ -13,11 +13,10 @@ namespace OnBreak.Library
         public string User { get; set; }
         public string Password { get; set; }
 
-        OnBreakDBEntities db = new OnBreakDBEntities();
-
         // Listar users
         public List<Usuario> ReadAll()
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             return (from u in db.Usuario
                     select new Usuario
                     {
@@ -43,6 +42,7 @@ namespace OnBreak.Library
 
         public bool Register(Usuario usuario)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             var user = (from u in ReadAll()
                         where u.User == usuario.User
                         select u).FirstOrDefault();

@@ -44,13 +44,12 @@ namespace OnBreakApp
             lblCurrentPage.Content = "ONBREAK - PÁGINA PRINCIPAL";
         }
 
-
+        #region submenu
         // metodo para esconder menu
         private void HideSubmenu()
         {
             panelClienteSubmenu.Visibility = Visibility.Collapsed;
             panelContratosSubmenu.Visibility = Visibility.Collapsed;
-
         }
 
         // Metodo para mostrar/colapsar menu al presionar botones de menu
@@ -67,7 +66,9 @@ namespace OnBreakApp
                 subMenu.Visibility = Visibility.Collapsed;
             }
         }
+        #endregion
 
+        #region botones
         // Iniciar para mostrar/colapsar menu al presionar "Clientes"
         private void BtnClientes_Click(object sender, RoutedEventArgs e)
         {
@@ -121,6 +122,7 @@ namespace OnBreakApp
             this.Close();
             lw.Show();
         }
+        #endregion
 
         //Permitir arrastrado en barra superior
         private void BorderTop_MouseDown(object sender, MouseButtonEventArgs e)
@@ -130,6 +132,7 @@ namespace OnBreakApp
                 DragMove();
             }
         }
+
 
         // cambiar tema, beta
         //private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)

@@ -39,14 +39,14 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Height" Value="35"/>
-        <Setter Property="Width" Value="100"/>
+        <Setter Property="Width" Value="120"/>
         <Setter Property="FontSize" Value="11"/>
         <!--Habilitar edicion template-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" 
-                            CornerRadius="15" BorderThickness="2"
+                            CornerRadius="10" BorderThickness="2"
                             BorderBrush="White">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -122,7 +122,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" 
-                            CornerRadius="15" BorderThickness="2"
+                            CornerRadius="10" BorderThickness="2"
                             BorderBrush="#FF25C9C9">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -156,7 +156,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" 
-                            CornerRadius="15" BorderThickness="2"
+                            CornerRadius="10" BorderThickness="2"
                             BorderBrush="#FFF54239">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>

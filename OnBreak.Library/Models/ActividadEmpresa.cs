@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace OnBreak.Library
 {
+    [Serializable]
     public class ActividadEmpresa
     {
         public int IdActividadEmpresa { get; set; }
         public string Descripcion { get; set; }
 
-        OnBreakDBEntities db = new OnBreakDBEntities();
 
         public List<ActividadEmpresa> ReadAll()
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             List<ActividadEmpresa> actividadEmpresas = (from a in db.ActividadEmpresa
                                                         select new ActividadEmpresa
                                                         {

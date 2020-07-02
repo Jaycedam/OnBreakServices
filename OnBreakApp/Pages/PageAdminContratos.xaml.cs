@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Runtime.Caching;
 
 namespace OnBreakApp.Pages
 {
@@ -24,11 +25,16 @@ namespace OnBreakApp.Pages
     public partial class PageAdminContratos : Page
     {
         Valorizador valorizador = new Valorizador();
+        FileCache f = new FileCache(new ObjectBinder());
+
 
         public PageAdminContratos()
         {
             InitializeComponent();
             PopCbo();
+
+            lblRespaldo.Content = f["horaRespaldo"];
+
         }
 
         // Init con constructor para llamar del listado
@@ -38,9 +44,107 @@ namespace OnBreakApp.Pages
             PopCbo();
             Contrato contrato = new Contrato().Read(numContrato);
             DataContrato(contrato);
+
+            lblRespaldo.Content = f["horaRespaldo"];
+
         }
 
-        /********************************* CRUD BOTONES*********************************/
+        #region respaldo
+        public void Backup()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                Contrato c = new Contrato();
+
+                if (lblNumContrato.Content != null)
+                {
+                    c.Numero = lblNumContrato.Content.ToString();
+                }
+
+                c.Cliente = new Cliente()
+                {
+                    RutCliente = txtRut.Text.ToString()
+                };
+
+                if (dpFechaInicio.SelectedDateTime != null)
+                {
+                    c.FechaHoraInicio = (DateTime)dpFechaInicio.SelectedDateTime;
+                }
+
+                if (dpFechaTermino.SelectedDateTime != null)
+                {
+                    c.FechaHoraTermino = (DateTime)dpFechaTermino.SelectedDateTime;
+                }
+
+                c.ModalidadServicio = new ModalidadServicio()
+                {
+                    IdModalidad = cboModalidad.SelectedValue.ToString(),
+                    TipoEvento = new TipoEvento()
+                    {
+                        IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                    }
+                };
+
+                
+
+
+
+                if (int.TryParse(txtCantAsist.Text, out int a) == true)
+                {
+                    c.Asistentes = a;
+                }
+
+                if (int.TryParse(txtCantPersonal.Text, out int p) == true)
+                {
+                    c.PersonalAdicional = p;
+                }
+
+                c.Observaciones = txtObservaciones.Text;
+                c.Realizado = chkRealizado.IsChecked.Value;
+
+
+                string horaRespaldo = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                f["contrato"] = c;
+                f["horaRespaldo"] = horaRespaldo;
+                lblRespaldo.Content = horaRespaldo;
+            });
+        }
+
+        private void RestoreBackup()
+        {
+            FileCache f = new FileCache(new ObjectBinder());
+
+            if (f["contrato"] != null)
+            {
+                Contrato c = (Contrato)f["contrato"];
+
+                lblRespaldo.Content = f["horaRespaldo"];
+
+                lblNumContrato.Content = c.Numero;
+                txtRut.Text = c.Cliente.RutCliente;
+
+                if (c.FechaHoraInicio.Year != 1)
+                {
+                    dpFechaInicio.SelectedDateTime = c.FechaHoraInicio;
+                }
+                if (c.FechaHoraTermino.Year != 1)
+                {
+                    dpFechaTermino.SelectedDateTime = c.FechaHoraTermino;
+                }
+
+                cboTipoEvento.SelectedValue = c.ModalidadServicio.TipoEvento.IdTipoEvento;
+                cboModalidad.SelectedValue = c.ModalidadServicio.IdModalidad;
+                txtCantAsist.Text = c.Asistentes.ToString();
+                txtCantPersonal.Text = c.PersonalAdicional.ToString();
+                txtObservaciones.Text = c.Observaciones;
+                chkRealizado.IsChecked = c.Realizado;
+
+                CalcularMonto();
+            }
+        }
+        #endregion
+
+        #region botones CRUD
 
         private async void BtnRegistrarContrato_Click(object sender, RoutedEventArgs e)
         {
@@ -202,8 +306,9 @@ namespace OnBreakApp.Pages
                 }
             }
         }
+        #endregion
 
-        /**********************************END CRUD************************************/
+        #region validaciones
         private bool InvalidEntry()
         {
             if (int.TryParse(txtCantAsist.Text, out int a) == false ||
@@ -224,6 +329,7 @@ namespace OnBreakApp.Pages
             }
             return false;
         }
+        #endregion
 
         // metodo que habilita/deshabilita los botones de modificar/finalizar 
         private void EnableButtons(bool enable)
@@ -390,6 +496,16 @@ namespace OnBreakApp.Pages
         private void CboModalidad_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CalcularMonto();
+        }
+
+        private void BtnBackup(object sender, RoutedEventArgs e)
+        {
+            Backup();
+        }
+
+        private void BtnRestoreBackup(object sender, RoutedEventArgs e)
+        {
+            RestoreBackup();
         }
     }
 }

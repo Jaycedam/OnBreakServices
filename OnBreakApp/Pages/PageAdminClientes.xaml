@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OnBreakApp.Pages" xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="620"
+      d:DesignHeight="620" d:DesignWidth="650"
       Title="PageAdminClientes">
 
     <Page.Resources>
@@ -14,41 +14,45 @@
         <Style TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}"/>
         <Style TargetType="TextBlock" BasedOn="{StaticResource MahApps.Styles.TextBlock}"/>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
 
+        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" VerticalAlignment="Bottom"/>
+
+
         <Label Content="ADMINISTRAR CLIENTES" 
-               Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"
+               Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5"
                VerticalAlignment="Center" HorizontalAlignment="Center" 
-               FontFamily="Segoe UI Black" FontSize="36"/>
+               FontFamily="Segoe UI Black" FontSize="34"/>
 
         <!--SECCION BUSQUEDA-->
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
             <iconPacks:PackIconModern Kind="PageSearch" Height="25" Width="25" 
                                       Foreground="#FF25C9C9" Margin="0,0,10,0" VerticalAlignment="Center"/>
-            <Label Content="Buscar cliente" FontSize="20" FontFamily="Segoe UI Semibold" />
+            <Label Content="Buscar" FontSize="20" FontFamily="Segoe UI Semibold" />
 
             <Button x:Name="btnLimpiarDatos" Focusable="False" HorizontalAlignment="Left" Margin="10,0,0,0"
                 Style="{StaticResource MahApps.Styles.Button.Chromeless}" Click="LimpiarDatos_Click">
@@ -59,19 +63,19 @@
             </Button>
         </StackPanel>
 
-        <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="4" 
+        <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="5" 
                                         HorizontalAlignment="Right" VerticalAlignment="Center"
                                         Height="20" Width="auto"
                                         ToolTip="Los botones para modificar/eliminar se activan al buscar un cliente"/>
 
-        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Rut (sin puntos ni guión)"/>
             <TextBox x:Name="txtBuscarRut" MaxLength="9"/>
         </StackPanel>
 
         <Button x:Name="btnBuscarCliente" Grid.Row="3" Grid.Column="3" 
                 Style="{StaticResource btnPages}"
-                VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,20,0,0"
+                VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,15,0,0"                
                 Click="BtnBuscarCliente_Click">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <iconPacks:PackIconModern Kind="Magnify" VerticalAlignment="Center"/>
@@ -84,52 +88,70 @@
         <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
             <iconPacks:PackIconModern Kind="FolderPeople" Height="25" Width="25" 
                                       Foreground="#FF25C9C9" Margin="0,0,10,0" VerticalAlignment="Center"/>
-            <Label Content="Datos de cliente" FontSize="20" FontFamily="Segoe UI Semibold" />
+            <Label Content="Cliente" FontSize="20" FontFamily="Segoe UI Semibold" />
         </StackPanel>
 
-        <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Rut (sin puntos ni guión)"/>
             <TextBox x:Name="txtRut" MaxLength="9"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,0,50,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Label Content="Razón social"/>
-            <TextBox x:Name="txtRazonSocial"/>
-        </StackPanel>
-
-        <StackPanel Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+        <StackPanel Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Nombre contacto"/>
             <TextBox x:Name="txtNombre"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+        <StackPanel Grid.Row="5" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Razón social"/>
+            <TextBox x:Name="txtRazonSocial"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Mail contacto"/>
             <TextBox x:Name="txtMailContacto"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
-            <Label Content="Direccion"/>
-            <TextBox x:Name="txtDireccion"/>
-        </StackPanel>
-
-        <StackPanel Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+        <StackPanel Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Teléfono (ej 958965445)"/>
             <TextBox x:Name="txtTelefono" MaxLength="9"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+        <StackPanel Grid.Row="6" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Label Content="Direccion"/>
+            <TextBox x:Name="txtDireccion"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Tipo de Empresa"/>
             <ComboBox x:Name="cboTipoEmpresa"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,50,0">
+        <StackPanel Grid.Row="7" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Actividad empresa"/>
             <ComboBox x:Name="cboActividadEmpresa"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="4" Orientation="Horizontal" 
-                    VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <Button x:Name="btnRegistrarCliente" Margin="15,0,15,0"
+        <!--SECCION DE RESPALDO-->
+        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1"
+                    VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Label Content="Último respaldo:" />
+            <Label x:Name="lblRespaldo"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" Orientation="Horizontal" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center">
+            <!--BOTON PARA RESPALDAR MANUALMENTE-->
+            <Button x:Name="btnRespaldar" Grid.Row="2" Grid.Column="5" 
+                Style="{StaticResource btnPages}" Margin="0,0,20,0"
+                VerticalAlignment="Center" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <iconPacks:PackIconMaterial Kind="BackupRestore" VerticalAlignment="Center"/>
+                    <TextBlock Text="RESPALDAR" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+            
+            <Button x:Name="btnRegistrarCliente"
                 Style="{StaticResource btnPages}"
                 Click="BtnRegistrarCliente_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -140,7 +162,7 @@
 
             <Button x:Name="btnModificarCliente" IsEnabled="False" Opacity="0.5"
                     Style="{StaticResource btnPages}"
-                    Margin="0,0,15,0" Click="BtnModificarCliente_Click">
+                    Margin="20,0,20,0" Click="BtnModificarCliente_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <iconPacks:PackIconModern Kind="Edit" VerticalAlignment="Center"/>
                     <TextBlock Text="MODIFICAR" Margin="5,0,0,0"/>
@@ -156,10 +178,5 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-
-        <TextBlock Text="Todos los campos son obligatorios." FontStyle="Italic" Foreground="Gray"
-                   Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="4" TextWrapping="Wrap"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        
     </Grid>
 </Page>
