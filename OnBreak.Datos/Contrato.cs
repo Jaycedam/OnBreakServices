@@ -28,7 +28,10 @@ namespace OnBreak.Datos
         public double ValorTotalContrato { get; set; }
         public string Observaciones { get; set; }
     
+        public virtual Cenas Cenas { get; set; }
         public virtual Cliente Cliente { get; set; }
+        public virtual Cocktail Cocktail { get; set; }
+        public virtual CoffeeBreak CoffeeBreak { get; set; }
         public virtual ModalidadServicio ModalidadServicio { get; set; }
     }
 }

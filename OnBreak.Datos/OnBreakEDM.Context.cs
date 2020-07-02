@@ -26,9 +26,13 @@ namespace OnBreak.Datos
         }
     
         public virtual DbSet<ActividadEmpresa> ActividadEmpresa { get; set; }
+        public virtual DbSet<Cenas> Cenas { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<Cocktail> Cocktail { get; set; }
+        public virtual DbSet<CoffeeBreak> CoffeeBreak { get; set; }
         public virtual DbSet<Contrato> Contrato { get; set; }
         public virtual DbSet<ModalidadServicio> ModalidadServicio { get; set; }
+        public virtual DbSet<TipoAmbientacion> TipoAmbientacion { get; set; }
         public virtual DbSet<TipoEmpresa> TipoEmpresa { get; set; }
         public virtual DbSet<TipoEvento> TipoEvento { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }

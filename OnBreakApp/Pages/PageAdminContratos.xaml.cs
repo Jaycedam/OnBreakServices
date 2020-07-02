@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Runtime.Caching;
+using OnBreak.Library.Models;
 
 namespace OnBreakApp.Pages
 {
@@ -54,29 +55,31 @@ namespace OnBreakApp.Pages
         {
             Dispatcher.Invoke(() =>
             {
-                Contrato c = new Contrato();
+                Contrato contrato = new Contrato();
+                Cocktail cocktail = new Cocktail();
+                Cenas cena = new Cenas();
 
                 if (lblNumContrato.Content != null)
                 {
-                    c.Numero = lblNumContrato.Content.ToString();
+                    contrato.Numero = lblNumContrato.Content.ToString();
                 }
 
-                c.Cliente = new Cliente()
+                contrato.Cliente = new Cliente()
                 {
                     RutCliente = txtRut.Text.ToString()
                 };
 
                 if (dpFechaInicio.SelectedDateTime != null)
                 {
-                    c.FechaHoraInicio = (DateTime)dpFechaInicio.SelectedDateTime;
+                    contrato.FechaHoraInicio = (DateTime)dpFechaInicio.SelectedDateTime;
                 }
 
                 if (dpFechaTermino.SelectedDateTime != null)
                 {
-                    c.FechaHoraTermino = (DateTime)dpFechaTermino.SelectedDateTime;
+                    contrato.FechaHoraTermino = (DateTime)dpFechaTermino.SelectedDateTime;
                 }
 
-                c.ModalidadServicio = new ModalidadServicio()
+                contrato.ModalidadServicio = new ModalidadServicio()
                 {
                     IdModalidad = cboModalidad.SelectedValue.ToString(),
                     TipoEvento = new TipoEvento()
@@ -85,26 +88,44 @@ namespace OnBreakApp.Pages
                     }
                 };
 
-                
+                if(cboAmbientacion.IsEnabled == true)
+                {
+                    if (cboTipoEvento.SelectedValue.ToString() == "20")
+                    {
+                        cocktail.TipoAmbientacion = new TipoAmbientacion()
+                        {
+                            Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                        };
 
+                        f["cocktail"] = cocktail;
+                    }
+                    else if (cboTipoEvento.SelectedValue.ToString() == "30")
+                    {
+                        cena.TipoAmbientacion = new TipoAmbientacion()
+                        {
+                            Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                        };
+                        f["cenas"] = cena;
+                    }
+                }
 
 
                 if (int.TryParse(txtCantAsist.Text, out int a) == true)
                 {
-                    c.Asistentes = a;
+                    contrato.Asistentes = a;
                 }
 
                 if (int.TryParse(txtCantPersonal.Text, out int p) == true)
                 {
-                    c.PersonalAdicional = p;
+                    contrato.PersonalAdicional = p;
                 }
 
-                c.Observaciones = txtObservaciones.Text;
-                c.Realizado = chkRealizado.IsChecked.Value;
+                contrato.Observaciones = txtObservaciones.Text;
+                contrato.Realizado = chkRealizado.IsChecked.Value;
 
 
                 string horaRespaldo = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                f["contrato"] = c;
+                f["contrato"] = contrato;
                 f["horaRespaldo"] = horaRespaldo;
                 lblRespaldo.Content = horaRespaldo;
             });
@@ -139,7 +160,18 @@ namespace OnBreakApp.Pages
                 txtObservaciones.Text = c.Observaciones;
                 chkRealizado.IsChecked = c.Realizado;
 
+
                 CalcularMonto();
+            }
+            if(f["cocktail"] != null)
+            {
+                Cocktail c = (Cocktail)f["cocktail"];
+                cboAmbientacion.SelectedValue = c.TipoAmbientacion.Id;
+            }
+            else if(f["cenas"] != null)
+            {
+                Cenas c = (Cenas)f["cenas"];
+                cboAmbientacion.SelectedValue = c.TipoAmbientacion.Id;
             }
         }
         #endregion
@@ -405,6 +437,7 @@ namespace OnBreakApp.Pages
             // habilitar edición de rut
             EnableRut(true);
             EnableButtons(false);
+            AditionalOptions();
         }
 
         // metodo que entrega true cuando faltan datos obligatorios
@@ -436,11 +469,17 @@ namespace OnBreakApp.Pages
         public void PopCbo()
         {
             TipoEvento tipoEvento = new TipoEvento();
+            TipoAmbientacion tipoAmbientacion = new TipoAmbientacion();
             // tipos de eventos
             cboTipoEvento.ItemsSource = tipoEvento.ReadAll();
             cboTipoEvento.DisplayMemberPath = "Descripcion";
             cboTipoEvento.SelectedValuePath = "IdTipoEvento";
             cboTipoEvento.SelectedIndex = 0;
+
+            cboAmbientacion.ItemsSource = tipoAmbientacion.ReadAll();
+            cboAmbientacion.DisplayMemberPath = "Desc";
+            cboAmbientacion.SelectedValuePath = "Id";
+            cboAmbientacion.SelectedIndex = -1;
         }
 
 
@@ -454,6 +493,36 @@ namespace OnBreakApp.Pages
             cboModalidad.DisplayMemberPath = "Nombre";
             cboModalidad.SelectedValuePath = "IdModalidad";
             cboModalidad.SelectedIndex = 0;
+
+            AditionalOptions();
+        }
+
+        private void AditionalOptions()
+        {
+            if (cboTipoEvento.SelectedValue.ToString() == "10")
+            {
+                cboAmbientacion.IsEnabled = false;
+                cboAmbientacion.SelectedIndex = -1;
+                cboAmbientacion.Opacity = 0.5;
+            }
+            else if(cboTipoEvento.SelectedValue.ToString() == "20")
+            {
+                cboAmbientacion.IsEnabled = true;
+                cboAmbientacion.SelectedIndex = 0;
+                cboAmbientacion.Opacity = 1;
+                chkMusica.IsEnabled = true;
+                chkMusica.Opacity = 1;
+            }
+            else
+            {
+                cboAmbientacion.IsEnabled = true;
+                cboAmbientacion.SelectedIndex = 0;
+                cboAmbientacion.Opacity = 1;
+                chkMusica.IsEnabled = true;
+                chkMusica.Opacity = 1;
+                chkLocalOnBreak.IsEnabled = true;
+                chkLocalOnBreak.Opacity = 1;
+            }
         }
 
         // calcular monto en UF al escribir cantidad de asistentes/personal

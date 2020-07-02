@@ -25,7 +25,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition Height="40"/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="20"/>
@@ -39,9 +39,6 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-
-        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" VerticalAlignment="Bottom"/>
-
 
         <Label Content="ADMINISTRAR CLIENTES" 
                Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5"
@@ -69,7 +66,7 @@
                                         ToolTip="Los botones para modificar/eliminar se activan al buscar un cliente"/>
 
         <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Label Content="Rut (sin puntos ni guión)"/>
+            <Label Content="Rut (ej 146542354)"/>
             <TextBox x:Name="txtBuscarRut" MaxLength="9"/>
         </StackPanel>
 
@@ -92,7 +89,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <Label Content="Rut (sin puntos ni guión)"/>
+            <Label Content="Rut (ej 146542354)"/>
             <TextBox x:Name="txtRut" MaxLength="9"/>
         </StackPanel>
 
@@ -130,13 +127,6 @@
         <StackPanel Grid.Row="7" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Actividad empresa"/>
             <ComboBox x:Name="cboActividadEmpresa"/>
-        </StackPanel>
-
-        <!--SECCION DE RESPALDO-->
-        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1"
-                    VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Label Content="Último respaldo:" />
-            <Label x:Name="lblRespaldo"/>
         </StackPanel>
 
         <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" Orientation="Horizontal" 

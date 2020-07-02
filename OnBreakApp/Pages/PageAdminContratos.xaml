@@ -27,7 +27,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition Height="40"/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -40,8 +40,6 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-
-        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" VerticalAlignment="Bottom"/>
 
         <Label Content="ADMINISTRAR CONTRATOS" FontWeight="Black"
                Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5"
@@ -127,37 +125,46 @@
             <ComboBox x:Name="cboModalidad" SelectionChanged="CboModalidad_SelectionChanged"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="6" Grid.Column="5" 
+        <StackPanel Grid.Row="7" Grid.Column="1" 
                     HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <CheckBox x:Name="chkMusica" Content="Música ambiental"/>
+            <CheckBox x:Name="chkMusica" Content="Música ambiental" 
+                      IsEnabled="False" Opacity="0.5"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <StackPanel Grid.Row="6" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Ambientación"/>
-            <ComboBox x:Name="cboAmbientacion"/>
+            <ComboBox x:Name="cboAmbientacion" IsEnabled="False" Opacity="0.5"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="7" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <!--<StackPanel Grid.Row="7" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Local"/>
             <ComboBox x:Name="cboLocal"/>
-        </StackPanel>
+        </StackPanel>-->
 
-        <StackPanel Grid.Row="7" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <CheckBox x:Name="chkLocalOnBreak" Content="Local OnBreak"
+                  Grid.Row="7" Grid.Column="3" 
+                  IsEnabled="False" Opacity="0.5"/>
+
+        <CheckBox x:Name="chkVegetariana" Content="Comida vegeatariana"
+                  Grid.Row="7" Grid.Column="5"/>
+
+
+        <StackPanel Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="N° asistentes"/>
             <TextBox x:Name="txtCantAsist" KeyUp="TxtCantAsist_KeyUp" MaxLength="4"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <StackPanel Grid.Row="8" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="N° personal extra"/>
             <TextBox x:Name="txtCantPersonal" KeyUp="txtCantPersonal_KeyUp" MaxLength="4"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="8" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+        <StackPanel Grid.Row="8" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Observaciones (opcional)"/>
             <TextBox x:Name="txtObservaciones"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="8" Grid.Column="5" 
+        <StackPanel Grid.Row="9" Grid.Column="5" 
                     HorizontalAlignment="Left" VerticalAlignment="Center">
             <CheckBox x:Name="chkRealizado" Content="Realizado"/>
         </StackPanel>
