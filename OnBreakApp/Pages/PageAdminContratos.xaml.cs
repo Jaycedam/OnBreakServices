@@ -37,7 +37,7 @@ namespace OnBreakApp.Pages
 
         }
 
-        // Init con constructor para llamar del listado
+        // Init con parámetro para llamar del listado
         public PageAdminContratos(string numContrato)
         {
             InitializeComponent();
@@ -45,6 +45,17 @@ namespace OnBreakApp.Pages
             Contrato contrato = new Contrato().Read(numContrato);
             DataContrato(contrato);
 
+            lblRespaldo.Content = f["horaRespaldo"];
+
+        }
+
+        // Init con parámetro para llamar de admin clientes
+        public PageAdminContratos(string rut, string name)
+        {
+            InitializeComponent();
+            PopCbo();
+
+            txtRut.Text = rut;
             lblRespaldo.Content = f["horaRespaldo"];
 
         }
@@ -96,7 +107,8 @@ namespace OnBreakApp.Pages
                     f["coffeeBreak"] = coffeeBreak;
                 }
                 // cocktail
-                else if (cboTipoEvento.SelectedValue.ToString() == "20")
+                else if (cboTipoEvento.SelectedValue.ToString() == "20"
+                && cboAmbientacion.SelectedValue != null)
                 {
                     cocktail.TipoAmbientacion = new TipoAmbientacion()
                     {
@@ -468,7 +480,7 @@ namespace OnBreakApp.Pages
             else if (cboTipoEvento.SelectedValue.ToString() == "20")
             {
                 cboAmbientacion.IsEnabled = true;
-                cboAmbientacion.SelectedIndex = 0;
+                cboAmbientacion.SelectedIndex = -1;
                 cboAmbientacion.Opacity = 1;
 
                 chkMusica.IsEnabled = true;

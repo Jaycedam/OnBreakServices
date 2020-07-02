@@ -97,14 +97,14 @@
             <Button x:Name="btnVerInfoCliente" Margin="0,0,20,0" Click="BtnVerCliente">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <iconPacks:PackIconModern Kind="People" VerticalAlignment="Center"/>
-                    <TextBlock Text="VER CLIENTE" Margin="5,0,0,0"/>
+                    <TextBlock Text="CLIENTE" Margin="5,0,0,0"/>
                 </StackPanel>
             </Button>
 
             <Button x:Name="btnVerContratosCliente" Click="BtnVerContratosCliente_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <iconPacks:PackIconModern Kind="FolderOpen"/>
-                    <TextBlock Text="VER CONTRATOS" Margin="5,0,0,0"/>
+                    <TextBlock Text="CONTRATOS" Margin="5,0,0,0"/>
                 </StackPanel>
             </Button>
         </StackPanel>

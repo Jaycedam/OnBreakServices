@@ -210,6 +210,8 @@ namespace OnBreakApp.Pages
                 cboTipoEmpresa.SelectedValue = cliente.TipoEmpresa.IdTipoEmpresa;
                 cboActividadEmpresa.SelectedValue = cliente.ActividadEmpresa.IdActividadEmpresa;
                 // bloquear edición de rut al buscar cliente
+                btnRegistrarCliente.IsEnabled = false;
+                btnRegistrarCliente.Opacity = 0.5;
                 EnableButtons(true);
                 EnableRut(false);
             }
@@ -279,6 +281,8 @@ namespace OnBreakApp.Pages
             cboTipoEmpresa.SelectedIndex = 0;
             cboActividadEmpresa.SelectedIndex = 0;
             // desbloquear edición de rut
+            btnRegistrarCliente.IsEnabled = true;
+            btnRegistrarCliente.Opacity = 1;
             EnableRut(true);
             EnableButtons(false);
         }
@@ -288,15 +292,19 @@ namespace OnBreakApp.Pages
         {
             btnModificarCliente.IsEnabled = enable;
             btnEliminarCliente.IsEnabled = enable;
+            btnNuevoContrato.IsEnabled = enable;
+
             if (btnModificarCliente.IsEnabled == false)
             {
                 btnModificarCliente.Opacity = 0.5;
                 btnEliminarCliente.Opacity = 0.5;
+                btnNuevoContrato.Opacity = 0.5;
             }
             else
             {
                 btnModificarCliente.Opacity = 1;
                 btnEliminarCliente.Opacity = 1;
+                btnNuevoContrato.Opacity = 1;
             }
         }
 
@@ -326,6 +334,12 @@ namespace OnBreakApp.Pages
         {
             LimpiarCampos();
         }
+
+        private void BtnNuevoContrato_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PageAdminContratos(txtRut.Text, "x"));
+        }
+
         #endregion
 
 

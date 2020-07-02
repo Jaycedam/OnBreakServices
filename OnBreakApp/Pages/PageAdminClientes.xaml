@@ -131,12 +131,20 @@
 
         <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" Orientation="Horizontal" 
                     VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button x:Name="btnRegistrarCliente"
+            <Button x:Name="btnRegistrarCliente" Margin="0,0,20,0"
                 Style="{StaticResource btnPages}"
                 Click="BtnRegistrarCliente_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <iconPacks:PackIconModern Kind="PageAdd" VerticalAlignment="Center"/>
                     <TextBlock Text="REGISTRAR" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnNuevoContrato" IsEnabled="False" Opacity="0.5"
+                Style="{StaticResource btnPages}" Click="BtnNuevoContrato_Click">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <iconPacks:PackIconMaterialDesign Kind="Add" VerticalAlignment="Center"/>
+                    <TextBlock Text="CONTRATO" Margin="5,0,0,0"/>
                 </StackPanel>
             </Button>
 
