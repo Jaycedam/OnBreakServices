@@ -131,16 +131,6 @@
 
         <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" Orientation="Horizontal" 
                     VerticalAlignment="Center" HorizontalAlignment="Center">
-            <!--BOTON PARA RESPALDAR MANUALMENTE-->
-            <Button x:Name="btnRespaldar" Grid.Row="2" Grid.Column="5" 
-                Style="{StaticResource btnPages}" Margin="0,0,20,0"
-                VerticalAlignment="Center" HorizontalAlignment="Right">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <iconPacks:PackIconMaterial Kind="BackupRestore" VerticalAlignment="Center"/>
-                    <TextBlock Text="RESPALDAR" Margin="5,0,0,0"/>
-                </StackPanel>
-            </Button>
-            
             <Button x:Name="btnRegistrarCliente"
                 Style="{StaticResource btnPages}"
                 Click="BtnRegistrarCliente_Click">

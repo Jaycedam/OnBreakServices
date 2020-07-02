@@ -41,6 +41,7 @@ namespace OnBreakApp.Pages
             PopDgFiltered(contratos);
         }
 
+        #region botones de navegacion
         private async void BtnVerInfoCliente_Click(object sender, RoutedEventArgs e)
         {
             if (dgContratos.SelectedItem == null)
@@ -64,6 +65,9 @@ namespace OnBreakApp.Pages
             string numContrato = contrato.Numero;
             NavigationService.Navigate(new PageAdminContratos(numContrato));
         }
+        #endregion
+
+        #region popular datos
         public void PopDg()
         {
             Contrato contrato = new Contrato();
@@ -78,7 +82,9 @@ namespace OnBreakApp.Pages
             cboTipoEvento.DisplayMemberPath = "Descripcion";
             cboTipoEvento.SelectedValuePath = "IdTipoEvento";
         }
+        #endregion
 
+        #region botones de accion
         private void BtnLimpiarFiltros_Click(object sender, RoutedEventArgs e)
         {
             txtNumContrato.Text = string.Empty;
@@ -87,12 +93,22 @@ namespace OnBreakApp.Pages
             cboModalidad.SelectedIndex = -1;
             PopDg();
         }
+        #endregion
+
+        #region metodos que performan una accion
         private void PopDgFiltered(List<Contrato> contratos)
         {
             dgContratos.ItemsSource = null;
             dgContratos.ItemsSource = contratos;
         }
+        private async Task MetroDialogue(string title, string message)
+        {
+            await this.TryFindParent<MetroWindow>()
+                                .ShowMessageAsync(title, message);
+        }
+        #endregion
 
+        #region deteccion de cambios en la visual
         // SECCION FILTROS
         private void TxtNumContrato_KeyUp(object sender, KeyEventArgs e)
         {
@@ -131,11 +147,6 @@ namespace OnBreakApp.Pages
                 PopDgFiltered(contratos);
             }
         }
-
-        private async Task MetroDialogue(string title, string message)
-        {
-            await this.TryFindParent<MetroWindow>()
-                                .ShowMessageAsync(title, message);
-        }
+        #endregion
     }
 }

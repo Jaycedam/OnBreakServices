@@ -38,8 +38,7 @@ namespace OnBreakApp.Pages
             DataCliente(cliente);
         }
 
-        /******************************* CRUD BOTONES*******************************/
-
+        #region botones CRUD
         private async void BtnRegistrarCliente_Click(object sender, RoutedEventArgs e)
         {
             if (FaltanCamposObligatorios())
@@ -188,9 +187,9 @@ namespace OnBreakApp.Pages
                 }
             }
         }
+        #endregion
 
-        /**********************************END CRUD************************************/
-
+        #region popular datos
         //Metodo que se encarga de popular datos del cliente al buscar
         //entrega notificación si no es encontrado
         private async void DataCliente(Cliente cliente)
@@ -216,8 +215,23 @@ namespace OnBreakApp.Pages
             }
         }
 
-        // ********************VALIDACIONES***********************************
+        // Llena los datos de los combobox
+        public void PopCbo()
+        {
+            TipoEmpresa tipoEmpresa = new TipoEmpresa();
+            ActividadEmpresa actividadEmpresa = new ActividadEmpresa();
+            cboTipoEmpresa.ItemsSource = tipoEmpresa.ReadAll();
+            cboTipoEmpresa.DisplayMemberPath = "Descripcion";
+            cboTipoEmpresa.SelectedValuePath = "IdTipoEmpresa";
+            cboTipoEmpresa.SelectedIndex = 0;
+            cboActividadEmpresa.ItemsSource = actividadEmpresa.ReadAll();
+            cboActividadEmpresa.DisplayMemberPath = "Descripcion";
+            cboActividadEmpresa.SelectedValuePath = "IdActividadEmpresa";
+            cboActividadEmpresa.SelectedIndex = 0;
+        }
+        #endregion
 
+        #region validaciones
         // metodo que entrega true cuando faltan datos obligatorios
         public bool FaltanCamposObligatorios()
         {
@@ -250,9 +264,9 @@ namespace OnBreakApp.Pages
             }
             return false;
         }
+        #endregion
 
-        //*************************END VALIDACIONES******************************
-
+        #region metodos que performan una accion
         // limpiar todos los campos
         private void LimpiarCampos()
         {
@@ -305,25 +319,15 @@ namespace OnBreakApp.Pages
             await this.TryFindParent<MetroWindow>()
                                 .ShowMessageAsync(title, message);
         }
+        #endregion
 
+        #region otros botones
         private void LimpiarDatos_Click(object sender, RoutedEventArgs e)
         {
             LimpiarCampos();
         }
+        #endregion
 
-        // Llena los datos de los combobox
-        public void PopCbo()
-        {
-            TipoEmpresa tipoEmpresa = new TipoEmpresa();
-            ActividadEmpresa actividadEmpresa = new ActividadEmpresa();
-            cboTipoEmpresa.ItemsSource = tipoEmpresa.ReadAll();
-            cboTipoEmpresa.DisplayMemberPath = "Descripcion";
-            cboTipoEmpresa.SelectedValuePath = "IdTipoEmpresa";
-            cboTipoEmpresa.SelectedIndex = 0;
-            cboActividadEmpresa.ItemsSource = actividadEmpresa.ReadAll();
-            cboActividadEmpresa.DisplayMemberPath = "Descripcion";
-            cboActividadEmpresa.SelectedValuePath = "IdActividadEmpresa";
-            cboActividadEmpresa.SelectedIndex = 0;
-        }
+
     }
 }

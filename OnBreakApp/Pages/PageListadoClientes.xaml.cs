@@ -29,6 +29,8 @@ namespace OnBreakApp.Pages
             PopCbo();
             PopDg();
         }
+
+        #region botones navegacion
         private async void BtnVerCliente(object sender, RoutedEventArgs e)
         {
             if (dgClientes.SelectedItem == null)
@@ -52,7 +54,9 @@ namespace OnBreakApp.Pages
             string rut = cliente.RutCliente;
             NavigationService.Navigate(new PageListadoContratos(rut));
         }
+        #endregion
 
+        #region popular datos
         public void PopCbo()
         {
             TipoEmpresa tipoEmpresa = new TipoEmpresa();
@@ -71,7 +75,9 @@ namespace OnBreakApp.Pages
             dgClientes.ItemsSource = null;
             dgClientes.ItemsSource = cliente.ReadAll();
         }
+        #endregion
 
+        #region otros botones
         private void BtnLimpiarFiltros_Click(object sender, RoutedEventArgs e)
         {
             txtRut.Text = string.Empty;
@@ -79,7 +85,9 @@ namespace OnBreakApp.Pages
             cboActividadEmpresa.SelectedIndex = -1;
             PopDg();
         }
+        #endregion
 
+        #region deteccion de cambios en la visual
         // SECCION FILTROS
         private void TxtRut_KeyUp(object sender, KeyEventArgs e)
         {
@@ -109,7 +117,9 @@ namespace OnBreakApp.Pages
                 PopDgFiltered(clientes);
             }
         }
+        #endregion
 
+        #region metodos que performan una accion
         private void PopDgFiltered(List<Cliente> clientes)
         {
             dgClientes.ItemsSource = null;
@@ -121,5 +131,6 @@ namespace OnBreakApp.Pages
             await this.TryFindParent<MetroWindow>()
                                 .ShowMessageAsync(title, message);
         }
+        #endregion
     }
 }
