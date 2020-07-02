@@ -132,23 +132,5 @@ namespace OnBreakApp
                 DragMove();
             }
         }
-
-
-        // cambiar tema, beta
-        //private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
-        //{
-        //    ToggleSwitch toggleSwitch = sender as ToggleSwitch;
-        //    if (toggleSwitch != null)
-        //    {
-        //        if (toggleSwitch.IsOn == true)
-        //        {
-        //            ThemeManager.Current.ChangeTheme(this, "Dark.Purple");
-        //        }
-        //        else
-        //        {
-        //            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
-        //        }
-        //    }
-        //}
     }
 }

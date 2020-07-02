@@ -15,7 +15,6 @@
         <Style TargetType="Button" BasedOn="{StaticResource menu}"/>
         <Style TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}"/>
     </Window.Resources>
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <!--Ancho menu-->
@@ -23,7 +22,6 @@
             <ColumnDefinition />
             <ColumnDefinition Width="120"/>
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <!--Row para barra superior-->
             <RowDefinition Height="30"/>
@@ -41,11 +39,6 @@
             Grid.Column="1" Grid.Row="0"
             HorizontalAlignment="Left" VerticalAlignment="Center"
             Foreground="White" FontWeight="Light"/>
-
-        <!--cambiar tema, beta-->
-        <!--<mah:ToggleSwitch 
-            Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right"
-                    Toggled="ToggleSwitch_Toggled" Foreground="White"/>-->
 
         <!--****************FIN BARRA SUPERIOR*********************-->
 

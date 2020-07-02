@@ -202,4 +202,17 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
+    <Style x:Key="WindowsLight" TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.WindowCommands}">
+        <Style.Triggers>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#7C0000" />
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+    
 </ResourceDictionary>

@@ -4,6 +4,13 @@
         <name>MahApps.Metro</name>
     </assembly>
     <members>
+        <member name="P:MahApps.Metro.Accessibility.AccessibilitySwitches.UseNetFx472CompatibleAccessibilityFeatures">
+            <summary>
+            Switch to force accessibility to only use features compatible with .NET 472
+            When true, all accessibility features are compatible with .NET 472
+            When false, accessibility features added in .NET versions greater than 472 can be enabled.
+            </summary>
+        </member>
         <member name="T:MahApps.Metro.Actions.CommandTriggerAction">
             <summary>
             This CommandTriggerAction can be used to bind any event on any FrameworkElement to an <see cref="T:System.Windows.Input.ICommand" />.
@@ -673,6 +680,27 @@
             </summary>
             <param name="element">The cell to update.</param>
             <param name="propertyName">The name of the column property that has changed.</param>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DecimalPointCorrectionMode.Inherits">
+            <summary>
+            (Default) No correction is applied, and any style
+            inherited setting may influence the correction behavior.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DecimalPointCorrectionMode.Number">
+            <summary>
+            Enable the decimal-point correction for generic numbers.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DecimalPointCorrectionMode.Currency">
+            <summary>
+            Enable the decimal-point correction for currency numbers.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DecimalPointCorrectionMode.Percent">
+            <summary>
+            Enable the decimal-point correction for percent-numbers.
+            </summary>
         </member>
         <member name="T:MahApps.Metro.Controls.Dialogs.BaseMetroDialog">
              <summary>
@@ -1549,6 +1577,9 @@
             Gets or sets the visibility of the button arrow icon.
             </summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.DropDownButton.IsEnabledCore">
+            <inheritdoc />
+        </member>
         <member name="M:MahApps.Metro.Controls.DropDownButton.OnMouseRightButtonUp(System.Windows.Input.MouseButtonEventArgs)">
             <inheritdoc />
         </member>
@@ -1905,7 +1936,7 @@
         </member>
         <member name="T:MahApps.Metro.Controls.HamburgerMenu">
             <summary>
-            The HamburgerMenu is based on a SplitView control. By default it contains a HamburgerButton and a ListView to display menu items.
+            The HamburgerMenu is based on a <see cref="T:MahApps.Metro.Controls.SplitView"/> control. By default it contains a HamburgerButton and a ListView to display menu items.
             </summary>
         </member>
         <member name="M:MahApps.Metro.Controls.HamburgerMenu.#ctor">
@@ -1953,29 +1984,65 @@
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.HamburgerWidthProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerWidth"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerWidth">
+            <summary>
+            Gets or sets HamburgerMenu button's <see cref="P:System.Windows.FrameworkElement.Width"/>.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.HamburgerHeightProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerHeight"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerHeight">
+            <summary>
+            Gets or sets the <see cref="P:System.Windows.FrameworkElement.Height"/> for the HamburgerMenu button.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.HamburgerMarginProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerMargin"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerMargin">
+            <summary>
+            Gets or sets the margin for the HamburgerMenu button.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.HamburgerVisibilityProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerVisibility"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerVisibility">
+            <summary>
+            Gets or sets the <see cref="P:System.Windows.UIElement.Visibility"/> for the HamburgerMenu button.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonStyleProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonStyle"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonStyle">
+            <summary>
+            Gets or sets the <see cref="P:System.Windows.FrameworkElement.Style"/> for the HamburgerMenu button.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonTemplateProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonTemplate"/> dependency property.</summary>
         </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonStyle">
-            <summary>
-            Gets or sets the Style used for the hamburger button.
-            </summary>
-        </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonTemplate">
             <summary>
-            Gets or sets a template for the hamburger button.
+            Gets or sets the <see cref="P:System.Windows.Controls.ContentControl.ContentTemplate"/> for the HamburgerMenu button.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonNameProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonName"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonName">
+            <summary>
+            Gets or sets the<see cref= "F:System.Windows.Automation.AutomationProperties.NameProperty" /> for the HamburgerMenu button.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonHelpTextProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonHelpText"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerButtonHelpText">
+            <summary>
+            Gets or sets the <see cref="F:System.Windows.Automation.AutomationProperties.HelpTextProperty"/> for the HamburgerMenu button.
             </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.HamburgerMenuHeaderTemplateProperty">
@@ -1983,74 +2050,79 @@
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerMenuHeaderTemplate">
             <summary>
-            Gets or sets a template for the hamburger pane header.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerWidth">
-            <summary>
-            Gets or sets main button's width.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerHeight">
-            <summary>
-            Gets or sets main button's height.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerMargin">
-            <summary>
-            Gets or sets main button's margin.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HamburgerVisibility">
-            <summary>
-            Gets or sets main button's visibility.
+            Gets or sets the <see cref="P:System.Windows.Controls.ContentControl.ContentTemplate"/> for the HamburgerMenu pane header.
             </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemsSourceProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemsSource"/> dependency property.</summary>
-        </member>
-        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemContainerStyleProperty">
-            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemContainerStyle"/> dependency property.</summary>
-        </member>
-        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemTemplateProperty">
-            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemTemplate"/> dependency property.</summary>
-        </member>
-        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemTemplateSelectorProperty">
-            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemTemplateSelector"/> dependency property.</summary>
-        </member>
-        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsVisibilityProperty">
-            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsVisibility"/> dependency property.</summary>
-        </member>
-        <member name="F:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsItemProperty">
-            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsItem"/> dependency property.</summary>
-        </member>
-        <member name="F:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsIndexProperty">
-            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsIndex"/> dependency property.</summary>
-        </member>
-        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommandProperty">
-            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommand"/> dependency property.</summary>
-        </member>
-        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommandParameterProperty">
-            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommandParameter"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemsSource">
             <summary>
             Gets or sets an object source used to generate the content of the options.
             </summary>
         </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemContainerStyleProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemContainerStyle"/> dependency property.</summary>
+        </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemContainerStyle">
             <summary>
-            Gets or sets the Style used for each item in the options.
+            Gets or sets the <see cref="T:System.Windows.Style"/> used for each item in the options.
             </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemTemplateProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemTemplate"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemTemplate">
             <summary>
-            Gets or sets the DataTemplate used to display each item in the options.
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> used to display each item in the options.
             </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemTemplateSelectorProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemTemplateSelector"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemTemplateSelector">
             <summary>
-            Gets or sets the DataTemplateSelector used to display each item in the options.
+            Gets or sets the <see cref="T:System.Windows.Controls.DataTemplateSelector"/> used to display each item in the options.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsVisibilityProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsVisibility"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsVisibility">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Visibility"/> of the options menu.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsItemProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsItem"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsItem">
+            <summary>
+            Gets or sets the selected options menu item.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsIndexProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsIndex"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsIndex">
+            <summary>
+            Gets or sets the selected options menu index.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommandProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommand"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommand">
+            <summary>
+            Gets or sets a <see cref="T:System.Windows.Input.ICommand"/> which will be executed if an options item was clicked by the user.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommandParameterProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommandParameter"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommandParameter">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Input.ICommand"/> parameter which will be passed by the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommand"/>.
             </summary>
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItems">
@@ -2061,69 +2133,49 @@
             Exception thrown if OptionsListView is not yet defined.
             </exception>
         </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsVisibility">
-            <summary>
-            Gets or sets the visibility of the options menu.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsItem">
-            <summary>
-            Gets or sets the selected options menu item.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.SelectedOptionsIndex">
-            <summary>
-            Gets or sets the selected options menu index.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommand">
-            <summary>
-            Gets or sets a command which will be executed if an options item is clicked by the user.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommandParameter">
-            <summary>
-            Gets or sets the command parameter which will be passed by the OptionsItemCommand.
-            </summary>
-        </member>
         <member name="M:MahApps.Metro.Controls.HamburgerMenu.RaiseOptionsItemCommand">
             <summary>
-            Executes the options item command which can be set by the user.
+            Executes the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OptionsItemCommand"/>.
             </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.OpenPaneLengthProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.OpenPaneLength"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.OpenPaneLength">
+            <summary>
+            Gets or sets the width of the pane when it's fully expanded.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.HamburgerMenu.CompactPaneLengthProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.CompactPaneLength"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.CompactPaneLength">
+            <summary>
+            Gets or sets the width of the pane when in its compact display mode.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.MinimumOpenPaneLengthProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.MinimumOpenPaneLength"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.MinimumOpenPaneLength">
             <summary>
-                Gets or sets the minimum width of the <see cref="T:MahApps.Metro.Controls.SplitView" /> pane when it's fully expanded.
+            Gets or sets the minimum width of the <see cref="T:MahApps.Metro.Controls.SplitView" /> pane when it's fully expanded.
             </summary>
-            <returns>
-                The minimum width of the <see cref="T:MahApps.Metro.Controls.SplitView" /> pane when it's fully expanded. The default is 320 device-independent
-                pixel (DIP).
-            </returns>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.MaximumOpenPaneLengthProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.MaximumOpenPaneLength"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.MaximumOpenPaneLength">
             <summary>
-                Gets or sets the maximum width of the <see cref="T:MahApps.Metro.Controls.SplitView" /> pane when it's fully expanded.
+            Gets or sets the maximum width of the <see cref="T:MahApps.Metro.Controls.SplitView" /> pane when it's fully expanded.
             </summary>
-            <returns>
-                The maximum width of the <see cref="T:MahApps.Metro.Controls.SplitView" /> pane when it's fully expanded. The default is 320 device-independent
-                pixel (DIP).
-            </returns>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.CanResizeOpenPaneProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.CanResizeOpenPane"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.CanResizeOpenPane">
             <summary>
-            Gets or Sets if the open pane can be resized by the user. The default value is false.
+            Gets or Sets whether the open pane can be resized by the user. The default value is false.
             </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ResizeThumbStyleProperty">
@@ -2137,65 +2189,162 @@
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.PanePlacementProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.PanePlacement"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.PanePlacement">
+            <summary>
+            Gets or sets a value that specifies whether the pane is shown on the right or on left side of the HamburgerMenu.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.DisplayModeProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.DisplayMode"/> dependency property.</summary>
         </member>
-        <member name="F:MahApps.Metro.Controls.HamburgerMenu.CompactPaneLengthProperty">
-            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.CompactPaneLength"/> dependency property.</summary>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.DisplayMode">
+            <summary>
+            Gets or sets a value that specifies how the pane and content areas are shown.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.PaneMarginProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.PaneMargin"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.PaneMargin">
+            <summary>
+            Gets or sets the margin for the <see cref="T:MahApps.Metro.Controls.SplitView"/> pane.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.PaneHeaderMarginProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.PaneHeaderMargin"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.PaneHeaderMargin">
+            <summary>
+            Gets or sets the margin for the pane header.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.PaneBackgroundProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.PaneBackground"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.PaneBackground">
+            <summary>
+            Gets or sets the Brush to apply to the background of the pane area of the HamburgerMenu.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.PaneForegroundProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.PaneForeground"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.PaneForeground">
+            <summary>
+            Gets or sets the Brush to apply to the foreground of the pane area of the HamburgerMenu.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.IsPaneOpenProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.IsPaneOpen"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.IsPaneOpen">
+            <summary>
+            Gets or sets a value indicating whether the pane is expanded to its full width.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ItemsSourceProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ItemsSource"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemsSource">
+            <summary>
+            Gets or sets an object source used to generate the content of the menu.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ItemContainerStyleProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ItemContainerStyle"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemContainerStyle">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Style"/> used for each item.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.HeaderItemContainerStyleProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.HeaderItemContainerStyle"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HeaderItemContainerStyle">
+            <summary>   
+            Gets or sets the <see cref="T:System.Windows.Style"/> used for each header item.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.SeparatorItemContainerStyleProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.SeparatorItemContainerStyle"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.SeparatorItemContainerStyle">
+            <summary>   
+            Gets or sets the <see cref="T:System.Windows.Style"/> used for each separator item.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ItemTemplateProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ItemTemplate"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> used to display each item.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ItemTemplateSelectorProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ItemTemplateSelector"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemTemplateSelector">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Controls.DataTemplateSelector"/> used to display each item.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.SelectedItemProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.SelectedItem"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.SelectedItem">
+            <summary>
+            Gets or sets the selected menu item.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.SelectedIndexProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.SelectedIndex"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.SelectedIndex">
+            <summary>
+            Gets or sets the selected menu index.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ContentTransitionProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ContentTransition"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ContentTransition">
+            <summary>
+            Gets or sets the <see cref="T:MahApps.Metro.Controls.TransitionType"/> for the <see cref="T:MahApps.Metro.Controls.TransitioningContentControl"/> which shows the selected menu item content.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ItemCommandProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ItemCommand"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemCommand">
+            <summary>
+            Gets or sets a <see cref="T:System.Windows.Input.ICommand"/> which will be executed if an item was clicked by the user.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ItemCommandParameterProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ItemCommandParameter"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemCommandParameter">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Input.ICommand"/> parameter which will be passed by the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ItemCommand"/>.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.VerticalScrollBarOnLeftSideProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.VerticalScrollBarOnLeftSide"/> dependency property.</summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.VerticalScrollBarOnLeftSide">
+            <summary>
+            Gets or sets whether the ScrollBar of the HamburgerMenu is on the left side or on the right side of the menu items.
+            </summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ShowSelectionIndicatorProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ShowSelectionIndicator"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ShowSelectionIndicator">
+            <summary>
+            Gets or sets whether a selection indicator will be shown on the HamburgerMenuItem.
+            </summary>
         </member>
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ItemFocusVisualStylePropertyKey">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ItemFocusVisualStyle"/> dependency property.</summary>
@@ -2203,79 +2352,10 @@
         <member name="F:MahApps.Metro.Controls.HamburgerMenu.ItemFocusVisualStyleProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ItemFocusVisualStyle"/> dependency property.</summary>
         </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.OpenPaneLength">
+        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemFocusVisualStyle">
             <summary>
-            Gets or sets the width of the pane when it's fully expanded.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.PanePlacement">
-            <summary>
-            Gets or sets a value that specifies whether the pane is shown on the right or left side of the control.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.DisplayMode">
-            <summary>
-            Gets or sets a value that specifies how the pane and content areas are shown.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.CompactPaneLength">
-            <summary>
-            Gets or sets the width of the pane in its compact display mode.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.PaneMargin">
-            <summary>
-            Gets or sets the margin for the pane.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.PaneHeaderMargin">
-            <summary>
-            Gets or sets the margin for the pane header.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.PaneBackground">
-            <summary>
-            Gets or sets the Brush to apply to the background of the Pane area of the control.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.PaneForeground">
-            <summary>
-            Gets or sets the Brush to apply to the foreground of the Pane area of the control.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.IsPaneOpen">
-            <summary>
-            Gets or sets a value indicating whether the pane is expanded to its full width.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemsSource">
-            <summary>
-            Gets or sets an object source used to generate the content of the menu.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemContainerStyle">
-            <summary>
-            Gets or sets the Style used for each item.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.HeaderItemContainerStyle">
-            <summary>   
-            Gets or sets the Style used for each header item.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.SeparatorItemContainerStyle">
-            <summary>   
-            Gets or sets the Style used for each separator item.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemTemplate">
-            <summary>
-            Gets or sets the DataTemplate used to display each item.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemTemplateSelector">
-            <summary>
-            Gets or sets the DataTemplateSelector used to display each item.
+            Gets or sets the default FocusVisualStyle for a HamburgerMenuItem.
+            This style can be override at the HamburgerMenuItem style by setting the FocusVisualStyle property.
             </summary>
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenu.Items">
@@ -2286,50 +2366,14 @@
             Exception thrown if ButtonsListView is not yet defined.
             </exception>
         </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.SelectedItem">
-            <summary>
-            Gets or sets the selected menu item.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.SelectedIndex">
-            <summary>
-            Gets or sets the selected menu index.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemCommand">
-            <summary>
-            Gets or sets a command which will be executed if an item is clicked by the user.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemCommandParameter">
-            <summary>
-            Gets or sets the command parameter which will be passed by the ItemCommand.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.VerticalScrollBarOnLeftSide">
-            <summary>
-            Gets or sets wheather the ScrollBar of the HamburgerMenu is on the left side or on the right side.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ShowSelectionIndicator">
-            <summary>
-            Gets or sets wheather a selection indicator will be shown on the HamburgerMenuItem.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.HamburgerMenu.ItemFocusVisualStyle">
-            <summary>
-            Gets or sets the default FocusVisualStyle for a HamburgerMenuItem.
-            This style can be override at the HamburgerMenuItem style by setting the FocusVisualStyle property.
-            </summary>
-        </member>
         <member name="M:MahApps.Metro.Controls.HamburgerMenu.RaiseItemCommand">
             <summary>
-            Executes the item command which can be set by the user.
+            Executes the <see cref="P:MahApps.Metro.Controls.HamburgerMenu.ItemCommand"/>.
             </summary>
         </member>
         <member name="T:MahApps.Metro.Controls.ItemClickEventArgs">
             <summary>
-            EventArgs used for the <see cref="T:MahApps.Metro.Controls.HamburgerMenu"/> ItemClick and OptionsItemClick event.
+            EventArgs used for the <see cref="E:MahApps.Metro.Controls.HamburgerMenu.ItemClick"/> and <see cref="E:MahApps.Metro.Controls.HamburgerMenu.OptionsItemClick"/> events.
             </summary>
         </member>
         <member name="M:MahApps.Metro.Controls.ItemClickEventArgs.#ctor">
@@ -2343,17 +2387,17 @@
         </member>
         <member name="P:MahApps.Metro.Controls.ItemClickEventArgs.ClickedItem">
             <summary>
-            Gets the clicked item
+            Gets the clicked item (options item).
             </summary>
         </member>
         <member name="T:MahApps.Metro.Controls.ItemClickRoutedEventHandler">
             <summary>
-            RoutedEventHandler used for the <see cref="T:MahApps.Metro.Controls.HamburgerMenu"/> ItemClick and OptionsItemClick event.
+            RoutedEventHandler used for the <see cref="E:MahApps.Metro.Controls.HamburgerMenu.ItemClick"/> and <see cref="E:MahApps.Metro.Controls.HamburgerMenu.OptionsItemClick"/> events.
             </summary>
         </member>
         <member name="T:MahApps.Metro.Controls.HamburgerMenuItemInvokedEventArgs">
             <summary>
-            EventArgs used for the <see cref="T:MahApps.Metro.Controls.HamburgerMenu"/> ItemInvoked event.
+            EventArgs used for the <see cref="E:MahApps.Metro.Controls.HamburgerMenu.ItemInvoked"/> event.
             </summary>
         </member>
         <member name="M:MahApps.Metro.Controls.HamburgerMenuItemInvokedEventArgs.#ctor">
@@ -2367,7 +2411,7 @@
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenuItemInvokedEventArgs.InvokedItem">
             <summary>
-            Gets the invoked item
+            Gets the invoked item.
             </summary>
         </member>
         <member name="P:MahApps.Metro.Controls.HamburgerMenuItemInvokedEventArgs.IsItemOptions">
@@ -2377,7 +2421,7 @@
         </member>
         <member name="T:MahApps.Metro.Controls.HamburgerMenuItemInvokedRoutedEventHandler">
             <summary>
-            RoutedEventHandler used for the <see cref="T:MahApps.Metro.Controls.HamburgerMenu"/> ItemInvoked event.
+            RoutedEventHandler used for the <see cref="E:MahApps.Metro.Controls.HamburgerMenu.ItemInvoked"/> event.
             </summary>
         </member>
         <member name="T:MahApps.Metro.Controls.HamburgerMenuGlyphItem">
@@ -2567,12 +2611,30 @@
             Gets or sets a value that specifies label to display.
             </summary>
         </member>
+        <member name="P:MahApps.Metro.Controls.IHamburgerMenuItem.Label">
+            <summary>
+            Gets or sets a value that specifies label to display.
+            </summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.IHamburgerMenuItem.ToolTip">
+            <summary>
+            Gets or sets a value that specifies ToolTip to display.
+            </summary>
+        </member>
         <member name="P:MahApps.Metro.Controls.IHamburgerMenuItem.IsEnabled">
             <summary>
             Gets or sets a value indicating whether this item is enabled in the user interface (UI).
             </summary>
             <returns>
             true if the item is enabled; otherwise, false. The default value is true.
+            </returns>
+        </member>
+        <member name="P:MahApps.Metro.Controls.IHamburgerMenuItemBase.IsVisible">
+            <summary>
+            Gets or sets the value indicating whether this element is visible in the user interface (UI). This is a dependency property.
+            </summary>
+            <returns>
+            true if the item is visible, otherwise false. The default value is true.
             </returns>
         </member>
         <member name="T:MahApps.Metro.Controls.AmPmComparer">
@@ -3509,35 +3571,293 @@
             Sets a value indicating whether the child contents of the control are not editable.
             </summary>
         </member>
-        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedCheckBoxColumnStyle(System.Windows.DependencyObject)">
+        <member name="M:MahApps.Metro.Controls.IDataGridColumnStylesHelper.Attach(System.Windows.Controls.DataGrid)">
             <summary>
-            Gets the ElementStyle for the autogenerated DataGridCheckBoxColumn.
+            Attach this helper to the DataGrid.
+            </summary>
+            <param name="aDataGrid"></param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.IDataGridColumnStylesHelper.Detach">
+            <summary>
+            Detach the helper from the attached DataGrid
             </summary>
         </member>
-        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedCheckBoxColumnStyle(System.Windows.DependencyObject,System.Windows.Style)">
-            <summary>
-            Sets the ElementStyle for the autogenerated DataGridCheckBoxColumn.
-            </summary>
+        <member name="M:MahApps.Metro.Controls.DataGridColumnStylesHelperExtension.Attach(System.Windows.Controls.DataGrid)">
+            <inheritdoc />
         </member>
-        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedCheckBoxColumnEditingStyle(System.Windows.DependencyObject)">
-            <summary>
-            Gets the EditingElementStyle for the autogenerated DataGridCheckBoxColumn.
-            </summary>
+        <member name="M:MahApps.Metro.Controls.DataGridColumnStylesHelperExtension.Detach">
+            <inheritdoc />
         </member>
-        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedCheckBoxColumnEditingStyle(System.Windows.DependencyObject,System.Windows.Style)">
+        <member name="M:MahApps.Metro.Controls.DataGridColumnStylesHelperExtension.SetBinding(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
             <summary>
-            Sets the EditingElementStyle for the autogenerated DataGridCheckBoxColumn.
+            Sets binding from the source dependency property to the dependency property of the given target.
             </summary>
+            <param name="target">The target object.</param>
+            <param name="targetDependencyProperty">The target's dependency property.</param>
+            <param name="source">The source object.</param>
+            <param name="sourceDependencyProperty">The dependency property of the source.</param>
         </member>
-        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedTextColumnEditingStyle(System.Windows.DependencyObject)">
+        <member name="M:MahApps.Metro.Controls.DataGridColumnStylesHelperExtension.ClearBinding(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
             <summary>
-            Gets the EditingElementStyle for the autogenerated DataGridTextColumn.
+            Clears the binding from the source dependency property to the dependency property of the given target.
             </summary>
+            <param name="target">The target object.</param>
+            <param name="targetDependencyProperty">The target's dependency property.</param>
+            <param name="source">The source object.</param>
+            <param name="sourceDependencyProperty">The dependency property of the source.</param>
         </member>
-        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedTextColumnEditingStyle(System.Windows.DependencyObject,System.Windows.Style)">
-            <summary>
-            Sets the EditingElementStyle for the autogenerated DataGridTextColumn.
-            </summary>
+        <member name="M:MahApps.Metro.Controls.DataGridColumnStylesHelperExtension.ProvideValue(System.IServiceProvider)">
+            <inheritdoc />
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedCheckBoxColumnStyleProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' AutoGeneratedCheckBoxColumnStyle property.
+            
+             If a style is set, the DataGridCheckBoxColumn of the DataGrid will use this style for normal cells.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedCheckBoxColumnStyle(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedCheckBoxColumnStyleProperty"/> from <paramref name="element"/>.
+            
+             If a style is set, the DataGridCheckBoxColumn of the DataGrid will use this style for normal cells.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedCheckBoxColumnStyleProperty"/> from.</param>
+             <returns>AutoGeneratedCheckBoxColumnStyle property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedCheckBoxColumnStyle(System.Windows.UIElement,System.Windows.Style)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedCheckBoxColumnStyleProperty"/> on <paramref name="element"/>.
+            
+             If a style is set, the DataGridCheckBoxColumn of the DataGrid will use this style for normal cells.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedCheckBoxColumnStyleProperty"/> on.</param>
+             <param name="value">AutoGeneratedCheckBoxColumnStyle property value.</param>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedCheckBoxColumnEditingStyleProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' AutoGeneratedCheckBoxColumnEditingStyle property.
+            
+             If a style is set, the DataGridCheckBoxColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedCheckBoxColumnEditingStyle(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedCheckBoxColumnEditingStyleProperty"/> from <paramref name="element"/>.
+            
+             If a style is set, the DataGridCheckBoxColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedCheckBoxColumnEditingStyleProperty"/> from.</param>
+             <returns>AutoGeneratedCheckBoxColumnEditingStyle property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedCheckBoxColumnEditingStyle(System.Windows.UIElement,System.Windows.Style)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedCheckBoxColumnEditingStyleProperty"/> on <paramref name="element"/>.
+            
+             If a style is set, the DataGridCheckBoxColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedCheckBoxColumnEditingStyleProperty"/> on.</param>
+             <param name="value">AutoGeneratedCheckBoxColumnEditingStyle property value.</param>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedTextColumnStyleProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' AutoGeneratedTextColumnStyle property.
+            
+             If a style is set, the DataGridTextColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedTextColumnStyle(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedTextColumnStyleProperty"/> from <paramref name="element"/>.
+            
+             If a style is set, the DataGridTextColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedTextColumnStyleProperty"/> from.</param>
+             <returns>AutoGeneratedTextColumnStyle property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedTextColumnStyle(System.Windows.UIElement,System.Windows.Style)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedTextColumnStyleProperty"/> on <paramref name="element"/>.
+            
+             If a style is set, the DataGridTextColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedTextColumnStyleProperty"/> on.</param>
+             <param name="value">AutoGeneratedTextColumnStyle property value.</param>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedTextColumnEditingStyleProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' AutoGeneratedTextColumnEditingStyle property.
+            
+             If a style is set, the DataGridTextColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedTextColumnEditingStyle(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedTextColumnEditingStyleProperty"/> from <paramref name="element"/>.
+            
+             If a style is set, the DataGridTextColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedTextColumnEditingStyleProperty"/> from.</param>
+             <returns>AutoGeneratedTextColumnEditingStyle property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedTextColumnEditingStyle(System.Windows.UIElement,System.Windows.Style)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedTextColumnEditingStyleProperty"/> on <paramref name="element"/>.
+            
+             If a style is set, the DataGridTextColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedTextColumnEditingStyleProperty"/> on.</param>
+             <param name="value">AutoGeneratedTextColumnEditingStyle property value.</param>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedComboBoxColumnStyleProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' AutoGeneratedComboBoxColumnStyle property.
+            
+             If a style is set, the DataGridComboBoxColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedComboBoxColumnStyle(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedComboBoxColumnStyleProperty"/> from <paramref name="element"/>.
+            
+             If a style is set, the DataGridComboBoxColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedComboBoxColumnStyleProperty"/> from.</param>
+             <returns>AutoGeneratedComboBoxColumnStyle property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedComboBoxColumnStyle(System.Windows.UIElement,System.Windows.Style)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedComboBoxColumnStyleProperty"/> on <paramref name="element"/>.
+            
+             If a style is set, the DataGridComboBoxColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedComboBoxColumnStyleProperty"/> on.</param>
+             <param name="value">AutoGeneratedComboBoxColumnStyle property value.</param>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedComboBoxColumnEditingStyleProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' AutoGeneratedComboBoxColumnEditingStyle property.
+            
+             If a style is set, the DataGridComboBoxColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedComboBoxColumnEditingStyle(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedComboBoxColumnEditingStyleProperty"/> from <paramref name="element"/>.
+            
+             If a style is set, the DataGridComboBoxColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedComboBoxColumnEditingStyleProperty"/> from.</param>
+             <returns>AutoGeneratedComboBoxColumnEditingStyle property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedComboBoxColumnEditingStyle(System.Windows.UIElement,System.Windows.Style)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedComboBoxColumnEditingStyleProperty"/> on <paramref name="element"/>.
+            
+             If a style is set, the DataGridComboBoxColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedComboBoxColumnEditingStyleProperty"/> on.</param>
+             <param name="value">AutoGeneratedComboBoxColumnEditingStyle property value.</param>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedNumericUpDownColumnStyleProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' AutoGeneratedNumericUpDownColumnStyle property.
+            
+             If a style is set, the DataGridNumericUpDownColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedNumericUpDownColumnStyle(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedNumericUpDownColumnStyleProperty"/> from <paramref name="element"/>.
+            
+             If a style is set, the DataGridNumericUpDownColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedNumericUpDownColumnStyleProperty"/> from.</param>
+             <returns>AutoGeneratedNumericUpDownColumnStyle property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedNumericUpDownColumnStyle(System.Windows.UIElement,System.Windows.Style)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedNumericUpDownColumnStyleProperty"/> on <paramref name="element"/>.
+            
+             If a style is set, the DataGridNumericUpDownColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedNumericUpDownColumnStyleProperty"/> on.</param>
+             <param name="value">AutoGeneratedNumericUpDownColumnStyle property value.</param>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedNumericUpDownColumnEditingStyleProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' AutoGeneratedNumericUpDownColumnEditingStyle property.
+            
+             If a style is set, the DataGridNumericUpDownColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedNumericUpDownColumnEditingStyle(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedNumericUpDownColumnEditingStyleProperty"/> from <paramref name="element"/>.
+            
+             If a style is set, the DataGridNumericUpDownColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedNumericUpDownColumnEditingStyleProperty"/> from.</param>
+             <returns>AutoGeneratedNumericUpDownColumnEditingStyle property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedNumericUpDownColumnEditingStyle(System.Windows.UIElement,System.Windows.Style)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedNumericUpDownColumnEditingStyleProperty"/> on <paramref name="element"/>.
+            
+             If a style is set, the DataGridNumericUpDownColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedNumericUpDownColumnEditingStyleProperty"/> on.</param>
+             <param name="value">AutoGeneratedNumericUpDownColumnEditingStyle property value.</param>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedHyperlinkColumnStyleProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' AutoGeneratedHyperlinkColumnStyle property.
+            
+             If a style is set, the DataGridHyperlinkColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedHyperlinkColumnStyle(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedHyperlinkColumnStyleProperty"/> from <paramref name="element"/>.
+            
+             If a style is set, the DataGridHyperlinkColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedHyperlinkColumnStyleProperty"/> from.</param>
+             <returns>AutoGeneratedHyperlinkColumnStyle property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedHyperlinkColumnStyle(System.Windows.UIElement,System.Windows.Style)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedHyperlinkColumnStyleProperty"/> on <paramref name="element"/>.
+            
+             If a style is set, the DataGridHyperlinkColumn columns of the DataGrid will use this style for normal cells.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedHyperlinkColumnStyleProperty"/> on.</param>
+             <param name="value">AutoGeneratedHyperlinkColumnStyle property value.</param>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedHyperlinkColumnEditingStyleProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' AutoGeneratedHyperlinkColumnEditingStyle property.
+            
+             If a style is set, the DataGridHyperlinkColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetAutoGeneratedHyperlinkColumnEditingStyle(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedHyperlinkColumnEditingStyleProperty"/> from <paramref name="element"/>.
+            
+             If a style is set, the DataGridHyperlinkColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedHyperlinkColumnEditingStyleProperty"/> from.</param>
+             <returns>AutoGeneratedHyperlinkColumnEditingStyle property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetAutoGeneratedHyperlinkColumnEditingStyle(System.Windows.UIElement,System.Windows.Style)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedHyperlinkColumnEditingStyleProperty"/> on <paramref name="element"/>.
+            
+             If a style is set, the DataGridHyperlinkColumn of the DataGrid will use this style for cells in edit mode.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.AutoGeneratedHyperlinkColumnEditingStyleProperty"/> on.</param>
+             <param name="value">AutoGeneratedHyperlinkColumnEditingStyle property value.</param>
         </member>
         <member name="M:MahApps.Metro.Controls.DataGridHelper.GetCellPadding(System.Windows.DependencyObject)">
             <summary>
@@ -3578,6 +3898,31 @@
             <summary>
             Sets the value to define the selection behavior.
             </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.DataGridHelper.ColumnStylesHelperProperty">
+             <summary>
+             The DependencyProperty for the <see cref="T:System.Windows.Controls.DataGrid"/>' ColumnStylesHelper property.
+            
+             If the helper is set, the columns of the DataGrid will use the styles for the columns from the <see cref="T:MahApps.Metro.Controls.DataGridHelper"/>' attached properties.
+             </summary>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.GetColumnStylesHelper(System.Windows.UIElement)">
+             <summary>
+             Helper for getting <see cref="F:MahApps.Metro.Controls.DataGridHelper.ColumnStylesHelperProperty"/> from <paramref name="element"/>.
+            
+             If the helper is set, the columns of the DataGrid will use the styles for the columns from the <see cref="T:MahApps.Metro.Controls.DataGridHelper"/>' attached properties.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.DataGridHelper.ColumnStylesHelperProperty"/> from.</param>
+             <returns>ColumnStylesHelper property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.DataGridHelper.SetColumnStylesHelper(System.Windows.UIElement,MahApps.Metro.Controls.IDataGridColumnStylesHelper)">
+             <summary>
+             Helper for setting <see cref="F:MahApps.Metro.Controls.DataGridHelper.ColumnStylesHelperProperty"/> from <paramref name="element"/>.
+            
+             If the helper is set, the columns of the DataGrid will use the styles for the columns from the <see cref="T:MahApps.Metro.Controls.DataGridHelper"/>' attached properties.
+             </summary>
+             <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.DataGridHelper.ColumnStylesHelperProperty"/> on.</param>
+             <param name="value">ColumnStylesHelper property value.</param>
         </member>
         <member name="M:MahApps.Metro.Controls.DatePickerHelper.GetDropDownButtonContent(System.Windows.DependencyObject)">
             <summary>
@@ -4062,15 +4407,365 @@
             Sets the data template used to display the content of the RevealButton.
             </summary>
         </member>
-        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetRadioStrokeThickness(System.Windows.DependencyObject)">
-            <summary>
-            Gets the StrokeThickness of the RadioButton itself.
-            </summary>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetRadioSize(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioSizeProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioSizeProperty"/> from.</param>
+            <returns>RadioSize property value.</returns>
         </member>
-        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetRadioStrokeThickness(System.Windows.DependencyObject,System.Double)">
-            <summary>
-            Sets the StrokeThickness of the RadioButton itself.
-            </summary>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetRadioSize(System.Windows.UIElement,System.Double)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioSizeProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioSizeProperty"/> on.</param>
+            <param name="value">RadioSize property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetRadioCheckSize(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioCheckSizeProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioCheckSizeProperty"/> from.</param>
+            <returns>RadioCheckSize property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetRadioCheckSize(System.Windows.UIElement,System.Double)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioCheckSizeProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioCheckSizeProperty"/> on.</param>
+            <param name="value">RadioCheckSize property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetRadioStrokeThickness(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioStrokeThicknessProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioStrokeThicknessProperty"/> from.</param>
+            <returns>RadioStrokeThickness property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetRadioStrokeThickness(System.Windows.UIElement,System.Double)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioStrokeThicknessProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.RadioStrokeThicknessProperty"/> on.</param>
+            <param name="value">RadioStrokeThickness property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetForegroundPointerOver(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundPointerOverProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundPointerOverProperty"/> from.</param>
+            <returns>ForegroundPointerOver property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetForegroundPointerOver(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundPointerOverProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundPointerOverProperty"/> on.</param>
+            <param name="value">ForegroundPointerOver property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetForegroundPressed(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundPressedProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundPressedProperty"/> from.</param>
+            <returns>ForegroundPressed property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetForegroundPressed(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundPressedProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundPressedProperty"/> on.</param>
+            <param name="value">ForegroundPressed property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetForegroundDisabled(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundDisabledProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundDisabledProperty"/> from.</param>
+            <returns>ForegroundDisabled property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetForegroundDisabled(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundDisabledProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.ForegroundDisabledProperty"/> on.</param>
+            <param name="value">ForegroundDisabled property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetBackgroundPointerOver(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundPointerOverProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundPointerOverProperty"/> from.</param>
+            <returns>BackgroundPointerOver property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetBackgroundPointerOver(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundPointerOverProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundPointerOverProperty"/> on.</param>
+            <param name="value">BackgroundPointerOver property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetBackgroundPressed(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundPressedProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundPressedProperty"/> from.</param>
+            <returns>BackgroundPressed property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetBackgroundPressed(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundPressedProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundPressedProperty"/> on.</param>
+            <param name="value">BackgroundPressed property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetBackgroundDisabled(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundDisabledProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundDisabledProperty"/> from.</param>
+            <returns>BackgroundDisabled property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetBackgroundDisabled(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundDisabledProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BackgroundDisabledProperty"/> on.</param>
+            <param name="value">BackgroundDisabled property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetBorderBrushPointerOver(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushPointerOverProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushPointerOverProperty"/> from.</param>
+            <returns>BorderBrushPointerOver property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetBorderBrushPointerOver(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushPointerOverProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushPointerOverProperty"/> on.</param>
+            <param name="value">BorderBrushPointerOver property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetBorderBrushPressed(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushPressedProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushPressedProperty"/> from.</param>
+            <returns>BorderBrushPressed property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetBorderBrushPressed(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushPressedProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushPressedProperty"/> on.</param>
+            <param name="value">BorderBrushPressed property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetBorderBrushDisabled(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushDisabledProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushDisabledProperty"/> from.</param>
+            <returns>BorderBrushDisabled property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetBorderBrushDisabled(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushDisabledProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.BorderBrushDisabledProperty"/> on.</param>
+            <param name="value">BorderBrushDisabled property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseFill(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillProperty"/> from.</param>
+            <returns>OuterEllipseFill property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseFill(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillProperty"/> on.</param>
+            <param name="value">OuterEllipseFill property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseFillPointerOver(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillPointerOverProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillPointerOverProperty"/> from.</param>
+            <returns>OuterEllipseFillPointerOver property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseFillPointerOver(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillPointerOverProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillPointerOverProperty"/> on.</param>
+            <param name="value">OuterEllipseFillPointerOver property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseFillPressed(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillPressedProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillPressedProperty"/> from.</param>
+            <returns>OuterEllipseFillPressed property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseFillPressed(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillPressedProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillPressedProperty"/> on.</param>
+            <param name="value">OuterEllipseFillPressed property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseFillDisabled(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillDisabledProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillDisabledProperty"/> from.</param>
+            <returns>OuterEllipseFillDisabled property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseFillDisabled(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillDisabledProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseFillDisabledProperty"/> on.</param>
+            <param name="value">OuterEllipseFillDisabled property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseStroke(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokeProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokeProperty"/> from.</param>
+            <returns>OuterEllipseStroke property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseStroke(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokeProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokeProperty"/> on.</param>
+            <param name="value">OuterEllipseStroke property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseStrokePointerOver(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokePointerOverProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokePointerOverProperty"/> from.</param>
+            <returns>OuterEllipseStrokePointerOver property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseStrokePointerOver(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokePointerOverProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokePointerOverProperty"/> on.</param>
+            <param name="value">OuterEllipseStrokePointerOver property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseStrokePressed(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokePressedProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokePressedProperty"/> from.</param>
+            <returns>OuterEllipseStrokePressed property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseStrokePressed(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokePressedProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokePressedProperty"/> on.</param>
+            <param name="value">OuterEllipseStrokePressed property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseStrokeDisabled(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokeDisabledProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokeDisabledProperty"/> from.</param>
+            <returns>OuterEllipseStrokeDisabled property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseStrokeDisabled(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokeDisabledProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseStrokeDisabledProperty"/> on.</param>
+            <param name="value">OuterEllipseStrokeDisabled property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseCheckedFill(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillProperty"/> from.</param>
+            <returns>OuterEllipseCheckedFill property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseCheckedFill(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillProperty"/> on.</param>
+            <param name="value">OuterEllipseCheckedFill property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseCheckedFillPointerOver(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillPointerOverProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillPointerOverProperty"/> from.</param>
+            <returns>OuterEllipseCheckedFillPointerOver property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseCheckedFillPointerOver(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillPointerOverProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillPointerOverProperty"/> on.</param>
+            <param name="value">OuterEllipseCheckedFillPointerOver property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseCheckedFillPressed(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillPressedProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillPressedProperty"/> from.</param>
+            <returns>OuterEllipseCheckedFillPressed property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseCheckedFillPressed(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillPressedProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillPressedProperty"/> on.</param>
+            <param name="value">OuterEllipseCheckedFillPressed property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseCheckedFillDisabled(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillDisabledProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillDisabledProperty"/> from.</param>
+            <returns>OuterEllipseCheckedFillDisabled property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseCheckedFillDisabled(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillDisabledProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedFillDisabledProperty"/> on.</param>
+            <param name="value">OuterEllipseCheckedFillDisabled property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseCheckedStroke(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokeProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokeProperty"/> from.</param>
+            <returns>OuterEllipseCheckedStroke property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseCheckedStroke(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokeProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokeProperty"/> on.</param>
+            <param name="value">OuterEllipseCheckedStroke property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseCheckedStrokePointerOver(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokePointerOverProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokePointerOverProperty"/> from.</param>
+            <returns>OuterEllipseCheckedStrokePointerOver property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseCheckedStrokePointerOver(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokePointerOverProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokePointerOverProperty"/> on.</param>
+            <param name="value">OuterEllipseCheckedStrokePointerOver property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseCheckedStrokePressed(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokePressedProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokePressedProperty"/> from.</param>
+            <returns>OuterEllipseCheckedStrokePressed property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseCheckedStrokePressed(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokePressedProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokePressedProperty"/> on.</param>
+            <param name="value">OuterEllipseCheckedStrokePressed property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetOuterEllipseCheckedStrokeDisabled(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokeDisabledProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokeDisabledProperty"/> from.</param>
+            <returns>OuterEllipseCheckedStrokeDisabled property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetOuterEllipseCheckedStrokeDisabled(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokeDisabledProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.OuterEllipseCheckedStrokeDisabledProperty"/> on.</param>
+            <param name="value">OuterEllipseCheckedStrokeDisabled property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetCheckGlyphFill(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillProperty"/> from.</param>
+            <returns>CheckGlyphFill property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetCheckGlyphFill(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillProperty"/> on.</param>
+            <param name="value">CheckGlyphFill property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetCheckGlyphFillPointerOver(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillPointerOverProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillPointerOverProperty"/> from.</param>
+            <returns>CheckGlyphFillPointerOver property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetCheckGlyphFillPointerOver(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillPointerOverProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillPointerOverProperty"/> on.</param>
+            <param name="value">CheckGlyphFillPointerOver property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetCheckGlyphFillPressed(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillPressedProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillPressedProperty"/> from.</param>
+            <returns>CheckGlyphFillPressed property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetCheckGlyphFillPressed(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillPressedProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillPressedProperty"/> on.</param>
+            <param name="value">CheckGlyphFillPressed property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetCheckGlyphFillDisabled(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillDisabledProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillDisabledProperty"/> from.</param>
+            <returns>CheckGlyphFillDisabled property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetCheckGlyphFillDisabled(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillDisabledProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphFillDisabledProperty"/> on.</param>
+            <param name="value">CheckGlyphFillDisabled property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetCheckGlyphStroke(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokeProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokeProperty"/> from.</param>
+            <returns>CheckGlyphStroke property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetCheckGlyphStroke(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokeProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokeProperty"/> on.</param>
+            <param name="value">CheckGlyphStroke property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetCheckGlyphStrokePointerOver(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokePointerOverProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokePointerOverProperty"/> from.</param>
+            <returns>CheckGlyphStrokePointerOver property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetCheckGlyphStrokePointerOver(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokePointerOverProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokePointerOverProperty"/> on.</param>
+            <param name="value">CheckGlyphStrokePointerOver property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetCheckGlyphStrokePressed(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokePressedProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokePressedProperty"/> from.</param>
+            <returns>CheckGlyphStrokePressed property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetCheckGlyphStrokePressed(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokePressedProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokePressedProperty"/> on.</param>
+            <param name="value">CheckGlyphStrokePressed property value.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.GetCheckGlyphStrokeDisabled(System.Windows.UIElement)">
+            <summary>Helper for getting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokeDisabledProperty"/> from <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to read <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokeDisabledProperty"/> from.</param>
+            <returns>CheckGlyphStrokeDisabled property value.</returns>
+        </member>
+        <member name="M:MahApps.Metro.Controls.RadioButtonHelper.SetCheckGlyphStrokeDisabled(System.Windows.UIElement,System.Windows.Media.Brush)">
+            <summary>Helper for setting <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokeDisabledProperty"/> on <paramref name="element"/>.</summary>
+            <param name="element"><see cref="T:System.Windows.UIElement"/> to set <see cref="F:MahApps.Metro.Controls.RadioButtonHelper.CheckGlyphStrokeDisabledProperty"/> on.</param>
+            <param name="value">CheckGlyphStrokeDisabled property value.</param>
         </member>
         <member name="F:MahApps.Metro.Controls.ScrollViewerHelper.VerticalScrollBarOnLeftSideProperty">
             <summary>
@@ -5382,127 +6077,278 @@
         </member>
         <member name="T:MahApps.Metro.Controls.NumericUpDown">
             <summary>
-                Represents a Windows spin box (also known as an up-down control) that displays numeric values.
+            Represents a Windows spin box (also known as an up-down control) that displays numeric values.
             </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.ValueIncrementedEvent">
+            <summary>Identifies the <see cref="E:MahApps.Metro.Controls.NumericUpDown.ValueIncremented"/> routed event.</summary>
+        </member>
+        <member name="E:MahApps.Metro.Controls.NumericUpDown.ValueIncremented">
+            <summary>
+            Add / Remove ValueIncrementedEvent handler
+            Event which will be fired from this NumericUpDown when its value was incremented.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.ValueDecrementedEvent">
+            <summary>Identifies the <see cref="E:MahApps.Metro.Controls.NumericUpDown.ValueDecremented"/> routed event.</summary>
+        </member>
+        <member name="E:MahApps.Metro.Controls.NumericUpDown.ValueDecremented">
+            <summary>
+            Add / Remove ValueDecrementedEvent handler
+            Event which will be fired from this NumericUpDown when its value was decremented.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.DelayChangedEvent">
+            <summary>Identifies the <see cref="E:MahApps.Metro.Controls.NumericUpDown.DelayChanged"/> routed event.</summary>
+        </member>
+        <member name="E:MahApps.Metro.Controls.NumericUpDown.DelayChanged">
+            <summary>
+            Add / Remove DelayChangedEvent handler
+            Event which will be fired from this NumericUpDown when its delay value has been changed.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.MaximumReachedEvent">
+            <summary>Identifies the <see cref="E:MahApps.Metro.Controls.NumericUpDown.MaximumReached"/> routed event.</summary>
         </member>
         <member name="E:MahApps.Metro.Controls.NumericUpDown.MaximumReached">
             <summary>
-                Event fired from this NumericUpDown when its value has reached the maximum value
+            Add / Remove MaximumReachedEvent handler
+            Event fired from this NumericUpDown when its value has reached the maximum value.
             </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.MinimumReachedEvent">
+            <summary>Identifies the <see cref="E:MahApps.Metro.Controls.NumericUpDown.MinimumReached"/> routed event.</summary>
         </member>
         <member name="E:MahApps.Metro.Controls.NumericUpDown.MinimumReached">
             <summary>
-                Event fired from this NumericUpDown when its value has reached the minimum value
+            Add / Remove MinimumReachedEvent handler
+            Event fired from this NumericUpDown when its value has reached the minimum value.
             </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.ValueChangedEvent">
+            <summary>Identifies the <see cref="E:MahApps.Metro.Controls.NumericUpDown.ValueChanged"/> routed event.</summary>
+        </member>
+        <member name="E:MahApps.Metro.Controls.NumericUpDown.ValueChanged">
+            <summary>
+            Add / Remove ValueChangedEvent handler
+            Event which will be fired from this NumericUpDown when its value has been changed.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.DelayProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Delay"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.NumericUpDown.Delay">
             <summary>
-                Gets or sets the amount of time, in milliseconds, the NumericUpDown waits while the up/down button is pressed
-                before it starts increasing/decreasing the
-                <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value" /> for the specified <see cref="P:MahApps.Metro.Controls.NumericUpDown.Interval" /> . The value must be
-                non-negative.
+            Gets or sets the amount of time, in milliseconds, the NumericUpDown waits while the up/down button is pressed
+            before it starts increasing/decreasing the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value" /> for the specified <see cref="P:MahApps.Metro.Controls.NumericUpDown.Interval" /> .
+            The value must be non-negative.
             </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.TextAlignmentProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.TextAlignment"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.TextAlignment">
+            <summary>
+            Gets or sets the horizontal alignment of the contents inside the text box.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.SpeedupProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Speedup"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.Speedup">
+            <summary>
+            Gets or sets a value indicating whether the value to be added to or subtracted from <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value" /> remains
+            always <see cref="P:MahApps.Metro.Controls.NumericUpDown.Interval" /> or if it will increase faster after pressing the up/down button/arrow some time.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.IsReadOnlyProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.IsReadOnly"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.IsReadOnly">
+            <summary>
+            Gets or sets a value indicating whether the text can be changed by the use of the up or down buttons only.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.StringFormatProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.StringFormat"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.StringFormat">
+            <summary>
+            Gets or sets the formatting for the displaying <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value" />
+            </summary>
+            <remarks>
+            <see href="https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings"></see>
+            </remarks>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.InterceptArrowKeysProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptArrowKeys"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.NumericUpDown.InterceptArrowKeys">
             <summary>
-                Gets or sets a value indicating whether the user can use the arrow keys <see cref="F:System.Windows.Input.Key.Up"/> and <see cref="F:System.Windows.Input.Key.Down"/> to change values. 
+            Gets or sets a value indicating whether the user can use the arrow keys <see cref="F:System.Windows.Input.Key.Up"/> and <see cref="F:System.Windows.Input.Key.Down"/> to change the value. 
             </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.InterceptMouseWheelProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptMouseWheel"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.NumericUpDown.InterceptMouseWheel">
             <summary>
-                Gets or sets a value indicating whether the user can use the mouse wheel to change values.
+            Gets or sets a value indicating whether the user can use the mouse wheel to change the value.
             </summary>
         </member>
-        <member name="P:MahApps.Metro.Controls.NumericUpDown.TrackMouseWheelWhenMouseOver">
-            <summary>
-                Gets or sets a value indicating whether the control must have the focus in order to change values using the mouse wheel.
-            <remarks>
-                If the value is true then the value changes when the mouse wheel is over the control. If the value is false then the value changes only if the control has the focus. If <see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptMouseWheel"/> is set to "false" then this property has no effect.
-            </remarks>
-            </summary>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.InterceptManualEnterProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptManualEnter"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.NumericUpDown.InterceptManualEnter">
             <summary>
-                Gets or sets a value indicating whether the user can enter text in the control.
+            Gets or sets a value indicating whether the user can enter text in the control.
             </summary>
         </member>
-        <member name="P:MahApps.Metro.Controls.NumericUpDown.ChangeValueOnTextChanged">
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.ValueProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.Value">
             <summary>
-                Gets or sets a value indicating whether the value will be changed directly on every TextBox text changed event or when using the Enter key.
+            Gets or sets the value of the NumericUpDown.
             </summary>
         </member>
-        <member name="P:MahApps.Metro.Controls.NumericUpDown.Culture">
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.MinimumProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Minimum"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.Minimum">
             <summary>
-                Gets or sets a value indicating the culture to be used in string formatting operations.
+            Minimum restricts the minimum value of the Value property.
             </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.MaximumProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Maximum"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.Maximum">
+            <summary>
+            Maximum restricts the maximum value of the Value property.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.IntervalProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Interval"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.Interval">
+            <summary>
+            Gets or sets the interval value for increasing/decreasing the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value" /> .
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.TrackMouseWheelWhenMouseOverProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.TrackMouseWheelWhenMouseOver"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.TrackMouseWheelWhenMouseOver">
+            <summary>
+            Gets or sets a value indicating whether the control must have the focus in order to change values using the mouse wheel.
+            </summary>
+            <remarks>
+            If the value is true then the value changes when the mouse wheel is over the control. <br/>
+            If the value is false then the value changes only if the control has the focus. <br/>
+            If <see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptMouseWheel"/> is set to "false" then this property has no effect.
+            </remarks>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.ButtonsAlignmentProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.ButtonsAlignment"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.ButtonsAlignment">
+            <summary>
+            The ButtonsAlignment property specifies horizontal alignment of the up/down buttons.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.HideUpDownButtonsProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.HideUpDownButtons"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.NumericUpDown.HideUpDownButtons">
             <summary>
-                Gets or sets a value indicating whether the +/- button of the control is visible.
+            Gets or sets a value indicating whether the up/down button of the control are visible.
             </summary>
             <remarks>
-                If the value is false then the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value" /> of the control can be changed only if one of the following cases is satisfied:
-                <list type="bullet">
-                    <item>
-                        <description><see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptArrowKeys" /> is true.</description>
-                    </item>
-                    <item>
-                        <description><see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptMouseWheel" /> is true.</description>
-                    </item>
-                    <item>
-                        <description><see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptManualEnter" /> is true.</description>
-                    </item>
-                </list>
+            If the value is false then the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value" /> of the control can be changed only if one of the following cases is satisfied:
+            <list type="bullet">
+                <item>
+                    <description><see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptArrowKeys" /> is true.</description>
+                </item>
+                <item>
+                    <description><see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptMouseWheel" /> is true.</description>
+                </item>
+                <item>
+                    <description><see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptManualEnter" /> is true.</description>
+                </item>
+            </list>
             </remarks>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.UpDownButtonsWidthProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.UpDownButtonsWidth"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.UpDownButtonsWidth">
+            <summary>
+            Gets or sets the width of the up/down buttons.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.UpDownButtonsFocusableProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.UpDownButtonsFocusable"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.NumericUpDown.UpDownButtonsFocusable">
             <summary>
             Gets or sets whether the up and down buttons will got the focus when using them.
             </summary>
         </member>
-        <member name="P:MahApps.Metro.Controls.NumericUpDown.IsReadOnly">
-            <summary>
-                Gets or sets a value indicating whether the text can be changed by the use of the up or down buttons only.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.NumericUpDown.Speedup">
-            <summary>
-                Gets or sets a value indicating whether the value to be added to or subtracted from <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value" /> remains
-                always
-                <see cref="P:MahApps.Metro.Controls.NumericUpDown.Interval" /> or if it will increase faster after pressing the up/down button/arrow some time.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.NumericUpDown.StringFormat">
-            <summary>
-                Gets or sets the formatting for the displaying <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value" />
-            </summary>
-            <remarks>
-                <see href="http://msdn.microsoft.com/en-us/library/dwhawy9k.aspx"></see>
-            </remarks>
-        </member>
-        <member name="P:MahApps.Metro.Controls.NumericUpDown.TextAlignment">
-            <summary>
-                Gets or sets the horizontal alignment of the contents of the text box.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.NumericUpDown.NumericInputMode">
-            <summary>
-            Gets or sets which numeric input for the NumericUpDown is allowed.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.NumericUpDown.SnapToMultipleOfInterval">
-            <summary>
-                Indicates if the NumericUpDown should round the value to the nearest possible interval when the focus moves to another element.
-            </summary>
-        </member>
-        <member name="P:MahApps.Metro.Controls.NumericUpDown.ParsingNumberStyle">
-            <summary>
-            Gets or sets the parsing number style for the value from text to numeric.
-            </summary>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.SwitchUpDownButtonsProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.SwitchUpDownButtons"/> dependency property.</summary>
         </member>
         <member name="P:MahApps.Metro.Controls.NumericUpDown.SwitchUpDownButtons">
             <summary>
-                Gets or sets a value indicating whether the up down buttons are switched.
+            Gets or sets a value indicating whether the up/down buttons will be switched.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.ChangeValueOnTextChangedProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.ChangeValueOnTextChanged"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.ChangeValueOnTextChanged">
+            <summary>
+            Gets or sets a value indicating whether the value will be changed directly on every TextBox text changed input event or when using the Enter key.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.CultureProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Culture"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.Culture">
+            <summary>
+            Gets or sets a value indicating the culture to be used in string formatting and converting operations.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.NumericInputModeProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.NumericInputMode"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.NumericInputMode">
+            <summary>
+            Gets or sets which numeric input for this NumericUpDown is allowed.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.DecimalPointCorrectionProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.DecimalPointCorrection"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.DecimalPointCorrection">
+            <summary>
+            Gets or sets the decimal-point correction mode. The default is <see cref="F:MahApps.Metro.Controls.DecimalPointCorrectionMode.Inherits"/>
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.SnapToMultipleOfIntervalProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.SnapToMultipleOfInterval"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.SnapToMultipleOfInterval">
+            <summary>
+            Indicates if the NumericUpDown should round the value to the nearest possible interval when the focus moves to another element.
+            </summary>
+        </member>
+        <member name="F:MahApps.Metro.Controls.NumericUpDown.ParsingNumberStyleProperty">
+            <summary>Identifies the <see cref="P:MahApps.Metro.Controls.NumericUpDown.ParsingNumberStyle"/> dependency property.</summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.NumericUpDown.ParsingNumberStyle">
+            <summary>
+            Gets or sets the parsing number style for the value from text to numeric value.
             </summary>
         </member>
         <member name="M:MahApps.Metro.Controls.NumericUpDown.OnGotFocus(System.Object,System.Windows.RoutedEventArgs)">
@@ -5516,6 +6362,34 @@
                 <see cref="M:System.Windows.FrameworkElement.ApplyTemplate" />.
             </summary>
         </member>
+        <member name="M:MahApps.Metro.Controls.NumericUpDown.OnDelayChanged(System.Int32,System.Int32)">
+            <summary>
+            This method is invoked when the Delay property changes.
+            </summary>
+            <param name="oldDelay">The old value of the Delay property.</param>
+            <param name="newDelay">The new value of the Delay property.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.NumericUpDown.OnSpeedupChanged(System.Boolean,System.Boolean)">
+            <summary>
+            This method is invoked when the Speedup property changes.
+            </summary>
+            <param name="oldSpeedup">The old value of the Speedup property.</param>
+            <param name="newSpeedup">The new value of the Speedup property.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.NumericUpDown.OnMaximumChanged(System.Double,System.Double)">
+            <summary>
+            This method is invoked when the Maximum property changes.
+            </summary>
+            <param name="oldMaximum">The old value of the Maximum property.</param>
+            <param name="newMaximum">The new value of the Maximum property.</param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.NumericUpDown.OnMinimumChanged(System.Double,System.Double)">
+            <summary>
+            This method is invoked when the Minimum property changes.
+            </summary>
+            <param name="oldMinimum">The old value of the Minimum property.</param>
+            <param name="newMinimum">The new value of the Minimum property.</param>
+        </member>
         <member name="M:MahApps.Metro.Controls.NumericUpDown.OnValueChanged(System.Nullable{System.Double},System.Nullable{System.Double})">
             <summary>
                 Raises the <see cref="E:MahApps.Metro.Controls.NumericUpDown.ValueChanged" /> routed event.
@@ -5526,6 +6400,17 @@
             <param name="newValue">
                 New value of the <see cref="P:MahApps.Metro.Controls.NumericUpDown.Value" /> property
             </param>
+        </member>
+        <member name="M:MahApps.Metro.Controls.NumericUpDown.SimulateDecimalPointKeyPress(System.Windows.Controls.Primitives.TextBoxBase,MahApps.Metro.Controls.DecimalPointCorrectionMode,System.Globalization.CultureInfo)">
+            <summary>
+            Insertion of the proper decimal-point as part of the TextBox content
+            </summary>
+            <param name="textBox">The TextBox which will be used for the correction</param>
+            <param name="mode">The decimal correction mode.</param>
+            <param name="culture">The culture with the decimal-point information.</param>
+            <remarks>
+            Typical "async-void" pattern as "fire-and-forget" behavior.
+            </remarks>
         </member>
         <member name="F:MahApps.Metro.Controls.OverlayBehavior.Never">
             <summary>
@@ -5931,6 +6816,9 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="F:MahApps.Metro.Controls.SplitButton.ClickEvent">
+            <summary>Identifies the <see cref="E:MahApps.Metro.Controls.SplitButton.Click"/> routed event.</summary>
+        </member>
         <member name="F:MahApps.Metro.Controls.SplitButton.ExtraTagProperty">
             <summary>Identifies the <see cref="P:MahApps.Metro.Controls.SplitButton.ExtraTag"/> dependency property.</summary>
         </member>
@@ -6026,6 +6914,9 @@
             <summary>
             Gets or sets the foreground brush of the button arrow icon if the arrow button is pressed.
             </summary>
+        </member>
+        <member name="P:MahApps.Metro.Controls.SplitButton.IsEnabledCore">
+            <inheritdoc />
         </member>
         <member name="T:MahApps.Metro.Controls.GridLengthAnimation">
             <summary>
@@ -7293,6 +8184,9 @@
             <summary>
             Converts a CornerRadius to a new CornerRadius. It's possible to ignore a side with the IgnoreRadius property.
             </summary>
+        </member>
+        <member name="P:MahApps.Metro.Converters.HamburgerMenuItemAccessibleConverter.Default">
+            <summary> Gets the default instance </summary>
         </member>
         <member name="T:MahApps.Metro.Converters.IsNullConverter">
             <summary>

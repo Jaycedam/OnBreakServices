@@ -36,11 +36,6 @@
                HorizontalAlignment="Left"
                FontSize="10"/>
 
-            <TextBlock HorizontalAlignment="Stretch" 
-                   TextWrapping="Wrap" Margin="0,30,0,40"
-                   Width="auto" Height="auto"
-                   ><Run Text="Bienvenido a la nueva aplicación OnBreak services, en ella encontrarás un menú desplegable con las funciones principales que necesitarás al momento de recibir una solicitud. La sección de clientes y de contratos poseen dos subcategorías para que logres encontrar facilmente la sección que desees. Si has terminado tu sesión puedes seleccionar el botón de cerrar sesión ubicado en la parte inferior del menú lateral."/><Run/></TextBlock>
-
             <Button x:Name="btnAyuda" 
                     Content="¿NECESITAS AYUDA?"
                     HorizontalAlignment="Left"
