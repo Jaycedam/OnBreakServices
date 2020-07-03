@@ -27,6 +27,7 @@ namespace OnBreakApp.Pages
     {
         Valorizador valorizador = new Valorizador();
         FileCache f = new FileCache(new ObjectBinder());
+        private bool invalidDate;
 
         public PageAdminContratos()
         {
@@ -224,12 +225,13 @@ namespace OnBreakApp.Pages
                     "Cantidad de asistentes y personal sólo acepta números");
                 return;
             }
-            else if (InvalidDate())
+            await InvalidDate();
+
+            if (invalidDate)
             {
-                await MetroDialogue("Registrar contrato",
-                  "La fecha de término no puede ser anterior a la de inicio del evento");
                 return;
             }
+
             DateTime creationDate = DateTime.Now;
             Contrato contrato = new Contrato()
             {
@@ -261,6 +263,9 @@ namespace OnBreakApp.Pages
                 lblNumContrato.Content = creationDate.ToString("yyyyMMddHHmm");
                 await MetroDialogue("Registrar contrato",
                     "Contrato registrado correctamente");
+                EnableButtons(true);
+                btnRegistrarContrato.IsEnabled = false;
+                btnRegistrarContrato.Opacity = 0.5;
             }
             else
             {
@@ -298,14 +303,14 @@ namespace OnBreakApp.Pages
                     "Cantidad de asistentes y personal sólo acepta números");
                 return;
             }
-            else if (InvalidDate())
+            await InvalidDate();
+
+            if (invalidDate)
             {
-                await MetroDialogue("Modificar contrato",
-                  "La fecha de término no puede ser anterior a la de inicio del evento");
                 return;
             }
 
-                Contrato contrato = new Contrato()
+            Contrato contrato = new Contrato()
             {
                 Numero = lblNumContrato.Content.ToString(),
                 Observaciones = txtObservaciones.Text,
@@ -416,13 +421,36 @@ namespace OnBreakApp.Pages
             return false;
         }
 
-        private bool InvalidDate()
+        private async Task InvalidDate()
         {
             if (dpFechaInicio.SelectedDateTime > dpFechaTermino.SelectedDateTime)
             {
-                return true;
+                invalidDate = true;
+                await MetroDialogue("Fecha inválida", 
+                    "La fecha de término no puede ser menor a la de inicio del evento");
             }
-            return false;
+            else if(dpFechaInicio.SelectedDateTime < DateTime.Now)
+            {
+                invalidDate = true;
+                await MetroDialogue("Fecha inválida",
+                    "La fecha de inicio del evento no puede ser menor a la de fecha actual");
+            }
+            else if (DateTime.Now.AddMonths(10) < dpFechaInicio.SelectedDateTime)
+            {
+                invalidDate = true;
+                await MetroDialogue("Fecha inválida",
+                    "El inicio del evento no puede superar los 10 meses desde la fecha actual");
+            }
+            else if(dpFechaInicio.SelectedDateTime.Value.AddHours(24) < dpFechaTermino.SelectedDateTime)
+            {
+                invalidDate = true;
+                await MetroDialogue("Fecha inválida",
+                    "La duración del evento debe ser de un máximo de 24 horas");
+            }
+            else
+            {
+                invalidDate = false;
+            }
         }
         #endregion
 

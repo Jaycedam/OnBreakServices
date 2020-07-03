@@ -75,7 +75,9 @@ namespace OnBreakApp.Pages
             {
                 await MetroDialogue("Registrar cliente",
                 "Cliente registrado correctamente");
-                return;
+                EnableButtons(true);
+                btnRegistrarCliente.IsEnabled = true;
+                btnRegistrarCliente.Opacity = 0.5;
             }
             else
             {
