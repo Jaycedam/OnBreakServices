@@ -32,8 +32,8 @@
         <Border Grid.RowSpan="4" Grid.ColumnSpan="3">
             <Border.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="#FF0B9C5A"/>
-                    <GradientStop Color="#FF0C1E8F" Offset="1.3"/>
+                    <GradientStop Color="#FF00B663"/>
+                    <GradientStop Color="#FF2035B8" Offset="1.3"/>
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
@@ -72,5 +72,14 @@
                 HorizontalAlignment="Right" 
                 Margin="0,20,0,0"
                 Click="BtnLogin_Click"/>
+
+        <Button x:Name="closeWindow" Grid.Column="2" 
+                VerticalAlignment="Top" HorizontalAlignment="Right"
+                Margin="0,10,10,0" Width="30" Height="30" Click="closeWindow_Click"
+                >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <iconPacks:PackIconModern Kind="Close" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Page>

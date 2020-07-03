@@ -13,13 +13,12 @@
         <Style TargetType="ComboBox" BasedOn="{StaticResource cboPages}"/>
         <Style TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}"/>
         <Style TargetType="CheckBox" BasedOn="{StaticResource MahApps.Styles.CheckBox.Win10}"/>
-        <Style TargetType="DatePicker" BasedOn="{StaticResource MahApps.Styles.DatePicker}"/>
     </Page.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition Height="40"/>
@@ -41,8 +40,8 @@
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="ADMINISTRAR CONTRATOS" FontWeight="Black"
-               Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5"
+        <Label Content="ADMINISTRAR CONTRATOS" FontWeight="Black" IsHitTestVisible="False"
+               Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5"
                VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="34"/>
 
         <!--SECCION BUSCAR-->
@@ -70,11 +69,6 @@
             <Label x:Name="lblRespaldo" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="4" Grid.Column="5" 
-                                        HorizontalAlignment="Right" VerticalAlignment="Center"
-                                        Height="20" Width="auto"
-                                        ToolTip="Los botones para modificar/finalizar se activan al buscar un contrato"/>
-
         <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="N° contrato"/>
             <TextBox x:Name="txtNumContrato" MaxLength="12"/>
@@ -98,6 +92,11 @@
             <Label x:Name="lblNumContrato" FontSize="20" FontWeight="Bold"/>
         </StackPanel>
 
+        <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="4" Grid.Column="5" 
+                                        HorizontalAlignment="Right" VerticalAlignment="Center"
+                                        Height="20" Width="auto"
+                                        ToolTip="Los botones para modificar/finalizar se activan al buscar un contrato"/>
+
         <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Rut cliente (ej 146542354)"/>
             <TextBox x:Name="txtRut" MaxLength="9" LostFocus="txtRut_LostFocus"/>
@@ -113,8 +112,6 @@
             <Controls:DateTimePicker Name="dpFechaTermino" LostFocus="dpFechaTermino_LostFocus"/>
         </StackPanel>
 
-
-
         <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Tipo de evento"/>
             <ComboBox x:Name="cboTipoEvento" SelectionChanged="CboTipoEvento_SelectionChanged" LostFocus="cboTipoEvento_LostFocus"/>
@@ -125,23 +122,20 @@
             <ComboBox x:Name="cboModalidad" SelectionChanged="CboModalidad_SelectionChanged" LostFocus="cboModalidad_LostFocus"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="7" Grid.Column="3" 
-                    HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <CheckBox x:Name="chkMusica" Content="Música ambiental" 
-                      IsEnabled="False" Opacity="0.5" Checked="chkMusica_Checked" Unchecked="chkMusica_Unchecked"/>
-        </StackPanel>
+        <CheckBox x:Name="chkVegetariana" Content="Comida vegeatariana" VerticalAlignment="Top" Margin="0,20,0,0"
+                  Grid.Row="6" Grid.Column="5" Checked="chkVegetariana_Checked" Unchecked="chkVegetariana_Unchecked"/>
 
         <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Ambientación"/>
             <ComboBox x:Name="cboAmbientacion" IsEnabled="False" Opacity="0.5" SelectionChanged="cboAmbientacion_SelectionChanged"/>
         </StackPanel>
+        
+        <CheckBox x:Name="chkMusica" Content="Música ambiental" Grid.Row="7" Grid.Column="3"  VerticalAlignment="Top" Margin="0,20,0,0"
+                    IsEnabled="False" Opacity="0.5" Checked="chkMusica_Checked" Unchecked="chkMusica_Unchecked"/>
 
-        <CheckBox x:Name="chkLocalOnBreak" Content="Local OnBreak"
+        <CheckBox x:Name="chkLocalOnBreak" Content="Local OnBreak"  VerticalAlignment="Top" Margin="0,20,0,0"
                   Grid.Row="7" Grid.Column="5" 
                   IsEnabled="False" Opacity="0.5" Checked="chkLocalOnBreak_Checked" Unchecked="chkLocalOnBreak_Unchecked"/>
-
-        <CheckBox x:Name="chkVegetariana" Content="Comida vegeatariana"
-                  Grid.Row="6" Grid.Column="5" Checked="chkVegetariana_Checked" Unchecked="chkVegetariana_Unchecked"/>
 
 
         <StackPanel Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -159,25 +153,15 @@
             <TextBox x:Name="txtObservaciones" LostFocus="txtObservaciones_LostFocus"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="9" Grid.Column="5" 
-                    HorizontalAlignment="Left" VerticalAlignment="Center">
-            <CheckBox x:Name="chkRealizado" Content="Realizado" Checked="chkRealizado_Checked" Unchecked="chkRealizado_Unchecked"/>
-        </StackPanel>
-        
+        <CheckBox x:Name="chkRealizado" Content="Realizado" Checked="chkRealizado_Checked" Grid.Row="9" Grid.Column="5" 
+                    Unchecked="chkRealizado_Unchecked"  VerticalAlignment="Center"/>
+
         <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" 
                     HorizontalAlignment="Left" VerticalAlignment="Center">
             <Label Content="Monto total (UF):"
                    Grid.Row="9" Grid.Column="1"/>
             <Label x:Name="lblMonto"/>
         </StackPanel>
-
-        <!--SECCION DE RESPALDO-->
-        <!--<StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="3"
-                    VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Label Content="Último respaldo:" />
-            <Label x:Name="lblRespaldo"/>
-        </StackPanel>-->
-
 
         <!--BOTONES-->
         <StackPanel Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="5" 

@@ -12,15 +12,15 @@
         <Style TargetType="TextBox" BasedOn="{StaticResource txtPages}"/>
         <Style TargetType="DataGrid" BasedOn="{StaticResource MahApps.Styles.DataGrid}"/>
         <Style TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}"/>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource cboPages}"/>
         <Style TargetType="TextBlock" BasedOn="{StaticResource MahApps.Styles.TextBlock}"/>
         <Style TargetType="Button" BasedOn="{StaticResource btnPages}"/>
-        <Style TargetType="ComboBox" BasedOn="{StaticResource MahApps.Styles.ComboBox}"/>
     </Page.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -44,8 +44,8 @@
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="LISTADO CONTRATOS" 
-               Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5"
+        <Label Content="LISTADO CONTRATOS" IsHitTestVisible="False"
+               Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="7"
                VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Black" FontSize="34"/>
 
         <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">

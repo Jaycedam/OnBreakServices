@@ -16,29 +16,29 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="50" MaxHeight="80"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
-            <RowDefinition MinHeight="50" MaxHeight="80"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <Label Content="¡BIENVENIDO!" 
-               FontSize="34" FontWeight="Black" 
-               HorizontalAlignment="Left"/>
-
+        
+        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
+            <Label Content="¡BIENVENIDO!" IsHitTestVisible="False"
+               FontSize="50" FontWeight="Black"/>
+            
             <Label Grid.Row="1" Grid.Column="1"
                Content="OnBreak Eventos Empresariales" 
-               HorizontalAlignment="Left"
-               FontSize="10"/>
+               FontSize="15"/>
 
-            <Button x:Name="btnAyuda" 
+            <TextBlock TextWrapping="Wrap" Margin="0,20,0,20" 
+                       Text="Puedes navegar al módulo que desees a través del menú lateral. Cada sección es colapsable, conteniendo subcategorías. Si necesitas más ayuda puedes seleccionar el botón de Ayuda ubicado en esta página."/>
+
+            <Button x:Name="btnAyuda" HorizontalAlignment="Left"
                     Content="¿NECESITAS AYUDA?"
-                    HorizontalAlignment="Left"
                     Click="BtnAyuda_Click"/>
         </StackPanel>
     </Grid>

@@ -30,7 +30,6 @@ namespace OnBreakApp
             HideSubmenu();
             // Iniciar pagina bienvenido
             MainFrame.Navigate(new PageInicio());
-            lblCurrentPage.Content = "ONBREAK - PÁGINA PRINCIPAL";
         }
 
         public MainWindow(string user)
@@ -41,7 +40,6 @@ namespace OnBreakApp
             HideSubmenu();
             // Iniciar pagina bienvenido
             MainFrame.Navigate(new PageInicio());
-            lblCurrentPage.Content = "ONBREAK - PÁGINA PRINCIPAL";
         }
 
         #region submenu
@@ -85,35 +83,30 @@ namespace OnBreakApp
         private void BtnPaginaPrincipal_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageInicio());
-            lblCurrentPage.Content = "ONBREAK - PÁGINA PRINCIPAL";
         }
 
         // Asignar content page buscarcliente al presionar boton del menu
         private void BtnAdministrarClientes(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageAdminClientes());
-            lblCurrentPage.Content = "ONBREAK - ADMINISTRAR CLIENTES";
         }
 
         // Asignar content page listadoclientes al presionar boton del menu
         private void BtnListadoClientes_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageListadoClientes());
-            lblCurrentPage.Content = "ONBREAK - LISTADO CLIENTES";
         }
 
         // Asignar content page registrarcontrato al presionar boton del menu
         private void BtnAdministrarContratos(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageAdminContratos());
-            lblCurrentPage.Content = "ONBREAK - ADMINISTRAR CONTRATOS";
         }
 
         // Asignar content page listadocontratos al presionar boton del menu
         private void BtnListadoContratos_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageListadoContratos());
-            lblCurrentPage.Content = "ONBREAK - LISTADO CONTRATOS";
         }
 
         private void BtnCerrarSesion_Click(object sender, RoutedEventArgs e)

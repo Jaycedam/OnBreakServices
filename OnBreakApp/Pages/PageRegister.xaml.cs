@@ -88,5 +88,10 @@ namespace OnBreakApp.Pages
             await this.TryFindParent<MetroWindow>()
                                 .ShowMessageAsync(title, message);
         }
+
+        private void closeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

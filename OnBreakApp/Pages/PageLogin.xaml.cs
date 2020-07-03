@@ -90,5 +90,10 @@ namespace OnBreakApp.Pages
                 }
             }
         }
+
+        private void closeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

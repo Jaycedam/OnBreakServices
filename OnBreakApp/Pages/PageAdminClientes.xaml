@@ -17,8 +17,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="40"/>
             <RowDefinition/>
             <RowDefinition Height="40"/>
@@ -40,8 +40,8 @@
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="ADMINISTRAR CLIENTES" 
-               Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5"
+        <Label Content="ADMINISTRAR CLIENTES" IsHitTestVisible="False"
+               Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5"
                VerticalAlignment="Center" HorizontalAlignment="Center" 
                FontFamily="Segoe UI Black" FontSize="34"/>
 
@@ -60,11 +60,6 @@
             </Button>
         </StackPanel>
 
-        <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="5" 
-                                        HorizontalAlignment="Right" VerticalAlignment="Center"
-                                        Height="20" Width="auto"
-                                        ToolTip="Los botones para modificar/eliminar se activan al buscar un cliente"/>
-
         <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Rut (ej 146542354)"/>
             <TextBox x:Name="txtBuscarRut" MaxLength="9"/>
@@ -81,12 +76,16 @@
         </Button>
 
         <!--SECCION DATOS-->
-
         <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
             <iconPacks:PackIconModern Kind="FolderPeople" Height="25" Width="25" 
                                       Foreground="#FF25C9C9" Margin="0,0,10,0" VerticalAlignment="Center"/>
             <Label Content="Cliente" FontSize="20" FontFamily="Segoe UI Semibold" />
         </StackPanel>
+
+        <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="4" Grid.Column="5" 
+                                        HorizontalAlignment="Right" VerticalAlignment="Center"
+                                        Height="20" Width="auto"
+                                        ToolTip="Los botones para modificar/eliminar se activan al buscar un cliente"/>
 
         <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Rut (ej 146542354)"/>

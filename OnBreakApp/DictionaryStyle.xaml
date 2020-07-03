@@ -204,7 +204,6 @@
 
     <Style x:Key="WindowsLight" TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.WindowCommands}">
         <Style.Triggers>
-
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
             </Trigger>
@@ -214,5 +213,6 @@
 
         </Style.Triggers>
     </Style>
-    
+
+
 </ResourceDictionary>

@@ -7,7 +7,7 @@
             xmlns:local="clr-namespace:OnBreakApp"
             mc:Ignorable="d"
             Title="LoginWindow" Height="500" Width="400"
-            WindowStartupLocation="CenterScreen" ShowTitleBar="False" ResizeMode="NoResize"
+            WindowStartupLocation="CenterScreen" ShowCloseButton="False" ShowTitleBar="False" ResizeMode="NoResize"
             MouseDown="Window_MouseDown" Icon="Images/logo_color.png">      
     <Grid>
         <Frame x:Name="Login"/>
