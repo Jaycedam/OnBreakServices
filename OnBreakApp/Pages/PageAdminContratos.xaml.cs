@@ -679,6 +679,8 @@ namespace OnBreakApp.Pages
             EnableButtons(false);
             AllowEdits();
             AditionalOptions();
+            btnRegistrarContrato.IsEnabled = true;
+            btnRegistrarContrato.Opacity = 1;
         }
 
         // calcular monto en UF al escribir cantidad de asistentes/personal
