@@ -29,39 +29,43 @@ namespace OnBreakApp.Pages
         FileCache f = new FileCache(new ObjectBinder());
         private bool invalidDate;
 
+        #region constructores
         public PageAdminContratos()
         {
             InitializeComponent();
             PopCbo();
-
             lblRespaldo.Content = f["horaRespaldo"];
-
         }
 
-        // Init con parámetro para llamar del listado
+        /// <summary>
+        /// Ctor con parámetro para llamar desde un listado
+        /// </summary>
+        /// <param name="numContrato"></param>
         public PageAdminContratos(string numContrato)
         {
             InitializeComponent();
             PopCbo();
             Contrato contrato = new Contrato().Read(numContrato);
             DataContrato(contrato);
-
             lblRespaldo.Content = f["horaRespaldo"];
 
         }
 
-        // Init con parámetro para llamar de admin clientes
+        /// <summary>
+        /// Ctor con parámetro para llamar desde Administrar clientes
+        /// </summary>
+        /// <param name="rut"></param>
+        /// <param name="name"></param>
         public PageAdminContratos(string rut, string name)
         {
             InitializeComponent();
             PopCbo();
-
             txtRut.Text = rut;
             lblRespaldo.Content = f["horaRespaldo"];
-
         }
+        #endregion
 
-        #region respaldo
+        #region respaldo y restaurar
         public void Backup()
         {
             Dispatcher.Invoke(() =>
@@ -263,9 +267,8 @@ namespace OnBreakApp.Pages
                 lblNumContrato.Content = creationDate.ToString("yyyyMMddHHmm");
                 await MetroDialogue("Registrar contrato",
                     "Contrato registrado correctamente");
-                EnableButtons(true);
-                btnRegistrarContrato.IsEnabled = false;
-                btnRegistrarContrato.Opacity = 0.5;
+                EnableEditButtons(true);
+                EnableRegisterButton(false);
             }
             else
             {
@@ -328,7 +331,6 @@ namespace OnBreakApp.Pages
                         IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
                     }
                 }
-
             };
 
             if (contrato.Update(contrato))
@@ -337,7 +339,7 @@ namespace OnBreakApp.Pages
                     "Contrato modificado correctamente");
                 if(contrato.Realizado == true)
                 {
-                    BlockEdits();
+                    BlockEdits(true);
                 }
             }
             else
@@ -370,7 +372,7 @@ namespace OnBreakApp.Pages
                 {
                     await MetroDialogue("Finalizar contrato",
                         "Contrato finalizado correctamente");
-                    BlockEdits();
+                    BlockEdits(true);
                 }
                 else
                 {
@@ -399,6 +401,10 @@ namespace OnBreakApp.Pages
         #endregion
 
         #region validaciones
+        /// <summary>
+        /// Método que entrega true si valida las entradas de número
+        /// </summary>
+        /// <returns></returns>
         private bool InvalidEntry()
         {
             if (int.TryParse(txtCantAsist.Text, out int a) == false ||
@@ -411,7 +417,10 @@ namespace OnBreakApp.Pages
             return false;
         }
 
-        // metodo que entrega true cuando faltan datos obligatorios
+        /// <summary>
+        /// Método que entrega true cuando faltan datos obligatorios
+        /// </summary>
+        /// <returns></returns>
         public bool FaltanCamposObligatorios()
         {
             if (txtRut.Text == string.Empty ||
@@ -425,6 +434,11 @@ namespace OnBreakApp.Pages
             return false;
         }
 
+        /// <summary>
+        /// Método que valida las fechas del evento 
+        /// Genera una notificación si son inválidas
+        /// </summary>
+        /// <returns></returns>
         private async Task InvalidDate()
         {
             if (dpFechaInicio.SelectedDateTime > dpFechaTermino.SelectedDateTime)
@@ -460,98 +474,135 @@ namespace OnBreakApp.Pages
         #endregion
 
         #region enable/disable sections
-        private void BlockEdits()
+        /// <summary>
+        /// Método que recibe bool 
+        /// para bloquear o permitir ediciones del contrato
+        /// Si es bloqueado también se bloquean los botones
+        /// </summary>
+        /// <param name="expected"></param>
+        private void BlockEdits(bool expected)
         {
-            txtRut.IsEnabled = false;
-            txtRut.Opacity = 0.5;
-            dpFechaInicio.IsEnabled = false;
-            dpFechaInicio.Opacity = 0.5;
-            dpFechaTermino.IsEnabled = false;
-            dpFechaTermino.Opacity = 0.5;
-            cboTipoEvento.IsEnabled = false;
-            cboTipoEvento.Opacity = 0.5;
-            cboModalidad.IsEnabled = false;
-            cboModalidad.Opacity = 0.5;
-            chkVegetariana.IsEnabled = false;
-            chkVegetariana.Opacity = 0.5;
-            cboAmbientacion.IsEnabled = false;
-            cboAmbientacion.Opacity = 0.5;
-            chkMusica.IsEnabled = false;
-            chkMusica.Opacity = 0.5;
-            chkLocalOnBreak.IsEnabled = false;
-            chkLocalOnBreak.Opacity = 0.5;
-            txtCantAsist.IsEnabled = false;
-            txtCantAsist.Opacity = 0.5;
-            txtCantPersonal.IsEnabled = false;
-            txtCantPersonal.Opacity = 0.5;
-            txtObservaciones.IsEnabled = false;
-            txtObservaciones.Opacity = 0.5;
-            chkRealizado.IsEnabled = false;
-            chkRealizado.Opacity = 0.5;
-            EnableButtons(false);
+            if (expected)
+            {
+                txtRut.IsEnabled = false;
+                txtRut.Opacity = 0.5;
+                dpFechaInicio.IsEnabled = false;
+                dpFechaInicio.Opacity = 0.5;
+                dpFechaTermino.IsEnabled = false;
+                dpFechaTermino.Opacity = 0.5;
+                cboTipoEvento.IsEnabled = false;
+                cboTipoEvento.Opacity = 0.5;
+                cboModalidad.IsEnabled = false;
+                cboModalidad.Opacity = 0.5;
+                chkVegetariana.IsEnabled = false;
+                chkVegetariana.Opacity = 0.5;
+                cboAmbientacion.IsEnabled = false;
+                cboAmbientacion.Opacity = 0.5;
+                chkMusica.IsEnabled = false;
+                chkMusica.Opacity = 0.5;
+                chkLocalOnBreak.IsEnabled = false;
+                chkLocalOnBreak.Opacity = 0.5;
+                txtCantAsist.IsEnabled = false;
+                txtCantAsist.Opacity = 0.5;
+                txtCantPersonal.IsEnabled = false;
+                txtCantPersonal.Opacity = 0.5;
+                txtObservaciones.IsEnabled = false;
+                txtObservaciones.Opacity = 0.5;
+                chkRealizado.IsEnabled = false;
+                chkRealizado.Opacity = 0.5;
+                EnableEditButtons(false);
+                EnableRegisterButton(false);
+            }
+            else
+            {
+                txtRut.IsEnabled = true;
+                txtRut.Opacity = 1;
+                dpFechaInicio.IsEnabled = true;
+                dpFechaInicio.Opacity = 1;
+                dpFechaTermino.IsEnabled = true;
+                dpFechaTermino.Opacity = 1;
+                cboTipoEvento.IsEnabled = true;
+                cboTipoEvento.Opacity = 1;
+                cboModalidad.IsEnabled = true;
+                cboModalidad.Opacity = 1;
+                chkVegetariana.IsEnabled = true;
+                chkVegetariana.Opacity = 1;
+                cboAmbientacion.IsEnabled = true;
+                cboAmbientacion.Opacity = 1;
+                chkMusica.IsEnabled = true;
+                chkMusica.Opacity = 1;
+                chkLocalOnBreak.IsEnabled = true;
+                chkLocalOnBreak.Opacity = 1;
+                txtCantAsist.IsEnabled = true;
+                txtCantAsist.Opacity = 1;
+                txtCantPersonal.IsEnabled = true;
+                txtCantPersonal.Opacity = 1;
+                txtObservaciones.IsEnabled = true;
+                txtObservaciones.Opacity = 1;
+                chkRealizado.IsEnabled = true;
+                chkRealizado.Opacity = 1;
+                AditionalOptions();
+            }
         }
 
-        private void AllowEdits()
-        {
-            txtRut.IsEnabled = true;
-            txtRut.Opacity = 1;
-            dpFechaInicio.IsEnabled = true;
-            dpFechaInicio.Opacity = 1;
-            dpFechaTermino.IsEnabled = true;
-            dpFechaTermino.Opacity = 1;
-            cboTipoEvento.IsEnabled = true;
-            cboTipoEvento.Opacity = 1;
-            cboModalidad.IsEnabled = true;
-            cboModalidad.Opacity = 1;
-            chkVegetariana.IsEnabled = true;
-            chkVegetariana.Opacity = 1;
-            cboAmbientacion.IsEnabled = true;
-            cboAmbientacion.Opacity = 1;
-            chkMusica.IsEnabled = true;
-            chkMusica.Opacity = 1;
-            chkLocalOnBreak.IsEnabled = true;
-            chkLocalOnBreak.Opacity = 1;
-            txtCantAsist.IsEnabled = true;
-            txtCantAsist.Opacity = 1;
-            txtCantPersonal.IsEnabled = true;
-            txtCantPersonal.Opacity = 1;
-            txtObservaciones.IsEnabled = true;
-            txtObservaciones.Opacity = 1;
-            chkRealizado.IsEnabled = true;
-            chkRealizado.Opacity = 1;
-            AditionalOptions();
-        }
-
-        // metodo que habilita/deshabilita los botones de modificar/finalizar 
-        private void EnableButtons(bool enable)
+        /// <summary>
+        /// Método que recibe bool para bloquear o desbloquear 
+        /// los botones de modificar y finalizar
+        /// </summary>
+        /// <param name="enable"></param>
+        private void EnableEditButtons(bool enable)
         {
             btnModificarContrato.IsEnabled = enable;
             btnFinalizarContrato.IsEnabled = enable;
-            if (btnModificarContrato.IsEnabled == false)
+
+            if (enable)
+            {
+                btnModificarContrato.Opacity = 1;
+                btnFinalizarContrato.Opacity = 1;
+            }
+            else
             {
                 btnModificarContrato.Opacity = 0.5;
                 btnFinalizarContrato.Opacity = 0.5;
             }
+        }
+
+        /// <summary>
+        /// Método que recibe bool 
+        /// para habilitar o bloquear el botón registrar
+        /// </summary>
+        /// <param name="enable"></param>
+        private void EnableRegisterButton(bool enable)
+        {
+            btnRegistrarContrato.IsEnabled = enable;
+
+            if (enable)
+            {
+                btnRegistrarContrato.Opacity = 1;
+            }
             else
             {
-                btnModificarContrato.Opacity = 1;
-                btnFinalizarContrato.Opacity = 1;
+                btnRegistrarContrato.Opacity = 0.5;
             }
         }
 
         private void EnableRut(bool enable)
         {
             txtRut.IsEnabled = enable;
-            if (txtRut.IsEnabled == false)
-            {
-                txtRut.Opacity = 0.5;
-            }
-            else
+            if (enable)
             {
                 txtRut.Opacity = 1;
             }
+            else
+            {
+                txtRut.Opacity = 0.5;
+            }
         }
 
+        /// <summary>
+        /// Método que se encarga de habilitar/deshabilitar
+        /// secciones de la visual acorde al Tipo de evento seleccionado
+        /// </summary>
         private void AditionalOptions()
         {
             if (cboTipoEvento.SelectedValue.ToString() == "10")
@@ -631,13 +682,14 @@ namespace OnBreakApp.Pages
                 txtCantPersonal.Text = contrato.PersonalAdicional.ToString();
                 chkRealizado.IsChecked = contrato.Realizado;
                 CalcularMonto();
-                EnableButtons(true);
+                EnableEditButtons(true);
+                EnableRegisterButton(false);
                 EnableRut(false);
 
                 // si el contrato es finalizado se bloquean la edicion
                 if(contrato.Realizado == true)
                 {
-                    BlockEdits();
+                    BlockEdits(true);
                 }
             }
         }
@@ -676,9 +728,8 @@ namespace OnBreakApp.Pages
             chkRealizado.IsChecked = false;
             // habilitar edición de rut
             EnableRut(true);
-            EnableButtons(false);
-            AllowEdits();
-            AditionalOptions();
+            EnableEditButtons(false);
+            BlockEdits(false);
             btnRegistrarContrato.IsEnabled = true;
             btnRegistrarContrato.Opacity = 1;
         }
