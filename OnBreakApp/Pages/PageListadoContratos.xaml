@@ -62,7 +62,7 @@
 
         <iconPacks:PackIconBoxIcons Kind="SolidHelpCircle" Grid.Row="2" Grid.Column="7" 
                                         HorizontalAlignment="Right" VerticalAlignment="Center"
-                                        Height="20" Width="auto"
+                                        Height="20" Width="auto" Foreground="#FF25C9C9"
                                         ToolTip="Selecciona la celda que quieras revisar y presiona Ver Cliente o Ver Contrato."/>
 
         <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">

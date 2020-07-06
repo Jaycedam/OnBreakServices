@@ -17,7 +17,9 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
             <RowDefinition/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -25,21 +27,19 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
-            <Label Content="¡BIENVENIDO!" IsHitTestVisible="False"
-               FontSize="50" FontWeight="Black"/>
-            
-            <Label Grid.Row="1" Grid.Column="1"
-               Content="OnBreak Eventos Empresariales" 
-               FontSize="15"/>
 
-            <TextBlock TextWrapping="Wrap" Margin="0,20,0,20" 
-                       Text="Puedes navegar al módulo que desees a través del menú lateral. Cada sección es colapsable, conteniendo subcategorías. Si necesitas más ayuda puedes seleccionar el botón de Ayuda ubicado en esta página."/>
+        <Label x:Name="lblBuenas" Content="¡Buenos días!" Grid.Row="1" Grid.Column="1" 
+                HorizontalAlignment="Center" VerticalAlignment="Top"
+                IsHitTestVisible="False" FontSize="45" FontWeight="Black"/>
+        <Label Grid.Row="1" Grid.Column="1"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                Content="OnBreak Eventos Empresariales" FontSize="18"/>
 
-            <Button x:Name="btnAyuda" HorizontalAlignment="Left"
-                    Content="¿NECESITAS AYUDA?"
-                    Click="BtnAyuda_Click"/>
-        </StackPanel>
+        <Image Source="/OnBreakApp;component/Images/landing.png" 
+               Grid.Row="2" Grid.Column="1"/>
+
+        <Button x:Name="btnAyuda" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"
+                Content="¿NECESITAS AYUDA?"
+                Click="BtnAyuda_Click"/>
     </Grid>
 </Page>
