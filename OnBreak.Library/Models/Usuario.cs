@@ -9,7 +9,6 @@ namespace OnBreak.Library
 {
     public class Usuario
     {
-        public int Id { get; set; }
         public string User { get; set; }
         public string Password { get; set; }
 
@@ -17,11 +16,10 @@ namespace OnBreak.Library
         public List<Usuario> ReadAll()
         {
             OnBreakDBEntities db = new OnBreakDBEntities();
-            return (from u in db.Usuario
+            return (from u in db.User
                     select new Usuario
                     {
-                        Id = u.Id,
-                        User = u.User,
+                        User = u.User1,
                         Password = u.Password
                     }).ToList();
         }
@@ -53,11 +51,11 @@ namespace OnBreak.Library
             }
             try
             {
-                Datos.Usuario u = new Datos.Usuario();
-                u.User = usuario.User.ToLower();
+                Datos.User u = new Datos.User();
+                u.User1 = usuario.User.ToLower();
                 u.Password = usuario.Password;
 
-                db.Usuario.Add(u);
+                db.User.Add(u);
                 db.SaveChanges();
                 return true;
 

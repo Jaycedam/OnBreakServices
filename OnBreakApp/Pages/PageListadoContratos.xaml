@@ -48,7 +48,7 @@
                Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="7"
                VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Black" FontSize="34"/>
 
-        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Orientation="Horizontal" VerticalAlignment="Center">
             <iconPacks:PackIconModern Kind="Filter" VerticalAlignment="Center" Height="25" Width="25" Foreground="#FF25C9C9" Margin="0,0,10,0"/>
             <Label Content="Filtrar listado" FontSize="20"/>
             <Button x:Name="btnLimpiarFiltros" Margin="10,0,0,0" Focusable="False"

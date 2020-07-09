@@ -68,7 +68,6 @@
     <Compile Include="ContratoTests.cs" />
     <Compile Include="UsuarioTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValorizadorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

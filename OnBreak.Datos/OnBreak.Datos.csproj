@@ -111,7 +111,7 @@
     <Compile Include="TipoEvento.cs">
       <DependentUpon>OnBreakEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs">
+    <Compile Include="User.cs">
       <DependentUpon>OnBreakEDM.tt</DependentUpon>
     </Compile>
   </ItemGroup>

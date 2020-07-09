@@ -36,8 +36,7 @@
       <PropertyRef Name="Numero" />
     </Key>
     <Property Name="Numero" Type="nvarchar" MaxLength="12" Nullable="false" />
-    <Property Name="IdTipoAmbientacion" Type="int" Nullable="false" />
-    <Property Name="Ambientacion" Type="bit" Nullable="false" />
+    <Property Name="IdTipoAmbientacion" Type="int" />
     <Property Name="MusicaAmbiental" Type="bit" Nullable="false" />
     <Property Name="MusicaCliente" Type="bit" Nullable="false" />
   </EntityType>
@@ -98,11 +97,10 @@
     <Property Name="IdTipoEvento" Type="int" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar" MaxLength="15" Nullable="false" />
   </EntityType>
-  <EntityType Name="Usuario">
+  <EntityType Name="User">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="User" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="User" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
@@ -143,7 +141,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="Cocktail_TipoAmbientacion_FK1">
-    <End Role="TipoAmbientacion" Type="Self.TipoAmbientacion" Multiplicity="1" />
+    <End Role="TipoAmbientacion" Type="Self.TipoAmbientacion" Multiplicity="0..1" />
     <End Role="Cocktail" Type="Self.Cocktail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TipoAmbientacion">
@@ -239,7 +237,7 @@
     <EntitySet Name="TipoAmbientacion" EntityType="Self.TipoAmbientacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoEmpresa" EntityType="Self.TipoEmpresa" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoEvento" EntityType="Self.TipoEvento" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="Cena_TipoAmbientacion_FK1" Association="Self.Cena_TipoAmbientacion_FK1">
       <End Role="TipoAmbientacion" EntitySet="TipoAmbientacion" />
       <End Role="Cenas" EntitySet="Cenas" />

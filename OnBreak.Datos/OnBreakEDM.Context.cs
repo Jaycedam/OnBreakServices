@@ -35,6 +35,6 @@ namespace OnBreak.Datos
         public virtual DbSet<TipoAmbientacion> TipoAmbientacion { get; set; }
         public virtual DbSet<TipoEmpresa> TipoEmpresa { get; set; }
         public virtual DbSet<TipoEvento> TipoEvento { get; set; }
-        public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

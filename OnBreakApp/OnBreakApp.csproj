@@ -215,7 +215,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ObjectBinder.cs" />
     <Compile Include="Pages\PageAdminClientes.xaml.cs">
       <DependentUpon>PageAdminClientes.xaml</DependentUpon>
     </Compile>

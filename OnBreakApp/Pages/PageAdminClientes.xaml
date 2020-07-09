@@ -51,7 +51,7 @@
                                       Foreground="#FF25C9C9" Margin="0,0,10,0" VerticalAlignment="Center"/>
             <Label Content="Buscar" FontSize="20" FontFamily="Segoe UI Semibold" />
 
-            <Button x:Name="btnLimpiarDatos" Focusable="False" HorizontalAlignment="Left" Margin="10,0,0,0"
+            <Button x:Name="btnLimpiarDatos" HorizontalAlignment="Left" Margin="30,0,0,0"
                 Style="{StaticResource MahApps.Styles.Button.Chromeless}" Click="LimpiarDatos_Click">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <iconPacks:PackIconModern Kind="Clear" VerticalAlignment="Center"/>
@@ -128,7 +128,7 @@
             <ComboBox x:Name="cboActividadEmpresa"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="5" Orientation="Horizontal" 
+        <StackPanel Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="5" Orientation="Horizontal" 
                     VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button x:Name="btnRegistrarCliente" Margin="0,0,20,0"
                 Style="{StaticResource btnPages}"

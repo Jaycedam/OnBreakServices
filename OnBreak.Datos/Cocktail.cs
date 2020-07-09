@@ -15,8 +15,7 @@ namespace OnBreak.Datos
     public partial class Cocktail
     {
         public string Numero { get; set; }
-        public int IdTipoAmbientacion { get; set; }
-        public bool Ambientacion { get; set; }
+        public Nullable<int> IdTipoAmbientacion { get; set; }
         public bool MusicaAmbiental { get; set; }
         public bool MusicaCliente { get; set; }
     

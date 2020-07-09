@@ -197,7 +197,6 @@ namespace OnBreak.Library
                 }
 
                 c.Termino = DateTime.Now;
-                c.Realizado = true;
 
                 db.Entry(c).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();

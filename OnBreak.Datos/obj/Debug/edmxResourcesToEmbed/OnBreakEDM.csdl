@@ -42,8 +42,7 @@
       <PropertyRef Name="Numero" />
     </Key>
     <Property Name="Numero" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="IdTipoAmbientacion" Type="Int32" Nullable="false" />
-    <Property Name="Ambientacion" Type="Boolean" Nullable="false" />
+    <Property Name="IdTipoAmbientacion" Type="Int32" />
     <Property Name="MusicaAmbiental" Type="Boolean" Nullable="false" />
     <Property Name="MusicaCliente" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="TipoAmbientacion" Relationship="Self.Cocktail_TipoAmbientacion_FK1" FromRole="Cocktail" ToRole="TipoAmbientacion" />
@@ -118,12 +117,11 @@
     <Property Name="Descripcion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="ModalidadServicio" Relationship="Self.ModalidadServicio_TipoEvento_FK1" FromRole="TipoEvento" ToRole="ModalidadServicio" />
   </EntityType>
-  <EntityType Name="Usuario">
+  <EntityType Name="User">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="User1" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <Association Name="Cliente_ActividadEmpresa_FK1">
@@ -187,7 +185,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="Cocktail_TipoAmbientacion_FK1">
-    <End Role="TipoAmbientacion" Type="Self.TipoAmbientacion" Multiplicity="1" />
+    <End Role="TipoAmbientacion" Type="Self.TipoAmbientacion" Multiplicity="0..1" />
     <End Role="Cocktail" Type="Self.Cocktail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TipoAmbientacion">
@@ -259,7 +257,7 @@
     <EntitySet Name="TipoAmbientacion" EntityType="Self.TipoAmbientacion" />
     <EntitySet Name="TipoEmpresa" EntityType="Self.TipoEmpresa" />
     <EntitySet Name="TipoEvento" EntityType="Self.TipoEvento" />
-    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <EntitySet Name="User" EntityType="Self.User" />
     <AssociationSet Name="Cliente_ActividadEmpresa_FK1" Association="Self.Cliente_ActividadEmpresa_FK1">
       <End Role="ActividadEmpresa" EntitySet="ActividadEmpresa" />
       <End Role="Cliente" EntitySet="Cliente" />

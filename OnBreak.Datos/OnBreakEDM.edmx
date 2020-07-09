@@ -41,8 +41,7 @@
             <PropertyRef Name="Numero" />
           </Key>
           <Property Name="Numero" Type="nvarchar" MaxLength="12" Nullable="false" />
-          <Property Name="IdTipoAmbientacion" Type="int" Nullable="false" />
-          <Property Name="Ambientacion" Type="bit" Nullable="false" />
+          <Property Name="IdTipoAmbientacion" Type="int" />
           <Property Name="MusicaAmbiental" Type="bit" Nullable="false" />
           <Property Name="MusicaCliente" Type="bit" Nullable="false" />
         </EntityType>
@@ -103,11 +102,10 @@
           <Property Name="IdTipoEvento" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <EntityType Name="Usuario">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="User" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="User" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -148,7 +146,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Cocktail_TipoAmbientacion_FK1">
-          <End Role="TipoAmbientacion" Type="Self.TipoAmbientacion" Multiplicity="1" />
+          <End Role="TipoAmbientacion" Type="Self.TipoAmbientacion" Multiplicity="0..1" />
           <End Role="Cocktail" Type="Self.Cocktail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoAmbientacion">
@@ -244,7 +242,7 @@
           <EntitySet Name="TipoAmbientacion" EntityType="Self.TipoAmbientacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoEmpresa" EntityType="Self.TipoEmpresa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoEvento" EntityType="Self.TipoEvento" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="Cena_TipoAmbientacion_FK1" Association="Self.Cena_TipoAmbientacion_FK1">
             <End Role="TipoAmbientacion" EntitySet="TipoAmbientacion" />
             <End Role="Cenas" EntitySet="Cenas" />
@@ -333,8 +331,7 @@
             <PropertyRef Name="Numero" />
           </Key>
           <Property Name="Numero" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdTipoAmbientacion" Type="Int32" Nullable="false" />
-          <Property Name="Ambientacion" Type="Boolean" Nullable="false" />
+          <Property Name="IdTipoAmbientacion" Type="Int32" />
           <Property Name="MusicaAmbiental" Type="Boolean" Nullable="false" />
           <Property Name="MusicaCliente" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TipoAmbientacion" Relationship="Self.Cocktail_TipoAmbientacion_FK1" FromRole="Cocktail" ToRole="TipoAmbientacion" />
@@ -409,12 +406,11 @@
           <Property Name="Descripcion" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ModalidadServicio" Relationship="Self.ModalidadServicio_TipoEvento_FK1" FromRole="TipoEvento" ToRole="ModalidadServicio" />
         </EntityType>
-        <EntityType Name="Usuario">
+        <EntityType Name="User">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="User1" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="User1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="Cliente_ActividadEmpresa_FK1">
@@ -478,7 +474,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Cocktail_TipoAmbientacion_FK1">
-          <End Role="TipoAmbientacion" Type="Self.TipoAmbientacion" Multiplicity="1" />
+          <End Role="TipoAmbientacion" Type="Self.TipoAmbientacion" Multiplicity="0..1" />
           <End Role="Cocktail" Type="Self.Cocktail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoAmbientacion">
@@ -550,7 +546,7 @@
           <EntitySet Name="TipoAmbientacion" EntityType="Self.TipoAmbientacion" />
           <EntitySet Name="TipoEmpresa" EntityType="Self.TipoEmpresa" />
           <EntitySet Name="TipoEvento" EntityType="Self.TipoEvento" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="Cliente_ActividadEmpresa_FK1" Association="Self.Cliente_ActividadEmpresa_FK1">
             <End Role="ActividadEmpresa" EntitySet="ActividadEmpresa" />
             <End Role="Cliente" EntitySet="Cliente" />
@@ -637,7 +633,6 @@
               <MappingFragment StoreEntitySet="Cocktail">
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="IdTipoAmbientacion" ColumnName="IdTipoAmbientacion" />
-                <ScalarProperty Name="Ambientacion" ColumnName="Ambientacion" />
                 <ScalarProperty Name="MusicaAmbiental" ColumnName="MusicaAmbiental" />
                 <ScalarProperty Name="MusicaCliente" ColumnName="MusicaCliente" />
               </MappingFragment>
@@ -705,11 +700,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="OnBreakDBModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="User" ColumnName="User" />
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="OnBreakDBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User1" ColumnName="User" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
