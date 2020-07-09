@@ -99,68 +99,70 @@
 
         <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Rut cliente (ej 146542354)"/>
-            <TextBox x:Name="txtRut" MaxLength="9"/>
+            <TextBox x:Name="txtRut" MaxLength="9" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Inicio del evento"/>
-            <Controls:DateTimePicker Name="dpFechaInicio"/>
+            <Controls:DateTimePicker Name="dpFechaInicio" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Término del evento"/>
-            <Controls:DateTimePicker Name="dpFechaTermino"/>
+            <Controls:DateTimePicker Name="dpFechaTermino" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Tipo de evento"/>
-            <ComboBox x:Name="cboTipoEvento" SelectionChanged="CboTipoEvento_SelectionChanged"/>
+            <ComboBox x:Name="cboTipoEvento" SelectionChanged="CboTipoEvento_SelectionChanged" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Modalidad"/>
-            <ComboBox x:Name="cboModalidad" SelectionChanged="CboModalidad_SelectionChanged"/>
+            <ComboBox x:Name="cboModalidad" SelectionChanged="CboModalidad_SelectionChanged" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <CheckBox x:Name="chkVegetariana" Content="Comida vegeatariana" VerticalAlignment="Top" Margin="0,20,0,0"
-                  Grid.Row="7" Grid.Column="3" Checked="chkVegetariana_Checked" Unchecked="chkVegetariana_Unchecked"/>
+                  Grid.Row="7" Grid.Column="3" LostFocus="Backup_LostFocus"/>
 
         <StackPanel Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label x:Name="lblAmbientacion" Content="Ambientación"/>
-            <ComboBox x:Name="cboAmbientacion" IsEnabled="False" Opacity="0.5" SelectionChanged="cboAmbientacion_SelectionChanged"/>
+            <ComboBox x:Name="cboAmbientacion" IsEnabled="False" Opacity="0.5" 
+                      SelectionChanged="cboAmbientacion_SelectionChanged" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <CheckBox x:Name="chkMusica" Content="Música ambiental" Grid.Row="7" Grid.Column="5"  VerticalAlignment="Top" Margin="0,20,0,0"
-                    IsEnabled="False" Opacity="0.5" Checked="chkMusica_Checked" Unchecked="chkMusica_Unchecked"/>
+                    IsEnabled="False" Opacity="0.5" Checked="chkMusica_Checked" Unchecked="chkMusica_Unchecked" LostFocus="Backup_LostFocus"/>
 
 
         <StackPanel Grid.Row="6" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="N° asistentes"/>
-            <TextBox x:Name="txtCantAsist" KeyUp="TxtCantAsist_KeyUp" MaxLength="4"/>
+            <TextBox x:Name="txtCantAsist" KeyUp="TxtCantAsist_KeyUp" MaxLength="4" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="N° personal extra"/>
-            <TextBox x:Name="txtCantPersonal" KeyUp="txtCantPersonal_KeyUp" MaxLength="4"/>
+            <TextBox x:Name="txtCantPersonal" KeyUp="txtCantPersonal_KeyUp" MaxLength="4" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <StackPanel Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Observaciones (opcional)"/>
-            <TextBox x:Name="txtObservaciones"/>
+            <TextBox x:Name="txtObservaciones" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
-        <CheckBox x:Name="chkRealizado" Content="Realizado" Checked="chkRealizado_Checked" Grid.Row="9" Grid.Column="3" 
-                    Unchecked="chkRealizado_Unchecked"  VerticalAlignment="Top" Margin="0,20,0,0"/>
+        <CheckBox x:Name="chkRealizado" Content="Realizado" Grid.Row="9" Grid.Column="3" 
+                    VerticalAlignment="Top" Margin="0,20,0,0" LostFocus="Backup_LostFocus"/>
 
 
         <StackPanel Grid.Row="8" Grid.Column="3"  HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Local"/>
-            <ComboBox x:Name="cboLocal" IsEnabled="False" Opacity="0.5" SelectionChanged="cboLocal_SelectionChanged"/>
+            <ComboBox x:Name="cboLocal" IsEnabled="False" Opacity="0.5" 
+                      SelectionChanged="cboLocal_SelectionChanged" LostFocus="Backup_LostFocus"/>
         </StackPanel>
         
         <StackPanel Grid.Row="8" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Monto arriendo (UF)"/>
-            <TextBox x:Name="txtMontoArriendo" IsEnabled="False" Opacity="0.5" Text="0" KeyUp="txtMontoArriendo_KeyUp"/>
+            <TextBox x:Name="txtMontoArriendo" IsEnabled="False" Opacity="0.5" Text="0" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
 

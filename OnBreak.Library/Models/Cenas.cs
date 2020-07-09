@@ -126,7 +126,6 @@ namespace OnBreak.Library.Models
                 db.Entry(c).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return true;
-
             }
             catch (Exception)
             {

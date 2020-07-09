@@ -56,159 +56,176 @@ namespace OnBreakApp.Pages
         #endregion
 
         #region respaldo y restaurar
-        //public void Backup()
-        //{
-        //    Dispatcher.Invoke(() =>
-        //    {
-        //        f.Clear();
-        //        Contrato contrato = new Contrato();
-        //        CoffeeBreak coffeeBreak = new CoffeeBreak();
-        //        Cocktail cocktail = new Cocktail();
-        //        Cenas cenas = new Cenas();
+        public void Backup()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                Contrato contrato = new Contrato();
 
-        //        if (lblNumContrato.Content != null)
-        //        {
-        //            contrato.Numero = lblNumContrato.Content.ToString();
-        //        }
+                contrato.Cliente = new Cliente()
+                {
+                    RutCliente = txtRut.Text.ToString()
+                };
 
-        //        contrato.Cliente = new Cliente()
-        //        {
-        //            RutCliente = txtRut.Text.ToString()
-        //        };
+                if (dpFechaInicio.SelectedDateTime != null)
+                {
+                    contrato.FechaHoraInicio = (DateTime)dpFechaInicio.SelectedDateTime;
+                }
 
-        //        if (dpFechaInicio.SelectedDateTime != null)
-        //        {
-        //            contrato.FechaHoraInicio = (DateTime)dpFechaInicio.SelectedDateTime;
-        //        }
+                if (dpFechaTermino.SelectedDateTime != null)
+                {
+                    contrato.FechaHoraTermino = (DateTime)dpFechaTermino.SelectedDateTime;
+                }
 
-        //        if (dpFechaTermino.SelectedDateTime != null)
-        //        {
-        //            contrato.FechaHoraTermino = (DateTime)dpFechaTermino.SelectedDateTime;
-        //        }
-
-        //        if(cboModalidad.SelectedValue != null)
-        //        {
-        //            contrato.ModalidadServicio = new ModalidadServicio()
-        //            {
-        //                IdModalidad = cboModalidad.SelectedValue.ToString(),
-        //                TipoEvento = new TipoEvento()
-        //                {
-        //                    IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
-        //                }
-        //            };
-        //        }
+                if(cboModalidad.SelectedValue != null)
+                {
+                    contrato.ModalidadServicio = new ModalidadServicio()
+                    {
+                        IdModalidad = cboModalidad.SelectedValue.ToString(),
+                        TipoEvento = new TipoEvento()
+                        {
+                            IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                        }
+                    };
+                }
              
 
-        //        // SE VALIDA TIPO EVENTO PARA CREAR EL CACHE CORRESPONDIENTE
-        //        if (cboTipoEvento.SelectedValue.ToString() == "10")
-        //        {
-        //            coffeeBreak.Vegetariana = chkVegetariana.IsChecked.Value;
-        //            f["coffeeBreak"] = coffeeBreak;
-        //        }
-        //        // cocktail
-        //        else if (cboTipoEvento.SelectedValue.ToString() == "20"
-        //        && cboAmbientacion.SelectedValue != null)
-        //        {
-        //            cocktail.TipoAmbientacion = new TipoAmbientacion()
-        //            {
-        //                Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
-        //            };
-        //            cocktail.MusicaAmbiental = chkMusica.IsChecked.Value;
+                if (int.TryParse(txtCantAsist.Text, out int a))
+                {
+                    contrato.Asistentes = a;
+                }
+                if (int.TryParse(txtCantPersonal.Text, out int p))
+                {
+                    contrato.PersonalAdicional = p;
+                }
+                contrato.Observaciones = txtObservaciones.Text;
+                contrato.Realizado = chkRealizado.IsChecked.Value;
 
-        //            f["cocktail"] = cocktail;
-        //        }
-        //        else if (cboTipoEvento.SelectedValue.ToString() == "30")
-        //        {
-        //            if(cboAmbientacion.SelectedValue != null)
-        //            {
-        //                cenas.TipoAmbientacion = new TipoAmbientacion()
-        //                {
-        //                    Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
-        //                };
-        //            }
+                f["contrato"] = contrato;
 
-        //            cenas.MusicaAmbiental = chkMusica.IsChecked.Value;
-        //            cenas.LocalOnBreak = LocalOnBreak();
-        //            cenas.OtroLocalOnBreak = ArrendarLocal();
-        //            if (double.TryParse(txtMontoArriendo.Text, out float m) == true)
-        //            {
-        //                cenas.ValorArriendo = m;
-        //            }
 
-        //            f["cenas"] = cenas;
-        //        }
+                // SE VALIDA TIPO EVENTO PARA CREAR EL CACHE CORRESPONDIENTE
+                if (cboTipoEvento.SelectedValue.ToString() == "10")
+                {
+                    CoffeeBreak coffeeBreak = new CoffeeBreak();
+                    coffeeBreak.Vegetariana = chkVegetariana.IsChecked.Value;
+                    f["adicional"] = coffeeBreak;
+                }
 
-        //        if (int.TryParse(txtCantAsist.Text, out int a) == true)
-        //        {
-        //            contrato.Asistentes = a;
-        //        }
-        //        if (int.TryParse(txtCantPersonal.Text, out int p) == true)
-        //        {
-        //            contrato.PersonalAdicional = p;
-        //        }
-        //        contrato.Observaciones = txtObservaciones.Text;
-        //        contrato.Realizado = chkRealizado.IsChecked.Value;
+                else if (cboTipoEvento.SelectedValue.ToString() == "20")
+                {
+                    Cocktail cocktail = new Cocktail();
 
-        //        string horaRespaldo = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-        //        f["contrato"] = contrato;
-        //        f["horaRespaldo"] = horaRespaldo;
-        //        lblRespaldo.Content = horaRespaldo;
-        //    });
-        //}
+                    if(cboAmbientacion.SelectedValue != null)
+                    {
+                        cocktail.TipoAmbientacion = new TipoAmbientacion()
+                        {
+                            Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                        };
+                    }
+                   
+                    cocktail.MusicaAmbiental = chkMusica.IsChecked.Value;
 
-        //private void RestoreBackup()
-        //{
-        //    FileCache f = new FileCache(new ObjectBinder());
+                    f["adicional"] = cocktail;
+                }
 
-        //    if (f["contrato"] != null)
-        //    {
-        //        Contrato contrato = (Contrato)f["contrato"];
+                else if (cboTipoEvento.SelectedValue.ToString() == "30")
+                {
+                    Cenas cenas = new Cenas();
 
-        //        lblRespaldo.Content = f["horaRespaldo"];
+                    cenas.TipoAmbientacion = new TipoAmbientacion()
+                    {
+                        Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                    };
 
-        //        lblNumContrato.Content = contrato.Numero;
-        //        txtRut.Text = contrato.Cliente.RutCliente;
+                    cenas.MusicaAmbiental = chkMusica.IsChecked.Value;
+                    cenas.LocalOnBreak = LocalOnBreak();
+                    cenas.OtroLocalOnBreak = ArrendarLocal();
+                    if (double.TryParse(txtMontoArriendo.Text, out double m))
+                    {
+                        cenas.ValorArriendo = m;
+                    }
 
-        //        if (contrato.FechaHoraInicio.Year != 1)
-        //        {
-        //            dpFechaInicio.SelectedDateTime = contrato.FechaHoraInicio;
-        //        }
-        //        if (contrato.FechaHoraTermino.Year != 1)
-        //        {
-        //            dpFechaTermino.SelectedDateTime = contrato.FechaHoraTermino;
-        //        }
+                    cenas.LocalOnBreak = LocalOnBreak();
+                    cenas.OtroLocalOnBreak = ArrendarLocal();
 
-        //        cboTipoEvento.SelectedValue = contrato.ModalidadServicio.TipoEvento.IdTipoEvento;
-        //        cboModalidad.SelectedValue = contrato.ModalidadServicio.IdModalidad;
-        //        txtCantAsist.Text = contrato.Asistentes.ToString();
-        //        txtCantPersonal.Text = contrato.PersonalAdicional.ToString();
-        //        txtObservaciones.Text = contrato.Observaciones;
-        //        chkRealizado.IsChecked = contrato.Realizado;
-        //    }
+                    f["adicional"] = cenas;
+                }
 
-        //    // SE VALIDA EL TIPO EVENTO RESTAURADO PARA RESTAURAR EL CACHE CORRESPONDIENTE
-        //    if (f["coffeeBreak"] != null)
-        //    {
-        //        CoffeeBreak cofeeBreak = (CoffeeBreak)f["coffeeBreak"];
-        //        chkVegetariana.IsChecked = cofeeBreak.Vegetariana;
-        //    }
-        //    else if (f["cocktail"] != null)
-        //    {
-        //        Cocktail cocktail = (Cocktail)f["cocktail"];
-        //        cboAmbientacion.SelectedValue = cocktail.TipoAmbientacion.Id;
-        //        chkMusica.IsChecked = cocktail.MusicaAmbiental;
-        //    }
-        //    else if (f["cenas"] != null)
-        //    {
-        //        Cenas cenas = (Cenas)f["cenas"];
-        //        cboAmbientacion.SelectedValue = cenas.TipoAmbientacion.Id;
-        //        chkMusica.IsChecked = cenas.MusicaAmbiental;
-        //        //rbtnLocalOnBreak.IsChecked = cenas.LocalOnBreak;
-        //        //rbtnArrendarLocal.IsChecked = cenas.OtroLocalOnBreak;
-        //        txtMontoArriendo.Text = cenas.ValorArriendo.ToString();
-        //    }
-        //    CalcularMonto();
-        //}
+                string horaRespaldo = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+             
+                f["horaRespaldo"] = horaRespaldo;
+                lblRespaldo.Content = horaRespaldo;
+            });
+        }
+
+        private void RestoreBackup()
+        {
+            FileCache f = new FileCache(new ObjectBinder());
+
+            if (f["contrato"] != null)
+            {
+                Contrato contrato = (Contrato)f["contrato"];
+
+                lblRespaldo.Content = f["horaRespaldo"];
+
+                txtRut.Text = contrato.Cliente.RutCliente;
+
+                if (contrato.FechaHoraInicio.Year != 1)
+                {
+                    dpFechaInicio.SelectedDateTime = contrato.FechaHoraInicio;
+                }
+                if (contrato.FechaHoraTermino.Year != 1)
+                {
+                    dpFechaTermino.SelectedDateTime = contrato.FechaHoraTermino;
+                }
+
+                cboTipoEvento.SelectedValue = contrato.ModalidadServicio.TipoEvento.IdTipoEvento;
+                cboModalidad.SelectedValue = contrato.ModalidadServicio.IdModalidad;
+                txtCantAsist.Text = contrato.Asistentes.ToString();
+                txtCantPersonal.Text = contrato.PersonalAdicional.ToString();
+                txtObservaciones.Text = contrato.Observaciones;
+                chkRealizado.IsChecked = contrato.Realizado;
+            }
+
+            // SE VALIDA EL TIPO EVENTO RESTAURADO PARA RESTAURAR EL CACHE CORRESPONDIENTE
+            if (f["adicional"].GetType() == typeof(CoffeeBreak))
+            {
+                CoffeeBreak cofeeBreak = (CoffeeBreak)f["adicional"];
+                chkVegetariana.IsChecked = cofeeBreak.Vegetariana;
+            }
+            else if (f["adicional"].GetType() == typeof(Cocktail))
+            {
+                Cocktail cocktail = (Cocktail)f["adicional"];
+                if(cocktail.TipoAmbientacion != null)
+                {
+                    cboAmbientacion.SelectedValue = cocktail.TipoAmbientacion.Id;
+                }
+                chkMusica.IsChecked = cocktail.MusicaAmbiental;
+            }
+            else if (f["adicional"].GetType() == typeof(Cenas))
+            {
+                Cenas cenas = (Cenas)f["adicional"];
+                cboAmbientacion.SelectedValue = cenas.TipoAmbientacion.Id;
+                chkMusica.IsChecked = cenas.MusicaAmbiental;
+
+                if (cenas.LocalOnBreak)
+                {
+                    cboLocal.SelectedIndex = 1;
+                }
+                else if (cenas.OtroLocalOnBreak)
+                {
+                    cboLocal.SelectedIndex = 2;
+                    txtMontoArriendo.Text = cenas.ValorArriendo.ToString();
+                }
+                else
+                {
+                    cboLocal.SelectedIndex = 0;
+                }
+            }
+
+            CalcularMonto();
+        }
         #endregion
 
         #region botones CRUD
@@ -260,6 +277,7 @@ namespace OnBreakApp.Pages
                 Observaciones = txtObservaciones.Text
             };
 
+            
             if (contrato.Create(contrato))
             {
                 lblNumContrato.Content = creationDate.ToString("yyyyMMddHHmm");
@@ -339,6 +357,8 @@ namespace OnBreakApp.Pages
                 // SE HABILITA LA MODIFICACION Y SE BLOQUEA EL BOTON REGISTRAR
                 EnableEditButtons(true);
                 EnableRegisterButton(false);
+                EnableRut(false);
+                EnableChangeTipoEvento(false);
             }
 
             else
@@ -536,12 +556,12 @@ namespace OnBreakApp.Pages
 
         private void BtnBackup(object sender, RoutedEventArgs e)
         {
-            //Backup();
+            Backup();
         }
 
         private void BtnRestoreBackup(object sender, RoutedEventArgs e)
         {
-            //RestoreBackup();
+            RestoreBackup();
         }
         #endregion
 
@@ -715,6 +735,19 @@ namespace OnBreakApp.Pages
             }
         }
 
+        private void EnableChangeTipoEvento(bool enable)
+        {
+            cboTipoEvento.IsEnabled = enable;
+            if (enable)
+            {
+                cboTipoEvento.Opacity = 1;
+            }
+            else
+            {
+                cboTipoEvento.Opacity = 0.5;
+            }
+        }
+
         // METODO ENCARGADO DE HABILITAR OPCIONES ADICIONALES POR TIPO DE EVENTO SELECCIONADO
         private void AditionalOptions()
         {
@@ -801,6 +834,7 @@ namespace OnBreakApp.Pages
                 EnableEditButtons(true);
                 EnableRegisterButton(false);
                 EnableRut(false);
+                EnableChangeTipoEvento(false);
 
                 if(contrato.ModalidadServicio.TipoEvento.IdTipoEvento == 10)
                 {
@@ -893,6 +927,7 @@ namespace OnBreakApp.Pages
             BlockEdits(false);
             btnRegistrarContrato.IsEnabled = true;
             btnRegistrarContrato.Opacity = 1;
+            EnableChangeTipoEvento(true);
         }
 
         // calcular monto en UF al escribir cantidad de asistentes/personal
@@ -1087,62 +1122,36 @@ namespace OnBreakApp.Pages
             AditionalOptions();
         }
 
-        // calcular monto 
         private void txtCantPersonal_KeyUp(object sender, KeyEventArgs e)
         {
             CalcularMonto();
-            //Backup();
         }
 
         private void TxtCantAsist_KeyUp(object sender, KeyEventArgs e)
         {
             CalcularMonto();
-            //Backup();
         }
 
         private void CboModalidad_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CalcularMonto();
-            //Backup();
-        }
-
-        private void chkVegetariana_Checked(object sender, RoutedEventArgs e)
-        {
-            //Backup();
-        }
-
-        private void chkVegetariana_Unchecked(object sender, RoutedEventArgs e)
-        {
-            //Backup();
         }
 
         private void cboAmbientacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CalcularMonto();
-            //Backup();
         }
 
         private void chkMusica_Checked(object sender, RoutedEventArgs e)
         {
             CalcularMonto();
-            //Backup();
         }
 
         private void chkMusica_Unchecked(object sender, RoutedEventArgs e)
         {
             CalcularMonto();
-            //Backup();
-        }
- 
-        private void chkRealizado_Checked(object sender, RoutedEventArgs e)
-        {
-            //Backup();
         }
 
-        private void chkRealizado_Unchecked(object sender, RoutedEventArgs e)
-        {
-            //Backup();
-        }
 
         private void txtMontoArriendo_KeyUp(object sender, KeyEventArgs e)
         {
@@ -1166,6 +1175,14 @@ namespace OnBreakApp.Pages
 
             CalcularMonto();
         }
+
+        private void Backup_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Backup();
+        }
+
         #endregion
+
+
     }
 }
