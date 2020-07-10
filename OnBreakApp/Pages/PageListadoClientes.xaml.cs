@@ -91,8 +91,8 @@ namespace OnBreakApp.Pages
         // SECCION FILTROS
         private void TxtRut_KeyUp(object sender, KeyEventArgs e)
         {
-            Cliente cliente = new Cliente();
-            List<Cliente> clientes = cliente.ReadAllByRut(txtRut.Text);
+            List<Cliente> clientes = new Cliente().ReadAllByRut(txtRut.Text);
+            //List<Cliente> clientes = cliente.ReadAllByRut(txtRut.Text);
             PopDgFiltered(clientes);
         }
 

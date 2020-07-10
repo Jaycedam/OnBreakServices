@@ -10,16 +10,112 @@ namespace OnBreak.Library
     [Serializable]
     public class Cliente
     {
-        public string RutCliente { get; set; }
-        public string RazonSocial { get; set; }
-        public string NombreContacto { get; set; }
-        public string MailContacto { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
+        private string _rutCliente;
+        private string _nombreContacto;
+        private string _razonSocial;
+        private string _mailContacto;
+        private string _direccion;
+        private string _telefono;
+
+        public string Telefono
+        {
+            get { return _telefono; }
+            set 
+            {
+                if(int.TryParse(value, out _) == false ||
+                    value.Length < 9)
+                {
+                    throw new ArgumentException("El teléfono no es válido, verifica que estén todos los dígitos");
+                }
+                _telefono = value; 
+            }
+        }
+
+        public string Direccion
+        {
+            get { return _direccion; }
+            set 
+            {
+                if (value == string.Empty)
+                {
+                    throw new ArgumentException("Debes ingresar todos los campos obligatorios");
+                }
+                _direccion = value.ToUpper(); 
+            }
+        }
+
+        public string MailContacto
+        {
+            get { return _mailContacto; }
+            set 
+            {
+                if (value == string.Empty)
+                {
+                    throw new ArgumentException("Debes ingresar todos los campos obligatorios");
+                }
+                else if (!value.Contains("@"))
+                {
+                    throw new ArgumentException("El correo ingresado no es válido");
+                }
+                _mailContacto = value.ToUpper(); 
+            }
+        }
+
+        public string RazonSocial
+        {
+            get { return _razonSocial; }
+            set 
+            {
+                if (value == string.Empty)
+                {
+                    throw new ArgumentException("Debes ingresar todos los campos obligatorios");
+                }
+                _razonSocial = value.ToUpper(); 
+            }
+        }
+
+        public string NombreContacto
+        {
+            get { return _nombreContacto; }
+            set 
+            { 
+                if(value == string.Empty)
+                {
+                    throw new ArgumentException("Debes ingresar todos los campos obligatorios");
+                }
+                _nombreContacto = value.ToUpper(); 
+            }
+        }
+
+        public string RutCliente
+        {
+            get { return _rutCliente; }
+            set 
+            {
+                if (value.Length == 9 && 
+                    int.TryParse(value.Substring(0, 8), out _))
+                {
+                    if (int.TryParse(value.Substring(8, 1), out _) ||
+                       value.Substring(8, 1).ToUpper() == "K")
+                    {
+                        _rutCliente = value.ToUpper();
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException("El rut no tiene un formato válido");
+                }
+            }
+        }
+
         public ActividadEmpresa ActividadEmpresa { get; set; }
         public TipoEmpresa TipoEmpresa { get; set; }
 
-        // Listar clientes
+        public Cliente()
+        {
+
+        }
+
         public List<Cliente> ReadAll()
         {
             OnBreakDBEntities db = new OnBreakDBEntities();
@@ -49,7 +145,7 @@ namespace OnBreak.Library
         {
             OnBreakDBEntities db = new OnBreakDBEntities();
             Cliente cliente = (from c in db.Cliente
-                               where c.RutCliente == rut
+                               where c.RutCliente == rut.ToUpper()
                                select new Cliente
                                {
                                    RutCliente = c.RutCliente,

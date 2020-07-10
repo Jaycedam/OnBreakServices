@@ -9,8 +9,41 @@ namespace OnBreak.Library
 {
     public class Usuario
     {
-        public string User { get; set; }
-        public string Password { get; set; }
+        private string _user;
+        private string _password;
+
+        public string Password
+        {
+            get { return _password; }
+            set 
+            { 
+                if(value == string.Empty ||
+                    value == "contraseña")
+                {
+                    throw new ArgumentException("Debes ingresar un usuario y contraseña válidos");
+                }
+                _password = value; 
+            }
+        }
+
+        public string User
+        {
+            get { return _user; }
+            set 
+            {
+                if(value == string.Empty || 
+                    value.ToLower().Trim() == "usuario")
+                {
+                    throw new ArgumentException("Debes ingresar un usuario y contraseña válidos");
+                }
+                _user = value.ToLower().Trim(); 
+            }
+        }
+
+        public Usuario()
+        {
+
+        }
 
         // Listar users
         public List<Usuario> ReadAll()
@@ -23,6 +56,7 @@ namespace OnBreak.Library
                         Password = u.Password
                     }).ToList();
         }
+
         public bool Login(Usuario usuario)
         {
             var user = (from c in ReadAll()
@@ -51,9 +85,11 @@ namespace OnBreak.Library
             }
             try
             {
-                Datos.User u = new Datos.User();
-                u.User1 = usuario.User.ToLower();
-                u.Password = usuario.Password;
+                User u = new User
+                {
+                    User1 = usuario.User,
+                    Password = usuario.Password
+                };
 
                 db.User.Add(u);
                 db.SaveChanges();

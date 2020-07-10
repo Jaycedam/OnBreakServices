@@ -237,6 +237,12 @@ namespace OnBreakApp.Pages
                     "Debes ingresar todos los campos obligatorios");
                 return;
             }
+            else if (InvalidRut(txtRut.Text))
+            {
+                await MetroDialogue("Registrar contrato",
+                    "El rut no es válido. Formato sin puntos ni guión");
+                return;
+            }
             else if (InvalidEntry())
             {
                 await MetroDialogue("Registrar contrato",
@@ -568,11 +574,11 @@ namespace OnBreakApp.Pages
         #region validaciones
         private bool InvalidEntry()
         {
-            if (int.TryParse(txtCantAsist.Text, out int a) == false ||
-                int.TryParse(txtCantPersonal.Text, out int p) == false ||
+            if (int.TryParse(txtCantAsist.Text, out _) == false ||
+                int.TryParse(txtCantPersonal.Text, out _) == false ||
                 int.Parse(txtCantAsist.Text) < 0 ||
                 int.Parse(txtCantPersonal.Text) < 0 ||
-                double.TryParse(txtMontoArriendo.Text, out double m) == false)
+                double.TryParse(txtMontoArriendo.Text, out _) == false)
             {
                 return true;
             }
@@ -624,6 +630,19 @@ namespace OnBreakApp.Pages
                 invalidDate = false;
             }
         }
+
+        private bool InvalidRut(string rut)
+        {
+            if (int.TryParse(rut.Substring(0,8), out _))
+            {
+                if(int.TryParse(rut.Substring(8, 1), out _) ||
+                    rut.Substring(8, 1).ToLower() == "k")
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         #endregion
 
         #region enable/disable sections
@@ -656,6 +675,8 @@ namespace OnBreakApp.Pages
                 txtObservaciones.Opacity = 0.5;
                 chkRealizado.IsEnabled = false;
                 chkRealizado.Opacity = 0.5;
+                txtMontoArriendo.IsEnabled = false;
+                txtMontoArriendo.Opacity = 0.5;
                 EnableEditButtons(false);
                 EnableRegisterButton(false);
             }
@@ -1122,43 +1143,27 @@ namespace OnBreakApp.Pages
             AditionalOptions();
         }
 
-        private void txtCantPersonal_KeyUp(object sender, KeyEventArgs e)
+        private void CalcularMonto_KeyUp(object sender, KeyEventArgs e)
         {
             CalcularMonto();
         }
 
-        private void TxtCantAsist_KeyUp(object sender, KeyEventArgs e)
+        private void CalcularMonto_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CalcularMonto();
         }
 
-        private void CboModalidad_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ChkMusica_Checked(object sender, RoutedEventArgs e)
         {
             CalcularMonto();
         }
 
-        private void cboAmbientacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ChkMusica_Unchecked(object sender, RoutedEventArgs e)
         {
             CalcularMonto();
         }
 
-        private void chkMusica_Checked(object sender, RoutedEventArgs e)
-        {
-            CalcularMonto();
-        }
-
-        private void chkMusica_Unchecked(object sender, RoutedEventArgs e)
-        {
-            CalcularMonto();
-        }
-
-
-        private void txtMontoArriendo_KeyUp(object sender, KeyEventArgs e)
-        {
-            CalcularMonto();
-        }
-
-        private void cboLocal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CboLocal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cboLocal.SelectedIndex == 2)
             {

@@ -13,6 +13,11 @@ namespace OnBreak.Library
         public int IdTipoEmpresa { get; set; }
         public string Descripcion { get; set; }
 
+        public TipoEmpresa()
+        {
+
+        }
+
         // Listar tipo empresas
         public List<TipoEmpresa> ReadAll()
         {

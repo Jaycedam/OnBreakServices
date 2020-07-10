@@ -23,32 +23,32 @@ namespace OnBreak.Library.Models
 
             if (Contrato.Asistentes >= 1 && Contrato.Asistentes <= 20)
             {
-                total = total + 3;
+                total += 3;
             }
             else if (Contrato.Asistentes >= 21 && Contrato.Asistentes <= 50)
             {
-                total = total + 5;
+                total += 5;
             }
             else if (Contrato.Asistentes > 50)
             {
-                total = 5 + total + ((Contrato.Asistentes - 50) / 20) * 2;
+                total += 5 + ((Contrato.Asistentes - 50) / 20) * 2;
             }
 
             if (Contrato.PersonalAdicional == 2)
             {
-                total = total + 2;
+                total += 2;
             }
             else if (Contrato.PersonalAdicional == 3)
             {
-                total = total + 3;
+                total += 3;
             }
             else if (Contrato.PersonalAdicional == 4)
             {
-                total = total + 3.5;
+                total += 3.5;
             }
             else if (Contrato.PersonalAdicional > 4)
             {
-                total = 3.5 + total + (Contrato.PersonalAdicional - 4) * 0.5;
+                total += 3.5 + (Contrato.PersonalAdicional - 4) * 0.5;
             }
 
             return total;

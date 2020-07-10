@@ -45,7 +45,7 @@
 
         <TextBox x:Name="txtRegisterUser" 
                  Grid.Row="1" Grid.Column="1" 
-                 GotFocus="TxtRegisterUser_Focus" />
+                 GotFocus="TxtRegisterUser_Focus"/>
         <iconPacks:PackIconModern Kind="User" Foreground="White"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
 
         <Separator Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" VerticalAlignment="Bottom" Background="White"/>
@@ -54,7 +54,7 @@
 
         <PasswordBox x:Name="passRegister"  
                      Grid.Row="2" Grid.Column="1" 
-                     Password="password" GotFocus="PassRegister_Focus"/>
+                     Password="contraseña" GotFocus="PassRegister_Focus"/>
         <iconPacks:PackIconModern Kind="InterfacePassword" Foreground="White" 
                                   Grid.Row="2" Grid.Column="1" 
                                   VerticalAlignment="Center" HorizontalAlignment="Right"/>

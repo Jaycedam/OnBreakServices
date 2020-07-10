@@ -13,6 +13,11 @@ namespace OnBreak.Library.Models
         public int Id { get; set; }
         public string Desc { get; set; }
 
+        public TipoAmbientacion()
+        {
+
+        }
+
         public List<TipoAmbientacion> ReadAll()
         {
             OnBreakDBEntities db = new OnBreakDBEntities();

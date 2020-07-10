@@ -119,7 +119,7 @@
 
         <StackPanel Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Modalidad"/>
-            <ComboBox x:Name="cboModalidad" SelectionChanged="CboModalidad_SelectionChanged" LostFocus="Backup_LostFocus"/>
+            <ComboBox x:Name="cboModalidad" SelectionChanged="CalcularMonto_SelectionChanged" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <CheckBox x:Name="chkVegetariana" Content="Comida vegeatariana" VerticalAlignment="Top" Margin="0,20,0,0"
@@ -128,21 +128,21 @@
         <StackPanel Grid.Row="8" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label x:Name="lblAmbientacion" Content="Ambientación"/>
             <ComboBox x:Name="cboAmbientacion" IsEnabled="False" Opacity="0.5" 
-                      SelectionChanged="cboAmbientacion_SelectionChanged" LostFocus="Backup_LostFocus"/>
+                      SelectionChanged="CalcularMonto_SelectionChanged" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <CheckBox x:Name="chkMusica" Content="Música ambiental" Grid.Row="7" Grid.Column="5"  VerticalAlignment="Top" Margin="0,20,0,0"
-                    IsEnabled="False" Opacity="0.5" Checked="chkMusica_Checked" Unchecked="chkMusica_Unchecked" LostFocus="Backup_LostFocus"/>
+                    IsEnabled="False" Opacity="0.5" Checked="ChkMusica_Checked" Unchecked="ChkMusica_Unchecked" LostFocus="Backup_LostFocus"/>
 
 
         <StackPanel Grid.Row="6" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="N° asistentes"/>
-            <TextBox x:Name="txtCantAsist" KeyUp="TxtCantAsist_KeyUp" MaxLength="4" LostFocus="Backup_LostFocus"/>
+            <TextBox x:Name="txtCantAsist" KeyUp="CalcularMonto_KeyUp" MaxLength="4" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <StackPanel Grid.Row="7" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="N° personal extra"/>
-            <TextBox x:Name="txtCantPersonal" KeyUp="txtCantPersonal_KeyUp" MaxLength="4" LostFocus="Backup_LostFocus"/>
+            <TextBox x:Name="txtCantPersonal" KeyUp="CalcularMonto_KeyUp" MaxLength="4" LostFocus="Backup_LostFocus"/>
         </StackPanel>
 
         <StackPanel Grid.Row="9" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
@@ -157,12 +157,13 @@
         <StackPanel Grid.Row="8" Grid.Column="3"  HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Local"/>
             <ComboBox x:Name="cboLocal" IsEnabled="False" Opacity="0.5" 
-                      SelectionChanged="cboLocal_SelectionChanged" LostFocus="Backup_LostFocus"/>
+                      SelectionChanged="CboLocal_SelectionChanged" LostFocus="Backup_LostFocus"/>
         </StackPanel>
         
         <StackPanel Grid.Row="8" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Top">
             <Label Content="Monto arriendo (UF)"/>
-            <TextBox x:Name="txtMontoArriendo" IsEnabled="False" Opacity="0.5" Text="0" LostFocus="Backup_LostFocus"/>
+            <TextBox x:Name="txtMontoArriendo" IsEnabled="False" Opacity="0.5" 
+                     Text="0" LostFocus="Backup_LostFocus" MaxLength="3" KeyUp="CalcularMonto_KeyUp"/>
         </StackPanel>
 
 

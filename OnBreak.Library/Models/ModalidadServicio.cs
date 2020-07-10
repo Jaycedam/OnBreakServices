@@ -16,6 +16,11 @@ namespace OnBreak.Library
         public double ValorBase { get; set; }
         public int PersonalBase { get; set; }
 
+        public ModalidadServicio()
+        {
+
+        }
+
         // Listar modalidad con filtro por tipo de evento
         public List<ModalidadServicio> ReadAll(int tipoId)
         {

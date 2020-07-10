@@ -13,6 +13,11 @@ namespace OnBreak.Library
         public int IdTipoEvento { get; set; }
         public string Descripcion { get; set; }
 
+        public TipoEvento()
+        {
+
+        }
+
         // Listar tipos de evento
         public List<TipoEvento> ReadAll()
         {

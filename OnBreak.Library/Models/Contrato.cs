@@ -34,6 +34,11 @@ namespace OnBreak.Library
             }
         }
 
+        public Contrato()
+        {
+
+        }
+
         // Listar contratos
         public List<Contrato> ReadAll()
         {
@@ -213,7 +218,7 @@ namespace OnBreak.Library
         public bool ContratosAsociados(string rut)
         {
             List<Contrato> contratos = (from c in ReadAll()
-                                        where c.Cliente.RutCliente == rut
+                                        where c.Cliente.RutCliente == rut.ToUpper()
                                         select c).ToList();
 
             if (contratos.Count > 0)
