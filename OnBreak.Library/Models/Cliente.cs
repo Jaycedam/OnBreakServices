@@ -92,14 +92,11 @@ namespace OnBreak.Library
             get { return _rutCliente; }
             set 
             {
-                if (value.Length == 9 && 
-                    int.TryParse(value.Substring(0, 8), out _))
+                if (value.Length == 9 && int.TryParse(value.Substring(0, 8), out _) &&
+                    (int.TryParse(value.Substring(8, 1), out _) || 
+                    value.Substring(8, 1).ToUpper() == "K"))
                 {
-                    if (int.TryParse(value.Substring(8, 1), out _) ||
-                       value.Substring(8, 1).ToUpper() == "K")
-                    {
-                        _rutCliente = value.ToUpper();
-                    }
+                    _rutCliente = value.ToUpper();
                 }
                 else
                 {
@@ -173,7 +170,7 @@ namespace OnBreak.Library
             OnBreakDBEntities db = new OnBreakDBEntities();
             if (Read(cliente.RutCliente) != null)
             {
-                return false;
+                throw new ArgumentException("Este cliente ya existe");
             }
             try
             {

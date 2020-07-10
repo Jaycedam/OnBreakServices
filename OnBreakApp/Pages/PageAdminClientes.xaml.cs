@@ -74,7 +74,7 @@ namespace OnBreakApp.Pages
                 else
                 {
                     await MetroDialogue("Registrar cliente",
-                                    "Este cliente ya existe");
+                                    "Ha ocurrido un error registrando el cliente, intenta nuevamente");
                 }
             }
             catch (Exception x)

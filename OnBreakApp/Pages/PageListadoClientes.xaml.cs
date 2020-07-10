@@ -92,7 +92,6 @@ namespace OnBreakApp.Pages
         private void TxtRut_KeyUp(object sender, KeyEventArgs e)
         {
             List<Cliente> clientes = new Cliente().ReadAllByRut(txtRut.Text);
-            //List<Cliente> clientes = cliente.ReadAllByRut(txtRut.Text);
             PopDgFiltered(clientes);
         }
 
