@@ -255,7 +255,7 @@ namespace OnBreak.Library
         public List<Cliente> ReadAllByRut(string rut)
         {
             List<Cliente> clientes = (from c in ReadAll()
-                                      where c.RutCliente.Contains(rut)
+                                      where c.RutCliente.Contains(rut.ToUpper())
                                       select c).ToList();
             return clientes;
         }
