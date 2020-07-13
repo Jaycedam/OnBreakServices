@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pages/landing.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("logo_color.ico")]
 
 
