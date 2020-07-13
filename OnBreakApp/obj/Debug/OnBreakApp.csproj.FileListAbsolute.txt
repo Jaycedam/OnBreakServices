@@ -240,8 +240,6 @@ C:\Users\jayce\Source\Repos\Jaycedam\OnBreakServices\OnBreakApp\obj\Debug\OnBrea
 C:\Users\jayce\Source\Repos\Jaycedam\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.csproj.CopyComplete
 C:\Users\jayce\Source\Repos\Jaycedam\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.exe
 C:\Users\jayce\Source\Repos\Jaycedam\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.pdb
-C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\bin\Debug\OnBreakDB.mdf
-C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\bin\Debug\OnBreakDB_log.ldf
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\bin\Debug\OnBreakApp.exe.config
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\bin\Debug\OnBreakApp.exe.manifest
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\bin\Debug\OnBreakApp.application
@@ -366,3 +364,5 @@ C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.appl
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.csproj.CopyComplete
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.exe
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\obj\Debug\OnBreakApp.pdb
+C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\bin\Debug\OnBreakDB.mdf
+C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\bin\Debug\OnBreakDB_log.ldf

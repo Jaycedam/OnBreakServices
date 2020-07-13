@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="OnBreakApp.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="OnBreakApp.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="logo_color.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
     <assemblyIdentity name="OnBreakApp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -402,17 +403,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OnBreakApp.exe" size="677344">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OnBreakApp.exe" size="716256">
       <assemblyIdentity name="OnBreakApp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>f7WdcXXpCvnoJ+x12Bfc/WGxgOoKYKz+cUBj8cnYgXo=</dsig:DigestValue>
+        <dsig:DigestValue>x0IHqF9LzRr/ggbbhM42d6M6LQXFYJsZhbsYa4T7I9w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="logo_color.ico" size="19390">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>WoRQ9jnvy1skGg0xITpxDl6iLnhUzNspuvybNXY/K3o=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="OnBreakApp.exe.config" size="638">
     <hash>
       <dsig:Transforms>
