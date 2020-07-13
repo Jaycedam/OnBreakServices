@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnBreak.Library
 {
+    [Serializable]
     public class ModalidadServicio
     {
         public string IdModalidad { get; set; }
@@ -15,11 +16,15 @@ namespace OnBreak.Library
         public double ValorBase { get; set; }
         public int PersonalBase { get; set; }
 
-        OnBreakDBEntities db = new OnBreakDBEntities();
+        public ModalidadServicio()
+        {
+
+        }
 
         // Listar modalidad con filtro por tipo de evento
         public List<ModalidadServicio> ReadAll(int tipoId)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             return (from m in db.ModalidadServicio
                     where m.IdTipoEvento == tipoId
                     select new ModalidadServicio

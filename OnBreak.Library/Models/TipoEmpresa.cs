@@ -7,16 +7,21 @@ using OnBreak.Datos;
 
 namespace OnBreak.Library
 {
+    [Serializable]
     public class TipoEmpresa
     {
         public int IdTipoEmpresa { get; set; }
         public string Descripcion { get; set; }
 
-        OnBreakDBEntities db = new OnBreakDBEntities();
+        public TipoEmpresa()
+        {
+
+        }
 
         // Listar tipo empresas
         public List<TipoEmpresa> ReadAll()
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             List<TipoEmpresa> tipoEmpresas = (from t in db.TipoEmpresa
                                               select new TipoEmpresa
                                               {

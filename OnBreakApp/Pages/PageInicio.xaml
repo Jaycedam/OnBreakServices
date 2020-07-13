@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OnBreakApp.Pages" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="620"
+      d:DesignHeight="620" d:DesignWidth="650"
       Title="PageInicio">
 
     <Page.Resources>
@@ -16,35 +16,30 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="50" MaxHeight="80"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
             <RowDefinition/>
-            <RowDefinition MinHeight="50" MaxHeight="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="30" MaxWidth="60"/>
+            <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
-            <ColumnDefinition MinWidth="30" MaxWidth="60"/>
+            <ColumnDefinition Width="40"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <Label Content="¡BIENVENIDO!" 
-               FontSize="36" FontWeight="Black" 
-               HorizontalAlignment="Left"/>
+        <Label x:Name="lblBuenas" Content="¡Buenos días!" Grid.Row="1" Grid.Column="1" 
+                HorizontalAlignment="Center" VerticalAlignment="Top"
+                IsHitTestVisible="False" FontSize="45" FontWeight="Black"/>
+        <Label Grid.Row="1" Grid.Column="1"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                Content="OnBreak Eventos Empresariales" FontSize="18"/>
 
-            <Label Grid.Row="1" Grid.Column="1"
-               Content="OnBreak Eventos Empresariales" 
-               HorizontalAlignment="Left"
-               FontSize="10"/>
+        <Image Source="/OnBreakApp;component/Images/landing.png" 
+               Grid.Row="2" Grid.Column="1"/>
 
-            <TextBlock HorizontalAlignment="Stretch" 
-                   TextWrapping="Wrap" Margin="0,30,0,40"
-                   Width="auto" Height="auto"
-                   ><Run Text="Bienvenido a la nueva aplicación OnBreak services, en ella encontrarás un menú desplegable con las funciones principales que necesitarás al momento de recibir una solicitud. La sección de clientes y de contratos poseen dos subcategorías para que logres encontrar facilmente la sección que desees. Si has terminado tu sesión puedes seleccionar el botón de cerrar sesión ubicado en la parte inferior del menú lateral."/><Run/></TextBlock>
-
-            <Button x:Name="btnAyuda" 
-                    Content="¿NECESITAS AYUDA?"
-                    HorizontalAlignment="Left"
-                    Click="BtnAyuda_Click"/>
-        </StackPanel>
+        <Button x:Name="btnAyuda" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center"
+                Content="¿NECESITAS AYUDA?"
+                Click="BtnAyuda_Click"/>
     </Grid>
 </Page>

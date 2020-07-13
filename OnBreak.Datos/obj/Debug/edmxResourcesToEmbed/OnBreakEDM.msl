@@ -9,6 +9,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Cenas">
+      <EntityTypeMapping TypeName="OnBreakDBModel.Cenas">
+        <MappingFragment StoreEntitySet="Cenas">
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="IdTipoAmbientacion" ColumnName="IdTipoAmbientacion" />
+          <ScalarProperty Name="MusicaAmbiental" ColumnName="MusicaAmbiental" />
+          <ScalarProperty Name="LocalOnBreak" ColumnName="LocalOnBreak" />
+          <ScalarProperty Name="OtroLocalOnBreak" ColumnName="OtroLocalOnBreak" />
+          <ScalarProperty Name="ValorArriendo" ColumnName="ValorArriendo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Cliente">
       <EntityTypeMapping TypeName="OnBreakDBModel.Cliente">
         <MappingFragment StoreEntitySet="Cliente">
@@ -20,6 +32,24 @@
           <ScalarProperty Name="Telefono" ColumnName="Telefono" />
           <ScalarProperty Name="IdActividadEmpresa" ColumnName="IdActividadEmpresa" />
           <ScalarProperty Name="IdTipoEmpresa" ColumnName="IdTipoEmpresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cocktail">
+      <EntityTypeMapping TypeName="OnBreakDBModel.Cocktail">
+        <MappingFragment StoreEntitySet="Cocktail">
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="IdTipoAmbientacion" ColumnName="IdTipoAmbientacion" />
+          <ScalarProperty Name="MusicaAmbiental" ColumnName="MusicaAmbiental" />
+          <ScalarProperty Name="MusicaCliente" ColumnName="MusicaCliente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CoffeeBreak">
+      <EntityTypeMapping TypeName="OnBreakDBModel.CoffeeBreak">
+        <MappingFragment StoreEntitySet="CoffeeBreak">
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Vegetariana" ColumnName="Vegetariana" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -53,6 +83,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TipoAmbientacion">
+      <EntityTypeMapping TypeName="OnBreakDBModel.TipoAmbientacion">
+        <MappingFragment StoreEntitySet="TipoAmbientacion">
+          <ScalarProperty Name="IdTipoAmbientacion" ColumnName="IdTipoAmbientacion" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TipoEmpresa">
       <EntityTypeMapping TypeName="OnBreakDBModel.TipoEmpresa">
         <MappingFragment StoreEntitySet="TipoEmpresa">
@@ -69,11 +107,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Usuario">
-      <EntityTypeMapping TypeName="OnBreakDBModel.Usuario">
-        <MappingFragment StoreEntitySet="Usuario">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="User" ColumnName="User" />
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="OnBreakDBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="User1" ColumnName="User" />
           <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>

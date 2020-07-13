@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.Controls;
+﻿using ControlzEx.Theming;
+using MahApps.Metro.Controls;
 using OnBreakApp.Pages;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace OnBreakApp
         {
             InitializeComponent();
             // Inicializar window con PageLogin dentro del Frame
+            ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.SyncWithAppMode;
+            ThemeManager.Current.SyncTheme();
             Login.Content = new PageLogin();
         }
 

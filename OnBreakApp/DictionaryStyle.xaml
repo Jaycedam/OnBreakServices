@@ -8,6 +8,7 @@
         <Setter Property="Foreground" Value="White" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Height" Value="50" />
+        <Setter Property="Width" Value="180" />
         <Setter Property="FontSize" Value="11"/>
         <!--Habilitar edicion template-->
         <Setter Property="Template">
@@ -25,11 +26,11 @@
         <Style.Triggers>
             <!--Cambiar color cuando el mouse está encima-->
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#FF5B57C1"/>
+                <Setter Property="Background" Value="#FF10003C"/>
             </Trigger>
             <!--Cambiar color cuando está seleccionado-->
             <Trigger Property="IsFocused" Value="True">
-                <Setter Property="Background" Value="#FF5B57C1"/>
+                <Setter Property="Background" Value="#FF10003C"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -39,14 +40,14 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Height" Value="35"/>
-        <Setter Property="Width" Value="100"/>
+        <Setter Property="Width" Value="120"/>
         <Setter Property="FontSize" Value="11"/>
         <!--Habilitar edicion template-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" 
-                            CornerRadius="15" BorderThickness="2"
+                            CornerRadius="10" BorderThickness="2"
                             BorderBrush="White">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -122,7 +123,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" 
-                            CornerRadius="15" BorderThickness="2"
+                            CornerRadius="10" BorderThickness="2"
                             BorderBrush="#FF25C9C9">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -156,7 +157,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" 
-                            CornerRadius="15" BorderThickness="2"
+                            CornerRadius="10" BorderThickness="2"
                             BorderBrush="#FFF54239">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -201,5 +202,18 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
+
+    <Style x:Key="WindowsLight" TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button.WindowCommands}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource WhiteBrush}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#7C0000" />
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
 
 </ResourceDictionary>

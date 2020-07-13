@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnBreak.Library
 {
+    [Serializable]
     public class Contrato
     {
         public string Numero { get; set; }
@@ -14,10 +15,38 @@ namespace OnBreak.Library
         public DateTime Termino { get; set; }
         public Cliente Cliente { get; set; }
         public ModalidadServicio ModalidadServicio { get; set; }
-        public DateTime FechaHoraInicio { get; set; }
-        public DateTime FechaHoraTermino { get; set; }
-        public int Asistentes { get; set; }
-        public int PersonalAdicional { get; set; }
+        private DateTime _fechaHoraInicio;
+        private DateTime _fechaHoraTermino;
+        private int _asistentes;
+        private int _personalAdicional;
+
+        public int PersonalAdicional
+        {
+            get { return _personalAdicional; }
+            set { _personalAdicional = value; }
+        }
+
+
+        public int Asistentes
+        {
+            get { return _asistentes; }
+            set {  _asistentes = value; }
+        }
+
+
+        public DateTime FechaHoraTermino
+        {
+            get { return _fechaHoraTermino; }
+            set { _fechaHoraTermino = value; }
+        }
+
+
+        public DateTime FechaHoraInicio
+        {
+            get { return _fechaHoraInicio; }
+            set { _fechaHoraInicio = value; }
+        }
+
         public bool Realizado { get; set; }
         public double ValorTotalContrato { get; set; }
         public string Observaciones { get; set; }
@@ -33,11 +62,15 @@ namespace OnBreak.Library
             }
         }
 
-        OnBreakDBEntities db = new OnBreakDBEntities();
+        public Contrato()
+        {
+
+        }
 
         // Listar contratos
         public List<Contrato> ReadAll()
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             return (from c in db.Contrato
                     select new Contrato
                     {
@@ -72,6 +105,7 @@ namespace OnBreak.Library
 
         public Contrato Read(string numContrato)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             Contrato contrato = (from c in db.Contrato
                                  where c.Numero == numContrato
                                  select new Contrato
@@ -109,11 +143,12 @@ namespace OnBreak.Library
 
         public bool Create(Contrato contrato)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             Cliente cliente = new Cliente();
             // si no se encuentra el cliente retorna falso
             if (cliente.Read(contrato.Cliente.RutCliente) == null)
             {
-                return false;
+                throw new ArgumentException("No se ha encontrado el rut del cliente");
             }
             try
             {
@@ -146,6 +181,7 @@ namespace OnBreak.Library
 
         public bool Update(Contrato contrato)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             try
             {
                 Datos.Contrato c = (from cdb in db.Contrato
@@ -181,6 +217,7 @@ namespace OnBreak.Library
         // Metodo que cambia Realizado==true si encuentra el contrato
         public bool Delete(string numero)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             try
             {
                 Datos.Contrato c = (from cdb in db.Contrato
@@ -209,7 +246,7 @@ namespace OnBreak.Library
         public bool ContratosAsociados(string rut)
         {
             List<Contrato> contratos = (from c in ReadAll()
-                                        where c.Cliente.RutCliente == rut
+                                        where c.Cliente.RutCliente == rut.ToUpper()
                                         select c).ToList();
 
             if (contratos.Count > 0)
@@ -230,7 +267,7 @@ namespace OnBreak.Library
         public List<Contrato> ReadAllByRut(string rut)
         {
             List<Contrato> contratos = (from c in ReadAll()
-                                        where c.Cliente.RutCliente.Contains(rut)
+                                        where c.Cliente.RutCliente.Contains(rut.ToUpper())
                                         select c).ToList();
             return contratos;
         }

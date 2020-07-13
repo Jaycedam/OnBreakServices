@@ -30,7 +30,6 @@ namespace OnBreakApp
             HideSubmenu();
             // Iniciar pagina bienvenido
             MainFrame.Navigate(new PageInicio());
-            lblCurrentPage.Content = "ONBREAK - PÁGINA PRINCIPAL";
         }
 
         public MainWindow(string user)
@@ -41,16 +40,14 @@ namespace OnBreakApp
             HideSubmenu();
             // Iniciar pagina bienvenido
             MainFrame.Navigate(new PageInicio());
-            lblCurrentPage.Content = "ONBREAK - PÁGINA PRINCIPAL";
         }
 
-
+        #region submenu
         // metodo para esconder menu
         private void HideSubmenu()
         {
             panelClienteSubmenu.Visibility = Visibility.Collapsed;
             panelContratosSubmenu.Visibility = Visibility.Collapsed;
-
         }
 
         // Metodo para mostrar/colapsar menu al presionar botones de menu
@@ -67,7 +64,9 @@ namespace OnBreakApp
                 subMenu.Visibility = Visibility.Collapsed;
             }
         }
+        #endregion
 
+        #region botones
         // Iniciar para mostrar/colapsar menu al presionar "Clientes"
         private void BtnClientes_Click(object sender, RoutedEventArgs e)
         {
@@ -84,35 +83,30 @@ namespace OnBreakApp
         private void BtnPaginaPrincipal_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageInicio());
-            lblCurrentPage.Content = "ONBREAK - PÁGINA PRINCIPAL";
         }
 
         // Asignar content page buscarcliente al presionar boton del menu
         private void BtnAdministrarClientes(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageAdminClientes());
-            lblCurrentPage.Content = "ONBREAK - ADMINISTRAR CLIENTES";
         }
 
         // Asignar content page listadoclientes al presionar boton del menu
         private void BtnListadoClientes_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageListadoClientes());
-            lblCurrentPage.Content = "ONBREAK - LISTADO CLIENTES";
         }
 
         // Asignar content page registrarcontrato al presionar boton del menu
         private void BtnAdministrarContratos(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageAdminContratos());
-            lblCurrentPage.Content = "ONBREAK - ADMINISTRAR CONTRATOS";
         }
 
         // Asignar content page listadocontratos al presionar boton del menu
         private void BtnListadoContratos_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new PageListadoContratos());
-            lblCurrentPage.Content = "ONBREAK - LISTADO CONTRATOS";
         }
 
         private void BtnCerrarSesion_Click(object sender, RoutedEventArgs e)
@@ -121,6 +115,7 @@ namespace OnBreakApp
             this.Close();
             lw.Show();
         }
+        #endregion
 
         //Permitir arrastrado en barra superior
         private void BorderTop_MouseDown(object sender, MouseButtonEventArgs e)
@@ -131,21 +126,5 @@ namespace OnBreakApp
             }
         }
 
-        // cambiar tema, beta
-        //private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
-        //{
-        //    ToggleSwitch toggleSwitch = sender as ToggleSwitch;
-        //    if (toggleSwitch != null)
-        //    {
-        //        if (toggleSwitch.IsOn == true)
-        //        {
-        //            ThemeManager.Current.ChangeTheme(this, "Dark.Purple");
-        //        }
-        //        else
-        //        {
-        //            ThemeManager.Current.ChangeTheme(this, "Light.Purple");
-        //        }
-        //    }
-        //}
     }
 }

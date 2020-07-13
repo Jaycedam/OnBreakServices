@@ -51,13 +51,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorator\CenasDecorator.cs" />
+    <Compile Include="Decorator\CocktailDecorator.cs" />
+    <Compile Include="Decorator\Decorator.cs" />
+    <Compile Include="Enumeradores.cs" />
     <Compile Include="Models\ActividadEmpresa.cs" />
+    <Compile Include="Models\Cenas.cs" />
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Cocktail.cs" />
+    <Compile Include="Models\CoffeeBreak.cs" />
     <Compile Include="Models\Contrato.cs" />
     <Compile Include="Models\ModalidadServicio.cs" />
+    <Compile Include="Models\TipoAmbientacion.cs" />
     <Compile Include="Models\TipoEmpresa.cs" />
     <Compile Include="Models\TipoEvento.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="ObjectBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Valorizador.cs" />
   </ItemGroup>

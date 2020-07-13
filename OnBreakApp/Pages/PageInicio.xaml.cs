@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ControlzEx.Theming;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,10 +24,28 @@ namespace OnBreakApp.Pages
         public PageInicio()
         {
             InitializeComponent();
+            SetWelcome();
         }
+
         private void BtnAyuda_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.lipsum.com/");
+        }
+
+        private void SetWelcome()
+        {
+            if(DateTime.Now.Hour >= 04 && DateTime.Now.Hour < 12)
+            {
+                lblBuenas.Content = "¡Buenos días!";
+            }
+            else if (DateTime.Now.Hour >= 12 && DateTime.Now.Hour < 20)
+            {
+                lblBuenas.Content = "¡Buenas tardes!";
+            }
+            else
+            {
+                lblBuenas.Content = "¡Buenas noches!";
+            }
         }
     }
 }

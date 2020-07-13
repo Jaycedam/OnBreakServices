@@ -9,23 +9,54 @@ namespace OnBreak.Library
 {
     public class Usuario
     {
-        public int Id { get; set; }
-        public string User { get; set; }
-        public string Password { get; set; }
+        private string _user;
+        private string _password;
 
-        OnBreakDBEntities db = new OnBreakDBEntities();
+        public string Password
+        {
+            get { return _password; }
+            set 
+            { 
+                if(value == string.Empty ||
+                    value == "contraseña")
+                {
+                    throw new ArgumentException("Debes ingresar un usuario y contraseña válidos");
+                }
+                _password = value; 
+            }
+        }
+
+        public string User
+        {
+            get { return _user; }
+            set 
+            {
+                if(value == string.Empty || 
+                    value.ToLower().Trim() == "usuario")
+                {
+                    throw new ArgumentException("Debes ingresar un usuario y contraseña válidos");
+                }
+                _user = value.ToLower().Trim(); 
+            }
+        }
+
+        public Usuario()
+        {
+
+        }
 
         // Listar users
         public List<Usuario> ReadAll()
         {
-            return (from u in db.Usuario
+            OnBreakDBEntities db = new OnBreakDBEntities();
+            return (from u in db.User
                     select new Usuario
                     {
-                        Id = u.Id,
-                        User = u.User,
+                        User = u.User1,
                         Password = u.Password
                     }).ToList();
         }
+
         public bool Login(Usuario usuario)
         {
             var user = (from c in ReadAll()
@@ -43,6 +74,7 @@ namespace OnBreak.Library
 
         public bool Register(Usuario usuario)
         {
+            OnBreakDBEntities db = new OnBreakDBEntities();
             var user = (from u in ReadAll()
                         where u.User == usuario.User
                         select u).FirstOrDefault();
@@ -53,11 +85,13 @@ namespace OnBreak.Library
             }
             try
             {
-                Datos.Usuario u = new Datos.Usuario();
-                u.User = usuario.User.ToLower();
-                u.Password = usuario.Password;
+                User u = new User
+                {
+                    User1 = usuario.User,
+                    Password = usuario.Password
+                };
 
-                db.Usuario.Add(u);
+                db.User.Add(u);
                 db.SaveChanges();
                 return true;
 

@@ -54,21 +54,11 @@ namespace OnBreakApp.Pages
 
         private async void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            // Validacion de entrada de usuario
-            if (txtLoginUser.Text.Trim().ToLower() == "usuario" ||
-                txtLoginUser.Text == String.Empty ||
-                passLogin.Password == String.Empty ||
-                passLogin.Password == "password")
-            {
-                await MetroDialogue("Iniciar sesión",
-                    "Debes ingresar un usuario y contraseña");
-                return;
-            }
-            else
+            try
             {
                 Usuario usuario = new Usuario()
                 {
-                    User = txtLoginUser.Text.ToLower().Trim(),
+                    User = txtLoginUser.Text,
                     Password = passLogin.Password
                 };
                 if (usuario.Login(usuario))
@@ -89,6 +79,15 @@ namespace OnBreakApp.Pages
                         "Usuario o contraseña incorrectos");
                 }
             }
+            catch (Exception x)
+            {
+                await MetroDialogue("Iniciar sesión", x.Message);
+            }
+        }
+
+        private void closeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

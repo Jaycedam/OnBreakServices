@@ -30,21 +30,11 @@ namespace OnBreakApp.Pages
 
         private async void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-            // Validacion de entrada de usuario
-            if (txtRegisterUser.Text.ToLower().Trim() == "usuario" ||
-                txtRegisterUser.Text == String.Empty ||
-                passRegister.Password == String.Empty ||
-                passRegister.Password == "password")
-            {
-                await MetroDialogue("Registrar usuario",
-                    "Debes ingresar un usuario y contraseña válidos");
-
-            }
-            else
+            try
             {
                 Usuario usuario = new Usuario()
                 {
-                    User = txtRegisterUser.Text.ToLower().Trim(),
+                    User = txtRegisterUser.Text,
                     Password = passRegister.Password
                 };
                 if (usuario.Register(usuario))
@@ -56,10 +46,11 @@ namespace OnBreakApp.Pages
                 {
                     await MetroDialogue("Registrar usuario",
                         "Este nombre de usuario ya existe");
-                    // Reset de labels
-                    txtRegisterUser.Text = "Usuario";
-                    passRegister.Password = "password";
                 }
+            }
+            catch (Exception x)
+            {
+                await MetroDialogue("Registrar usuario", x.Message);
             }
         }
 
@@ -87,6 +78,11 @@ namespace OnBreakApp.Pages
         {
             await this.TryFindParent<MetroWindow>()
                                 .ShowMessageAsync(title, message);
+        }
+
+        private void closeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

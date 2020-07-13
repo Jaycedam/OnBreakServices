@@ -15,6 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Runtime.Caching;
+using OnBreak.Library.Models;
+using OnBreak.Library.Decorator;
 
 namespace OnBreakApp.Pages
 {
@@ -23,164 +26,496 @@ namespace OnBreakApp.Pages
     /// </summary>
     public partial class PageAdminContratos : Page
     {
-        Valorizador valorizador = new Valorizador();
+        FileCache f = new FileCache(new ObjectBinder());
+        private bool invalidDate;
 
+        #region constructores
         public PageAdminContratos()
         {
             InitializeComponent();
             PopCbo();
+            lblRespaldo.Content = f["horaRespaldo"];
         }
 
-        // Init con constructor para llamar del listado
         public PageAdminContratos(string numContrato)
         {
             InitializeComponent();
             PopCbo();
             Contrato contrato = new Contrato().Read(numContrato);
             DataContrato(contrato);
+            lblRespaldo.Content = f["horaRespaldo"];
         }
 
-        /********************************* CRUD BOTONES*********************************/
+        public PageAdminContratos(string rut, string name)
+        {
+            InitializeComponent();
+            PopCbo();
+            txtRut.Text = rut;
+            lblRespaldo.Content = f["horaRespaldo"];
+        }
+        #endregion
 
+        #region respaldo y restaurar
+        public void Backup()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                Contrato contrato = new Contrato();
+
+                try
+                {
+                    contrato.Cliente = new Cliente()
+                    {
+                        RutCliente = txtRut.Text.ToString()
+                    };
+                }
+                catch (Exception)
+                {
+                }
+              
+
+                if (dpFechaInicio.SelectedDateTime != null)
+                {
+                    contrato.FechaHoraInicio = (DateTime)dpFechaInicio.SelectedDateTime;
+                }
+
+                if (dpFechaTermino.SelectedDateTime != null)
+                {
+                    contrato.FechaHoraTermino = (DateTime)dpFechaTermino.SelectedDateTime;
+                }
+
+                if(cboModalidad.SelectedValue != null)
+                {
+                    contrato.ModalidadServicio = new ModalidadServicio()
+                    {
+                        IdModalidad = cboModalidad.SelectedValue.ToString(),
+                        TipoEvento = new TipoEvento()
+                        {
+                            IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                        }
+                    };
+                }
+
+                if (int.TryParse(txtCantAsist.Text, out int a))
+                {
+                    contrato.Asistentes = a;
+                }
+                if (int.TryParse(txtCantPersonal.Text, out int p))
+                {
+                    contrato.PersonalAdicional = p;
+                }
+                contrato.Observaciones = txtObservaciones.Text;
+                contrato.Realizado = chkRealizado.IsChecked.Value;
+
+                f["contrato"] = contrato;
+
+
+                // SE VALIDA TIPO EVENTO PARA CREAR EL CACHE CORRESPONDIENTE
+                if (cboTipoEvento.SelectedValue.ToString() == "10")
+                {
+                    CoffeeBreak coffeeBreak = new CoffeeBreak();
+                    coffeeBreak.Vegetariana = chkVegetariana.IsChecked.Value;
+                    f["adicional"] = coffeeBreak;
+                }
+
+                else if (cboTipoEvento.SelectedValue.ToString() == "20")
+                {
+                    Cocktail cocktail = new Cocktail();
+
+                    if(cboAmbientacion.SelectedValue != null)
+                    {
+                        cocktail.TipoAmbientacion = new TipoAmbientacion()
+                        {
+                            Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                        };
+                    }
+                   
+                    cocktail.MusicaAmbiental = chkMusica.IsChecked.Value;
+
+                    f["adicional"] = cocktail;
+                }
+
+                else if (cboTipoEvento.SelectedValue.ToString() == "30")
+                {
+                    Cenas cenas = new Cenas();
+
+                    cenas.TipoAmbientacion = new TipoAmbientacion()
+                    {
+                        Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                    };
+
+                    cenas.MusicaAmbiental = chkMusica.IsChecked.Value;
+                    cenas.LocalOnBreak = LocalOnBreak();
+                    cenas.OtroLocalOnBreak = ArrendarLocal();
+                    if (double.TryParse(txtMontoArriendo.Text, out double m))
+                    {
+                        cenas.ValorArriendo = m;
+                    }
+
+                    cenas.LocalOnBreak = LocalOnBreak();
+                    cenas.OtroLocalOnBreak = ArrendarLocal();
+
+                    f["adicional"] = cenas;
+                }
+
+                string horaRespaldo = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+             
+                f["horaRespaldo"] = horaRespaldo;
+                lblRespaldo.Content = horaRespaldo;
+            });
+        }
+
+        private void RestoreBackup()
+        {
+            FileCache f = new FileCache(new ObjectBinder());
+
+            if (f["contrato"] != null)
+            {
+                Contrato contrato = (Contrato)f["contrato"];
+
+                lblRespaldo.Content = f["horaRespaldo"];
+
+                txtRut.Text = contrato.Cliente.RutCliente;
+
+                if (contrato.FechaHoraInicio.Year != 1)
+                {
+                    dpFechaInicio.SelectedDateTime = contrato.FechaHoraInicio;
+                }
+                if (contrato.FechaHoraTermino.Year != 1)
+                {
+                    dpFechaTermino.SelectedDateTime = contrato.FechaHoraTermino;
+                }
+
+                cboTipoEvento.SelectedValue = contrato.ModalidadServicio.TipoEvento.IdTipoEvento;
+                cboModalidad.SelectedValue = contrato.ModalidadServicio.IdModalidad;
+                txtCantAsist.Text = contrato.Asistentes.ToString();
+                txtCantPersonal.Text = contrato.PersonalAdicional.ToString();
+                txtObservaciones.Text = contrato.Observaciones;
+                chkRealizado.IsChecked = contrato.Realizado;
+            }
+
+            // SE VALIDA EL TIPO EVENTO RESTAURADO PARA RESTAURAR EL CACHE CORRESPONDIENTE
+            if (f["adicional"].GetType() == typeof(CoffeeBreak))
+            {
+                CoffeeBreak cofeeBreak = (CoffeeBreak)f["adicional"];
+                chkVegetariana.IsChecked = cofeeBreak.Vegetariana;
+            }
+            else if (f["adicional"].GetType() == typeof(Cocktail))
+            {
+                Cocktail cocktail = (Cocktail)f["adicional"];
+                if(cocktail.TipoAmbientacion != null)
+                {
+                    cboAmbientacion.SelectedValue = cocktail.TipoAmbientacion.Id;
+                }
+                chkMusica.IsChecked = cocktail.MusicaAmbiental;
+            }
+            else if (f["adicional"].GetType() == typeof(Cenas))
+            {
+                Cenas cenas = (Cenas)f["adicional"];
+                cboAmbientacion.SelectedValue = cenas.TipoAmbientacion.Id;
+                chkMusica.IsChecked = cenas.MusicaAmbiental;
+
+                if (cenas.LocalOnBreak)
+                {
+                    cboLocal.SelectedIndex = 1;
+                }
+                else if (cenas.OtroLocalOnBreak)
+                {
+                    cboLocal.SelectedIndex = 2;
+                    txtMontoArriendo.Text = cenas.ValorArriendo.ToString();
+                }
+                else
+                {
+                    cboLocal.SelectedIndex = 0;
+                }
+            }
+
+            CalcularMonto();
+        }
+        #endregion
+
+        #region botones CRUD
         private async void BtnRegistrarContrato_Click(object sender, RoutedEventArgs e)
         {
-            if (FaltanCamposObligatorios())
+            try
             {
-                await MetroDialogue("Registrar contrato",
-                    "Debes ingresar todos los campos obligatorios");
-                return;
-            }
-            else if (InvalidEntry())
-            {
-                await MetroDialogue("Registrar contrato",
-                    "Cantidad de asistentes y personal sólo acepta números");
-                return;
-            }
-            else if (InvalidDate())
-            {
-                await MetroDialogue("Registrar contrato",
-                  "La fecha de término no puede ser anterior a la de inicio del evento");
-                return;
-            }
-            DateTime creationDate = DateTime.Now;
-            Contrato contrato = new Contrato()
-            {
-                Numero = creationDate.ToString("yyyyMMddHHmm"),
-                Creacion = creationDate,
-                Termino = (DateTime)dpFechaTermino.SelectedDateTime,
-                Cliente = new Cliente()
+                await InvalidDate();
+
+                if (invalidDate)
                 {
-                    RutCliente = txtRut.Text.ToUpper().Trim()
-                },
-                ModalidadServicio = new ModalidadServicio()
+                    return;
+                }
+                else if (InvalidEntry())
                 {
-                    IdModalidad = cboModalidad.SelectedValue.ToString(),
-                    TipoEvento = new TipoEvento()
+                    await MetroDialogue("Registrar contrato",
+                        "Ha ocurrido un error validando los datos numéricos");
+                    return;
+                }
+
+                DateTime creationDate = DateTime.Now;
+                Contrato contrato = new Contrato()
+                {
+                    Numero = creationDate.ToString("yyyyMMddHHmm"),
+                    Creacion = creationDate,
+                    Termino = (DateTime)dpFechaTermino.SelectedDateTime,
+                    Cliente = new Cliente()
                     {
-                        IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                        RutCliente = txtRut.Text
+                    },
+                    ModalidadServicio = new ModalidadServicio()
+                    {
+                        IdModalidad = cboModalidad.SelectedValue.ToString(),
+                        TipoEvento = new TipoEvento()
+                        {
+                            IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                        }
+                    },
+                    FechaHoraInicio = (DateTime)dpFechaInicio.SelectedDateTime,
+                    FechaHoraTermino = (DateTime)dpFechaTermino.SelectedDateTime,
+                    Asistentes = int.Parse(txtCantAsist.Text),
+                    PersonalAdicional = int.Parse(txtCantPersonal.Text),
+                    Realizado = chkRealizado.IsChecked.Value,
+                    ValorTotalContrato = double.Parse(lblMonto.Content.ToString()),
+                    Observaciones = txtObservaciones.Text
+                };
+
+                if (contrato.Create(contrato))
+                {
+                    lblNumContrato.Content = creationDate.ToString("yyyyMMddHHmm");
+
+                    // CREAR TABLA DE TIPO DE EVENTO CORRESPONDIENTE AL CONTRATO
+                    if (cboTipoEvento.SelectedValue.ToString() == "10")
+                    {
+                        CoffeeBreak c = new CoffeeBreak()
+                        {
+                            Contrato = new Contrato()
+                            {
+                                Numero = contrato.Numero,
+                            },
+                            Vegetariana = chkVegetariana.IsChecked.Value
+                        };
+                        c.Create(c);
                     }
-                },
-                FechaHoraInicio = (DateTime)dpFechaInicio.SelectedDateTime,
-                FechaHoraTermino = (DateTime)dpFechaTermino.SelectedDateTime,
-                Asistentes = int.Parse(txtCantAsist.Text),
-                PersonalAdicional = int.Parse(txtCantPersonal.Text),
-                Realizado = chkRealizado.IsChecked.Value,
-                ValorTotalContrato = double.Parse(lblMonto.Content.ToString()),
-                Observaciones = txtObservaciones.Text,
-            };
-            if (contrato.Create(contrato))
-            {
-                lblNumContrato.Content = creationDate.ToString("yyyyMMddHHmm");
-                await MetroDialogue("Registrar contrato",
-                    "Contrato registrado correctamente");
+
+                    else if (cboTipoEvento.SelectedValue.ToString() == "20")
+                    {
+                        if (cboAmbientacion.SelectedValue == null)
+                        {
+                            Cocktail c = new Cocktail()
+                            {
+                                Contrato = new Contrato()
+                                {
+                                    Numero = contrato.Numero,
+                                },
+                                MusicaAmbiental = chkMusica.IsChecked.Value,
+                                MusicaCliente = !(chkMusica.IsChecked.Value)
+                            };
+                            c.Create(c);
+                        }
+
+                        else
+                        {
+                            Cocktail c = new Cocktail()
+                            {
+                                Contrato = new Contrato()
+                                {
+                                    Numero = contrato.Numero,
+                                },
+                                TipoAmbientacion = new TipoAmbientacion()
+                                {
+                                    Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                                },
+                                MusicaAmbiental = chkMusica.IsChecked.Value,
+                                MusicaCliente = !(chkMusica.IsChecked.Value)
+                            };
+                            c.Create(c);
+                        }
+
+                    }
+                    else if (cboTipoEvento.SelectedValue.ToString() == "30")
+                    {
+                        Cenas c = new Cenas()
+                        {
+                            Contrato = new Contrato()
+                            {
+                                Numero = contrato.Numero
+                            },
+                            LocalOnBreak = LocalOnBreak(),
+                            OtroLocalOnBreak = ArrendarLocal(),
+                            MusicaAmbiental = chkMusica.IsChecked.Value,
+                            ValorArriendo = double.Parse(txtMontoArriendo.Text),
+                            TipoAmbientacion = new TipoAmbientacion()
+                            {
+                                Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                            }
+                        };
+                        c.Create(c);
+                    }
+
+                    await MetroDialogue("Registrar contrato",
+                        "Contrato registrado correctamente");
+
+                    // SE HABILITA LA MODIFICACION Y SE BLOQUEA EL BOTON REGISTRAR
+                    EnableRut(false);
+                    EnableChangeTipoEvento(false);
+                    EnableEditButtons(true);
+                    EnableRegisterButton(false);
+                }
+
+                else
+                {
+                    await MetroDialogue("Registrar contrato",
+                        "Ha ocurrido un error al registrar el contrato, intenta nuevamente");
+                }
             }
-            else
+            catch (Exception x)
             {
-                await MetroDialogue("Registrar contrato",
-                    "No se ha encontrado el rut del cliente");
+                await MetroDialogue("Registrar contrato", x.Message);
             }
         }
 
-        private async void BtnBuscarContrato_Click(object sender, RoutedEventArgs e)
+        private void BtnBuscarContrato_Click(object sender, RoutedEventArgs e)
         {
-            // missing: codigo que busca cliente desde txtrutin
-            if (txtNumContrato.Text == String.Empty)
-            {
-                await MetroDialogue("Buscar contrato",
-                    "Debes ingresar el número de contrato");
-            }
-            else
-            {
-                Contrato contrato = new Contrato().Read(txtNumContrato.Text.Trim());
-                DataContrato(contrato);
-            }
+            Contrato contrato = new Contrato().Read(txtNumContrato.Text);
+            // METODO QUE POBLA LOS DATOS DEL CONTRATO ENCONTRADO
+            DataContrato(contrato);
         }
 
         private async void BtnModificarContrato_Click(object sender, RoutedEventArgs e)
         {
-            if (FaltanCamposObligatorios())
+            try
             {
-                await MetroDialogue("Modificar contrato",
-                    "Debes ingresar todos los campos obligatorios");
-                return;
-            }
-            else if (InvalidEntry())
-            {
-                await MetroDialogue("Modificar contrato",
-                    "Cantidad de asistentes y personal sólo acepta números");
-                return;
-            }
-            else if (InvalidDate())
-            {
-                await MetroDialogue("Modificar contrato",
-                  "La fecha de término no puede ser anterior a la de inicio del evento");
-                return;
-            }
+                if (InvalidEntry())
+                {
+                    await MetroDialogue("Modificar contrato",
+                        "Ha ocurrido un error validando los datos numéricos");
+                    return;
+                }
+                await InvalidDate();
+
+                if (invalidDate)
+                {
+                    return;
+                }
 
                 Contrato contrato = new Contrato()
-            {
-                Numero = lblNumContrato.Content.ToString(),
-                Observaciones = txtObservaciones.Text,
-                FechaHoraInicio = (DateTime)dpFechaInicio.SelectedDateTime,
-                FechaHoraTermino = (DateTime)dpFechaTermino.SelectedDateTime,
-                Asistentes = int.Parse(txtCantAsist.Text),
-                PersonalAdicional = int.Parse(txtCantPersonal.Text),
-                Realizado = chkRealizado.IsChecked.Value,
-                ValorTotalContrato = double.Parse(lblMonto.Content.ToString()),
-                ModalidadServicio = new ModalidadServicio()
                 {
-                    IdModalidad = cboModalidad.SelectedValue.ToString(),
-                    TipoEvento = new TipoEvento()
+                    Numero = lblNumContrato.Content.ToString(),
+                    Observaciones = txtObservaciones.Text,
+                    FechaHoraInicio = (DateTime)dpFechaInicio.SelectedDateTime,
+                    FechaHoraTermino = (DateTime)dpFechaTermino.SelectedDateTime,
+                    Asistentes = int.Parse(txtCantAsist.Text),
+                    PersonalAdicional = int.Parse(txtCantPersonal.Text),
+                    Realizado = chkRealizado.IsChecked.Value,
+                    ValorTotalContrato = double.Parse(lblMonto.Content.ToString()),
+                    ModalidadServicio = new ModalidadServicio()
                     {
-                        IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                        IdModalidad = cboModalidad.SelectedValue.ToString(),
+                        TipoEvento = new TipoEvento()
+                        {
+                            IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                        }
+                    }
+                };
+
+                if (contrato.Update(contrato))
+                {
+                    // SE ACTUALIZA LA TABLA CORRESPONDIENTE AL CONTRATO
+                    if (contrato.ModalidadServicio.TipoEvento.IdTipoEvento == 10)
+                    {
+                        CoffeeBreak coffeeBreak = new CoffeeBreak()
+                        {
+                            Contrato = new Contrato()
+                            {
+                                Numero = contrato.Numero
+                            },
+                            Vegetariana = chkVegetariana.IsChecked.Value
+                        };
+                        coffeeBreak.Update(coffeeBreak);
+                    }
+
+                    else if (contrato.ModalidadServicio.TipoEvento.IdTipoEvento == 20)
+                    {
+                        // SI NO HAY AMBIENTACION SELECCIONADA NO SE CREA EN LA TABLA
+                        if (cboAmbientacion.SelectedIndex == -1)
+                        {
+                            Cocktail cocktail = new Cocktail()
+                            {
+                                Contrato = new Contrato()
+                                {
+                                    Numero = contrato.Numero,
+                                },
+                                MusicaAmbiental = chkMusica.IsChecked.Value,
+                                MusicaCliente = !(chkMusica.IsChecked.Value)
+                            };
+                            cocktail.Update(cocktail);
+                        }
+
+                        else
+                        {
+                            Cocktail cocktail = new Cocktail()
+                            {
+                                Contrato = new Contrato()
+                                {
+                                    Numero = contrato.Numero,
+                                },
+                                TipoAmbientacion = new TipoAmbientacion()
+                                {
+                                    Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                                },
+                                MusicaAmbiental = chkMusica.IsChecked.Value,
+                                MusicaCliente = !(chkMusica.IsChecked.Value)
+                            };
+                            cocktail.Update(cocktail);
+                        }
+                    }
+
+                    else if (contrato.ModalidadServicio.TipoEvento.IdTipoEvento == 30)
+                    {
+                        Cenas c = new Cenas()
+                        {
+                            Contrato = new Contrato()
+                            {
+                                Numero = contrato.Numero
+                            },
+                            LocalOnBreak = LocalOnBreak(),
+                            OtroLocalOnBreak = ArrendarLocal(),
+                            MusicaAmbiental = chkMusica.IsChecked.Value,
+                            ValorArriendo = double.Parse(txtMontoArriendo.Text),
+                            TipoAmbientacion = new TipoAmbientacion()
+                            {
+                                Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                            }
+                        };
+                        c.Update(c);
+                    }
+
+                    await MetroDialogue("Modificar contrato",
+                        "Contrato modificado correctamente");
+
+                    // SI SE FINALIZA EL CONTRATO SE BLOQUEAN LAS EDICIONES
+                    if (contrato.Realizado)
+                    {
+                        BlockEdits(true);
                     }
                 }
 
-            };
-
-            if (contrato.Update(contrato))
-            {
-                await MetroDialogue("Modificar contrato",
-                    "Contrato modificado correctamente");
+                else
+                {
+                    await MetroDialogue("Modificar contrato",
+                        "Contrato no encontrado");
+                }
             }
-            else
+            catch (Exception x)
             {
-                await MetroDialogue("Modificar contrato",
-                    "Contrato no encontrado");
+                await MetroDialogue("Modificar contrato", x.Message); ;
             }
+          
         }
-
 
         private async void BtnFinalizarContrato_Click(object sender, RoutedEventArgs e)
         {
-            //missing: codigo eliminar cliente lista
-            if (FaltanCamposObligatorios())
-            {
-                await MetroDialogue("Finalizar contrato",
-                    "Debes ingresar todos los datos obligatorios");
-                return;
-            }
-
+            // SE PIDE CONFIRMACION DE LA FINALIZACION
             var result = await this.TryFindParent<MetroWindow>()
                                 .ShowMessageAsync("Finalizar contrato",
                                 "¿Estás seguro que deseas finalizar este contrato?",
@@ -193,8 +528,9 @@ namespace OnBreakApp.Pages
                 {
                     await MetroDialogue("Finalizar contrato",
                         "Contrato finalizado correctamente");
-                    LimpiarCampos();
+                    BlockEdits(true);
                 }
+
                 else
                 {
                     await MetroDialogue("Finalizar contrato",
@@ -202,67 +538,277 @@ namespace OnBreakApp.Pages
                 }
             }
         }
+        #endregion
 
-        /**********************************END CRUD************************************/
+        #region otros botones
+        private void LimpiarDatos_Click(object sender, RoutedEventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void BtnBackup(object sender, RoutedEventArgs e)
+        {
+            Backup();
+        }
+
+        private void BtnRestoreBackup(object sender, RoutedEventArgs e)
+        {
+            RestoreBackup();
+        }
+        #endregion
+
+        #region validaciones
         private bool InvalidEntry()
         {
-            if (int.TryParse(txtCantAsist.Text, out int a) == false ||
-                int.TryParse(txtCantPersonal.Text, out int p) == false ||
+            if (!int.TryParse(txtCantAsist.Text, out _) ||
+                !int.TryParse(txtCantPersonal.Text, out _) ||
+                !double.TryParse(txtMontoArriendo.Text, out _) ||
                 int.Parse(txtCantAsist.Text) < 0 ||
-                int.Parse(txtCantPersonal.Text) < 0)
+                int.Parse(txtCantPersonal.Text) < 0 ||
+                int.Parse(txtMontoArriendo.Text) < 0 ||
+                txtCantAsist.Text == string.Empty ||
+                txtCantPersonal.Text == string.Empty ||
+                txtMontoArriendo.Text == string.Empty)
             {
                 return true;
             }
             return false;
         }
 
-        private bool InvalidDate()
+        private async Task InvalidDate()
         {
-            if (dpFechaInicio.SelectedDateTime > dpFechaTermino.SelectedDateTime)
+            if (!dpFechaInicio.SelectedDateTime.HasValue || !dpFechaTermino.SelectedDateTime.HasValue)
             {
-                return true;
+                invalidDate = true;
+                await MetroDialogue("Fecha inválida",
+                    "No has ingresado una fecha válida");
             }
-            return false;
+            else if (dpFechaInicio.SelectedDateTime > dpFechaTermino.SelectedDateTime)
+            {
+                invalidDate = true;
+                await MetroDialogue("Fecha inválida", 
+                    "La fecha de término no puede ser menor a la de inicio del evento");
+            }
+            else if(dpFechaInicio.SelectedDateTime < DateTime.Now)
+            {
+                invalidDate = true;
+                await MetroDialogue("Fecha inválida",
+                    "La fecha de inicio del evento no puede ser menor a la de fecha actual");
+            }
+            else if (DateTime.Now.AddMonths(10) < dpFechaInicio.SelectedDateTime)
+            {
+                invalidDate = true;
+                await MetroDialogue("Fecha inválida",
+                    "El inicio del evento no puede superar los 10 meses desde la fecha actual");
+            }
+            else if(dpFechaInicio.SelectedDateTime.Value.AddHours(24) < dpFechaTermino.SelectedDateTime)
+            {
+                invalidDate = true;
+                await MetroDialogue("Fecha inválida",
+                    "La duración del evento debe ser de un máximo de 24 horas");
+            }
+            else
+            {
+                invalidDate = false;
+            }
+        }
+        #endregion
+
+        #region enable/disable sections
+        // METODO QUE BLOQUEA TODA LA VISUAL (EXPECTED = TRUE/FALSE)
+        private void BlockEdits(bool expected)
+        {
+            if (expected)
+            {
+                EnableRut(false);
+                EnableEditButtons(false);
+                EnableRegisterButton(false);
+                EnableChangeTipoEvento(false);
+                dpFechaInicio.IsEnabled = false;
+                dpFechaInicio.Opacity = 0.5;
+                dpFechaTermino.IsEnabled = false;
+                dpFechaTermino.Opacity = 0.5;
+                cboModalidad.IsEnabled = false;
+                cboModalidad.Opacity = 0.5;
+                chkVegetariana.IsEnabled = false;
+                chkVegetariana.Opacity = 0.5;
+                cboAmbientacion.IsEnabled = false;
+                cboAmbientacion.Opacity = 0.5;
+                chkMusica.IsEnabled = false;
+                chkMusica.Opacity = 0.5;
+                txtCantAsist.IsEnabled = false;
+                txtCantAsist.Opacity = 0.5;
+                txtCantPersonal.IsEnabled = false;
+                txtCantPersonal.Opacity = 0.5;
+                txtObservaciones.IsEnabled = false;
+                txtObservaciones.Opacity = 0.5;
+                chkRealizado.IsEnabled = false;
+                chkRealizado.Opacity = 0.5;
+                txtMontoArriendo.IsEnabled = false;
+                txtMontoArriendo.Opacity = 0.5;
+            }
+
+            else
+            {
+                EnableRut(true);
+                EnableRegisterButton(true);
+                EnableChangeTipoEvento(true);
+                EnableEditButtons(false);
+                txtRut.IsEnabled = true;
+                txtRut.Opacity = 1;
+                dpFechaInicio.IsEnabled = true;
+                dpFechaInicio.Opacity = 1;
+                dpFechaTermino.IsEnabled = true;
+                dpFechaTermino.Opacity = 1;
+                cboTipoEvento.IsEnabled = true;
+                cboTipoEvento.Opacity = 1;
+                cboModalidad.IsEnabled = true;
+                cboModalidad.Opacity = 1;
+                chkVegetariana.IsEnabled = true;
+                chkVegetariana.Opacity = 1;
+                cboAmbientacion.IsEnabled = true;
+                cboAmbientacion.Opacity = 1;
+                chkMusica.IsEnabled = true;
+                chkMusica.Opacity = 1;
+                txtCantAsist.IsEnabled = true;
+                txtCantAsist.Opacity = 1;
+                txtCantPersonal.IsEnabled = true;
+                txtCantPersonal.Opacity = 1;
+                txtObservaciones.IsEnabled = true;
+                txtObservaciones.Opacity = 1;
+                chkRealizado.IsEnabled = true;
+                chkRealizado.Opacity = 1;
+                AditionalOptions();
+            }
         }
 
-        // metodo que habilita/deshabilita los botones de modificar/finalizar 
-        private void EnableButtons(bool enable)
+        private void EnableEditButtons(bool enable)
         {
             btnModificarContrato.IsEnabled = enable;
             btnFinalizarContrato.IsEnabled = enable;
-            if (btnModificarContrato.IsEnabled == false)
+
+            if (enable)
+            {
+                btnModificarContrato.Opacity = 1;
+                btnFinalizarContrato.Opacity = 1;
+            }
+
+            else
             {
                 btnModificarContrato.Opacity = 0.5;
                 btnFinalizarContrato.Opacity = 0.5;
             }
+        }
+
+        private void EnableRegisterButton(bool enable)
+        {
+            btnRegistrarContrato.IsEnabled = enable;
+
+            if (enable)
+            {
+                btnRegistrarContrato.Opacity = 1;
+            }
             else
             {
-                btnModificarContrato.Opacity = 1;
-                btnFinalizarContrato.Opacity = 1;
+                btnRegistrarContrato.Opacity = 0.5;
             }
         }
 
         private void EnableRut(bool enable)
         {
             txtRut.IsEnabled = enable;
-            if (txtRut.IsEnabled == false)
-            {
-                txtRut.Opacity = 0.5;
-            }
-            else
+            if (enable)
             {
                 txtRut.Opacity = 1;
             }
+            else
+            {
+                txtRut.Opacity = 0.5;
+            }
         }
 
+        private void EnableChangeTipoEvento(bool enable)
+        {
+            cboTipoEvento.IsEnabled = enable;
+            if (enable)
+            {
+                cboTipoEvento.Opacity = 1;
+            }
+            else
+            {
+                cboTipoEvento.Opacity = 0.5;
+            }
+        }
+
+        // METODO ENCARGADO DE HABILITAR OPCIONES ADICIONALES POR TIPO DE EVENTO SELECCIONADO
+        private void AditionalOptions()
+        {
+            if (cboTipoEvento.SelectedValue.ToString() == "10")
+            {
+                chkVegetariana.IsEnabled = true;
+                chkVegetariana.IsChecked = false;
+                chkVegetariana.Opacity = 1;
+
+                cboAmbientacion.IsEnabled = false;
+                cboAmbientacion.SelectedIndex = -1;
+                cboAmbientacion.Opacity = 0.5;
+
+                chkMusica.IsEnabled = false;
+                chkMusica.IsChecked = false;
+                chkMusica.Opacity = 0.5;
+
+                cboLocal.IsEnabled = false;
+                cboLocal.Opacity = 0.5;
+                cboLocal.SelectedIndex = 0;
+            }
+
+            else if (cboTipoEvento.SelectedValue.ToString() == "20")
+            {
+                cboAmbientacion.IsEnabled = true;
+                cboAmbientacion.SelectedIndex = -1;
+                cboAmbientacion.Opacity = 1;
+                lblAmbientacion.Content = "Ambientación (opcional)";
+
+                chkMusica.IsEnabled = true;
+                chkMusica.Opacity = 1;
+
+                chkVegetariana.IsEnabled = false;
+                chkVegetariana.IsChecked = false;
+                chkVegetariana.Opacity = 0.5;
+
+                cboLocal.IsEnabled = false;
+                cboLocal.Opacity = 0.5;
+                cboLocal.SelectedIndex = 0;
+                lblAmbientacion.Content = "Ambientación";
+            }
+
+            else
+            {
+                cboAmbientacion.IsEnabled = true;
+                cboAmbientacion.SelectedIndex = 0;
+                cboAmbientacion.Opacity = 1;
+
+                chkMusica.IsEnabled = true;
+                chkMusica.Opacity = 1;
+
+                cboLocal.IsEnabled = true;
+                cboLocal.Opacity = 1;
+
+                chkVegetariana.IsEnabled = false;
+                chkVegetariana.IsChecked = false;
+                chkVegetariana.Opacity = 0.5;
+            }
+        }
+        #endregion
+
+        #region popular datos
         //Metodo que se encarga de popular datos del contrato al buscar
-        //entrega notificación si no es encontrado
         private async void DataContrato(Contrato contrato)
         {
             if (contrato == null)
             {
                 await MetroDialogue("Buscar contrato",
-                "Contrato no encontrado");
+                    "Contrato no encontrado");
             }
             else
             {
@@ -277,42 +823,265 @@ namespace OnBreakApp.Pages
                 txtCantPersonal.Text = contrato.PersonalAdicional.ToString();
                 chkRealizado.IsChecked = contrato.Realizado;
                 CalcularMonto();
-                EnableButtons(true);
+                EnableEditButtons(true);
+                EnableRegisterButton(false);
                 EnableRut(false);
+                EnableChangeTipoEvento(false);
+
+                if(contrato.ModalidadServicio.TipoEvento.IdTipoEvento == 10)
+                {
+                    CoffeeBreak coffeeBreak = new CoffeeBreak().Read(contrato.Numero);
+                    chkVegetariana.IsChecked = coffeeBreak.Vegetariana;
+                }
+
+                else if (contrato.ModalidadServicio.TipoEvento.IdTipoEvento == 20)
+                {
+                    Cocktail cocktail = new Cocktail().Read(contrato.Numero);
+                    chkMusica.IsChecked = cocktail.MusicaAmbiental;
+                    if(cocktail.TipoAmbientacion != null)
+                    {
+                        cboAmbientacion.SelectedValue = cocktail.TipoAmbientacion.Id;
+                    }
+                }
+
+                else if (contrato.ModalidadServicio.TipoEvento.IdTipoEvento == 30)
+                {
+                    Cenas c = new Cenas().Read(contrato.Numero);
+                    chkMusica.IsChecked = c.MusicaAmbiental;
+                    cboAmbientacion.SelectedValue = c.TipoAmbientacion.Id;
+
+                    if (c.LocalOnBreak)
+                    {
+                        cboLocal.SelectedIndex = 1;
+                    }
+
+                    else if (c.OtroLocalOnBreak)
+                    {
+                        cboLocal.SelectedIndex = 2;
+                        txtMontoArriendo.Text = c.ValorArriendo.ToString();
+                    }
+
+                    else
+                    {
+                        cboLocal.SelectedIndex = 0;
+                    }
+                }
+
+                // si el contrato es finalizado se bloquean la edicion
+                if (contrato.Realizado == true)
+                {
+                    BlockEdits(true);
+                }
             }
         }
 
+        public void PopCbo()
+        {
+            TipoEvento tipoEvento = new TipoEvento();
+            TipoAmbientacion tipoAmbientacion = new TipoAmbientacion();
+
+            cboTipoEvento.ItemsSource = tipoEvento.ReadAll();
+            cboTipoEvento.DisplayMemberPath = "Descripcion";
+            cboTipoEvento.SelectedValuePath = "IdTipoEvento";
+            cboTipoEvento.SelectedIndex = 0;
+
+            cboAmbientacion.ItemsSource = tipoAmbientacion.ReadAll();
+            cboAmbientacion.DisplayMemberPath = "Desc";
+            cboAmbientacion.SelectedValuePath = "Id";
+            cboAmbientacion.SelectedIndex = -1;
+
+            cboLocal.ItemsSource = Enum.GetValues(typeof(Locales));
+            cboLocal.SelectedIndex = 0;
+        }
+        #endregion    
+
+        #region metodos que performan una accion
         // limpiar todos los campos
         private void LimpiarCampos()
         {
             lblNumContrato.Content = string.Empty;
             txtRut.Text = string.Empty;
+            dpFechaInicio.SelectedDateTime = null;
+            dpFechaTermino.SelectedDateTime = null;
             cboTipoEvento.SelectedIndex = 0;
             cboModalidad.SelectedIndex = 0;
             txtCantAsist.Text = string.Empty;
             txtCantPersonal.Text = string.Empty;
-            dpFechaInicio.SelectedDateTime = null;
-            dpFechaTermino.SelectedDateTime = null;
+            chkVegetariana.IsChecked = false;
+            chkMusica.IsChecked = false;
+            cboAmbientacion.SelectedIndex = -1;
+            txtMontoArriendo.Text = "0";
             txtObservaciones.Text = string.Empty;
-            lblMonto.Content = "0";
             chkRealizado.IsChecked = false;
-            // habilitar edición de rut
-            EnableRut(true);
-            EnableButtons(false);
+            lblMonto.Content = "0";
+            BlockEdits(false);
         }
 
-        // metodo que entrega true cuando faltan datos obligatorios
-        public bool FaltanCamposObligatorios()
+        // calcular monto en UF al escribir cantidad de asistentes/personal
+        private void CalcularMonto()
         {
-            if (txtRut.Text == string.Empty ||
-                txtCantAsist.Text == string.Empty ||
-                txtCantPersonal.Text == string.Empty ||
-                dpFechaInicio.SelectedDateTime == null ||
-                dpFechaTermino.SelectedDateTime == null)
+            double monto = 0;
+
+            if (cboModalidad.SelectedValue == null ||
+                cboTipoEvento.SelectedValue == null ||
+                InvalidEntry())
             {
-                return true;
+                lblMonto.Content = monto;
+                return;
             }
-            return false;
+
+            if (cboTipoEvento.SelectedValue.ToString() == "10")
+            {
+                CoffeeBreak coffeeBreak = new CoffeeBreak()
+                {
+                    Contrato = new Contrato()
+                    {
+                        Asistentes = int.Parse(txtCantAsist.Text),
+                        PersonalAdicional = int.Parse(txtCantPersonal.Text),
+                        ModalidadServicio = new ModalidadServicio()
+                        {
+                            IdModalidad = cboModalidad.SelectedValue.ToString(),
+                            TipoEvento = new TipoEvento()
+                            {
+                                IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                            }
+                        }
+                    }
+                };
+                monto = coffeeBreak.CalcularValorEvento();
+                lblMonto.Content = monto;
+            }
+
+            else if (cboTipoEvento.SelectedValue.ToString() == "20")
+            {
+                if(cboAmbientacion.SelectedValue == null)
+                {
+                    Cocktail cocktail = new Cocktail()
+                    {
+                        MusicaAmbiental = chkMusica.IsChecked.Value,
+                        MusicaCliente = !(chkMusica.IsChecked.Value),
+                        Contrato = new Contrato()
+                        {
+                            Asistentes = int.Parse(txtCantAsist.Text),
+                            PersonalAdicional = int.Parse(txtCantPersonal.Text),
+                            ModalidadServicio = new ModalidadServicio()
+                            {
+                                IdModalidad = cboModalidad.SelectedValue.ToString(),
+                                TipoEvento = new TipoEvento()
+                                {
+                                    IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                                }
+                            }
+                        }
+                    };
+                    CocktailDecorator decorator = new CocktailDecorator(cocktail)
+                    {
+                        MusicaAmbiental = cocktail.MusicaAmbiental
+                    };
+                    monto = decorator.CalcularValorEvento();
+                    lblMonto.Content = monto;
+                }
+
+                else
+                {
+                    Cocktail cocktail = new Cocktail()
+                    {
+                        TipoAmbientacion = new TipoAmbientacion()
+                        {
+                            Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                        },
+                        MusicaAmbiental = chkMusica.IsChecked.Value,
+                        Contrato = new Contrato()
+                        {
+                            Asistentes = int.Parse(txtCantAsist.Text),
+                            PersonalAdicional = int.Parse(txtCantPersonal.Text),
+                            ModalidadServicio = new ModalidadServicio()
+                            {
+                                IdModalidad = cboModalidad.SelectedValue.ToString(),
+                                TipoEvento = new TipoEvento()
+                                {
+                                    IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                                }
+                            }
+                        }
+                    };
+                    CocktailDecorator decorator = new CocktailDecorator(cocktail)
+                    {
+                        Ambientacion = cocktail.TipoAmbientacion.Id,
+                        MusicaAmbiental = cocktail.MusicaAmbiental
+                    };
+                    monto = decorator.CalcularValorEvento();
+                    lblMonto.Content = monto;
+                }
+            }
+
+            else if (cboTipoEvento.SelectedValue.ToString() == "30" &&
+                cboAmbientacion.SelectedValue != null)
+            {
+                Cenas cenas = new Cenas()
+                {
+                    LocalOnBreak = LocalOnBreak(),
+                    OtroLocalOnBreak = ArrendarLocal(),
+                    ValorArriendo = double.Parse(txtMontoArriendo.Text),
+                    MusicaAmbiental = chkMusica.IsChecked.Value,
+                    TipoAmbientacion = new TipoAmbientacion()
+                    {
+                        Id = int.Parse(cboAmbientacion.SelectedValue.ToString())
+                    },
+                    Contrato = new Contrato()
+                    {
+                        Asistentes = int.Parse(txtCantAsist.Text),
+                        PersonalAdicional = int.Parse(txtCantPersonal.Text),
+                        ModalidadServicio = new ModalidadServicio()
+                        {
+                            IdModalidad = cboModalidad.SelectedValue.ToString(),
+                            TipoEvento = new TipoEvento()
+                            {
+                                IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
+                            }
+                        }
+                    }
+                };
+
+                CenasDecorator decorator = new CenasDecorator(cenas)
+                {
+                    Ambientacion = cenas.TipoAmbientacion.Id,
+                    MusicaAmbiental = cenas.MusicaAmbiental,
+                    LocalOnBreak = cenas.LocalOnBreak,
+                    ArriendoOtroLocal = cenas.ValorArriendo
+                };
+                monto = decorator.CalcularValorEvento();
+                lblMonto.Content = monto;
+            }                    
+        }
+
+        // METODOS BOOL PARA REVISAR ESTADO DEL LOCAL
+        private bool LocalOnBreak()
+        {
+            bool localOnbreak;
+            if (cboLocal.SelectedIndex == 1)
+            {
+                localOnbreak = true;
+            }
+            else
+            {
+                localOnbreak = false;
+            }
+            return localOnbreak;
+        }
+
+        private bool ArrendarLocal()
+        {
+            bool arrendarLocal;
+            if (cboLocal.SelectedIndex == 2)
+            {
+                arrendarLocal = true;
+            }
+            else
+            {
+                arrendarLocal = false;
+            }
+            return arrendarLocal;
         }
 
         // metodo que trae el parentWindow del currentPage para mostrar metro dialogue
@@ -321,23 +1090,9 @@ namespace OnBreakApp.Pages
             await this.TryFindParent<MetroWindow>()
                                 .ShowMessageAsync(title, message);
         }
+        #endregion
 
-        private void LimpiarDatos_Click(object sender, RoutedEventArgs e)
-        {
-            LimpiarCampos();
-        }
-
-        public void PopCbo()
-        {
-            TipoEvento tipoEvento = new TipoEvento();
-            // tipos de eventos
-            cboTipoEvento.ItemsSource = tipoEvento.ReadAll();
-            cboTipoEvento.DisplayMemberPath = "Descripcion";
-            cboTipoEvento.SelectedValuePath = "IdTipoEvento";
-            cboTipoEvento.SelectedIndex = 0;
-        }
-
-
+        #region DETECCION DE CAMBIOS
         // Metodo que filtra cbo de modalidad por el cbo de tipo seleccionado
         private void CboTipoEvento_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -348,48 +1103,55 @@ namespace OnBreakApp.Pages
             cboModalidad.DisplayMemberPath = "Nombre";
             cboModalidad.SelectedValuePath = "IdModalidad";
             cboModalidad.SelectedIndex = 0;
+
+            AditionalOptions();
         }
 
-        // calcular monto en UF al escribir cantidad de asistentes/personal
-        private void CalcularMonto()
+        private void CalcularMonto_KeyUp(object sender, KeyEventArgs e)
         {
-            if (txtCantAsist.Text == string.Empty ||
-                txtCantPersonal.Text == string.Empty ||
-                cboModalidad.SelectedValue == null ||
-                InvalidEntry())
+            CalcularMonto();
+        }
+
+        private void CalcularMonto_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CalcularMonto();
+        }
+
+        private void ChkMusica_Checked(object sender, RoutedEventArgs e)
+        {
+            CalcularMonto();
+        }
+
+        private void ChkMusica_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CalcularMonto();
+        }
+
+        private void CboLocal_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboLocal.SelectedIndex == 2)
             {
-                lblMonto.Content = "0";
-                return;
+                txtMontoArriendo.IsEnabled = true;
+                txtMontoArriendo.Opacity = 1;
+                txtMontoArriendo.Text = string.Empty;
             }
-            Contrato contrato = new Contrato()
+            else
             {
-                Asistentes = int.Parse(txtCantAsist.Text),
-                PersonalAdicional = int.Parse(txtCantPersonal.Text),
-                ModalidadServicio = new ModalidadServicio()
-                {
-                    IdModalidad = cboModalidad.SelectedValue.ToString(),
-                    TipoEvento = new TipoEvento()
-                    {
-                        IdTipoEvento = int.Parse(cboTipoEvento.SelectedValue.ToString())
-                    }
-                }
-            };
-            lblMonto.Content = valorizador.CalcularValorEvento(contrato);
-        }
+                txtMontoArriendo.IsEnabled = false;
+                txtMontoArriendo.Opacity = 0.5;
+                txtMontoArriendo.Text = "0";
+            }
 
-        private void txtCantPersonal_KeyUp(object sender, KeyEventArgs e)
-        {
             CalcularMonto();
         }
 
-        private void TxtCantAsist_KeyUp(object sender, KeyEventArgs e)
+        private void Backup_LostFocus(object sender, RoutedEventArgs e)
         {
-            CalcularMonto();
+            Backup();
         }
 
-        private void CboModalidad_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            CalcularMonto();
-        }
+        #endregion
+
+
     }
 }
