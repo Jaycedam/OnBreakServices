@@ -34,7 +34,7 @@ namespace OnBreak.Library.Models
             }
             else if (Contrato.Asistentes > 50)
             {
-                total += 5 + ((Contrato.Asistentes - 50) / 20) * 2;
+                total += 6 + ((Contrato.Asistentes - 50) / 20) * 2;
             }
 
             if (Contrato.PersonalAdicional == 2)

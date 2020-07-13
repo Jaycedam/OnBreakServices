@@ -33,6 +33,7 @@ C:\Users\jayce\Source\Repos\OnBreakServices\OnBreak.Datos\bin\Debug\EntityFramew
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreak.Datos\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreak.Datos\bin\Debug\EntityFramework.xml
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreak.Datos\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\jayce\Source\Repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.csprojAssemblyReference.cache
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.csproj.CoreCompileInputs.cache
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.csproj.CopyComplete
 C:\Users\jayce\Source\Repos\OnBreakServices\OnBreak.Datos\obj\Debug\OnBreak.Datos.dll
