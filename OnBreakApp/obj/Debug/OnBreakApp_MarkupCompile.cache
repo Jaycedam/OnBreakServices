@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\obj\Debug\
+C:\Users\Jordan\Documents\software\OnBreakServices\OnBreakApp\obj\Debug\
 OnBreakApp
 none
 false
 DEBUG;TRACE
-C:\Users\jayce\Source\Repos\OnBreakServices\OnBreakApp\App.xaml
-101645046035
+C:\Users\Jordan\Documents\software\OnBreakServices\OnBreakApp\App.xaml
+10-313420809
 
-13219348550
-47855662410
+13992951608
+471119006987
 DictionaryStyle.xaml;LoginWindow.xaml;MainWindow.xaml;Pages\PageAdminClientes.xaml;Pages\PageAdminContratos.xaml;Pages\PageInicio.xaml;Pages\PageListadoClientes.xaml;Pages\PageListadoContratos.xaml;Pages\PageLogin.xaml;Pages\PageRegister.xaml;
 
-False
+True
 
